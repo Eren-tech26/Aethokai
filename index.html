@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AethoKai - Premium Anime Streaming</title>
-    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Google Fonts & FontAwesome for icons -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -68,23 +66,18 @@
             box-shadow: 0 12px 24px rgba(124, 58, 237, 0.2);
         }
 
-        /* Utilities */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="text-gray-100 min-h-screen">
 
-    <!-- Flowing Base Background Layer -->
     <div class="liquid-bg">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
         <div class="blob blob-3"></div>
     </div>
 
-    <!-- ======================================================== -->
-    <!-- SCREEN 1: WELCOME GATE                                   -->
-    <!-- ======================================================== -->
     <div id="welcome-gate" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-6 bg-black/40 backdrop-blur-sm transition-all duration-1000">
         <div class="glass-panel max-w-md w-full p-8 rounded-3xl text-center space-y-6 transform translate-y-0 transition-transform duration-700">
             <div class="w-20 h-20 bg-gradient-to-tr from-purple-600 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto shadow-lg shadow-purple-500/20">
@@ -92,10 +85,10 @@
             </div>
             <div>
                 <h1 class="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">AethoKai</h1>
-                <p class="text-sm text-purple-200/60 mt-2">Premium Cinematic Anime Universe Hub</p>
+                <p class="text-sm text-purple-200/60 mt-2">Live AniList Stream Architecture</p>
             </div>
             <p class="text-gray-300 text-sm leading-relaxed">
-                Step inside an adaptive streaming architecture layered below high-fidelity glass surfaces. Fully reactive Sub/Dub mechanics.
+                Step inside an adaptive streaming architecture layered below high-fidelity glass surfaces. Powered by real-time AniList identity syncing.
             </p>
             <button onclick="triggerIntro()" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 font-bold tracking-wide shadow-lg shadow-purple-600/30 transition-all duration-300 transform active:scale-98 cursor-pointer">
                 ENTER PLATFORM
@@ -103,26 +96,20 @@
         </div>
     </div>
 
-    <!-- ======================================================== -->
-    <!-- SCREEN 2: INTRO ANIMATED PAGE                            -->
-    <!-- ======================================================== -->
     <div id="intro-screen" class="fixed inset-0 z-40 hidden flex items-center justify-center bg-[#070414] transition-opacity duration-1000 opacity-0">
         <div class="text-center space-y-4">
             <h2 id="intro-logo" class="text-6xl font-black tracking-widest text-white uppercase scale-75 opacity-0 transition-all duration-1000 ease-out">
                 Aetho<span class="text-purple-500">Kai</span>
             </h2>
             <div class="w-48 h-1 bg-purple-900/40 rounded-full mx-auto overflow-hidden relative">
-                <div class="absolute inset-y-0 left-0 bg-gradient-to-r from-purple-500 to-indigo-400 w-full transform -translate-x-full transition-transform duration-[1800ms] cubic-bezier(0.1, 0.8, 0.3, 1)" id="intro-progress"></div>
+                <div class="absolute inset-y-0 left-0 bg-gradient-to-r from-purple-500 to-indigo-400 w-full transform -translate-x-full transition-transform duration-[2200ms]" id="intro-progress"></div>
             </div>
+            <p id="loading-status" class="text-xs text-purple-400/60 tracking-wider">Syncing metadata from AniList...</p>
         </div>
     </div>
 
-    <!-- ======================================================== -->
-    <!-- MAIN INTERFACE CONTAINER (DASHBOARD & PLAYER)            -->
-    <!-- ======================================================== -->
     <div id="app-content" class="hidden opacity-0 transition-opacity duration-1000 max-w-[1600px] mx-auto p-4 md:p-8 pb-32">
         
-        <!-- Header / Navigation Panel -->
         <header class="glass-panel w-full p-4 md:px-8 rounded-2xl flex items-center justify-between mb-8 sticky top-4 z-30">
             <div class="flex items-center gap-3 cursor-pointer" onclick="showDashboard()">
                 <div class="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center font-black text-xl shadow-md">Æ</div>
@@ -134,7 +121,6 @@
                 <button class="px-4 py-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white font-semibold text-sm transition-colors">Fantasy</button>
                 <button class="px-4 py-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white font-semibold text-sm transition-colors">Romance</button>
                 <button class="px-4 py-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white font-semibold text-sm transition-colors">Isekai</button>
-                <button class="px-4 py-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white font-semibold text-sm transition-colors">Comedy</button>
             </div>
             <div class="flex items-center gap-4">
                 <div class="relative hidden sm:block">
@@ -147,35 +133,25 @@
             </div>
         </header>
 
-        <!-- ======================================================== -->
-        <!-- SCREEN 3: MAIN STREAMING DASHBOARD                       -->
-        <!-- ======================================================== -->
         <main id="dashboard-view" class="space-y-12">
             
-            <!-- Hero Banner Container -->
             <section id="hero-banner" class="relative w-full h-[480px] rounded-3xl overflow-hidden glass-panel group">
-                <div class="absolute inset-0 bg-cover bg-center transition-all duration-700 scale-100 group-hover:scale-102" style="background-image: url('https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1600&auto=format&fit=crop');"></div>
+                <div id="hero-bg" class="absolute inset-0 bg-cover bg-center transition-all duration-700 scale-100 group-hover:scale-102"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-[#0b071e] via-[#0b071e]/50 to-transparent"></div>
                 <div class="absolute inset-0 bg-gradient-to-r from-[#0b071e] via-[#0b071e]/20 to-transparent"></div>
                 
                 <div class="absolute bottom-0 left-0 p-6 md:p-12 max-w-2xl space-y-4">
                     <span class="px-3 py-1 bg-purple-600 text-xs font-bold rounded-md tracking-widest uppercase">FEATURED SPOTLIGHT</span>
-                    <h2 class="text-4xl md:text-6xl font-black tracking-tight leading-none">Jujutsu Kaisen</h2>
-                    <p class="text-gray-300 text-sm md:text-base leading-relaxed line-clamp-3 opacity-90">
-                        Yuji Itadori is a boy with tremendous physical strength, though he lives a completely ordinary high school life. One day, to save a classmate who has been attacked by curses, he eats the finger of Ryomen Sukuna, taking the curse into his own soul.
-                    </p>
+                    <h2 id="hero-title" class="text-4xl md:text-6xl font-black tracking-tight leading-none">Loading...</h2>
+                    <p id="hero-desc" class="text-gray-300 text-sm md:text-base leading-relaxed line-clamp-3 opacity-90"></p>
                     <div class="flex items-center gap-4 pt-2">
-                        <button onclick="launchPlayer(16498, 1)" class="px-6 py-3 bg-white text-black font-bold rounded-xl flex items-center gap-2 hover:bg-purple-200 transition-colors cursor-pointer shadow-lg shadow-white/10">
-                            <i class="fa-solid fa-play"></i> Watch Episode 1
-                        </button>
-                        <button class="p-3 glass-panel hover:bg-white/10 rounded-xl transition-all cursor-pointer">
-                            <i class="fa-solid fa-plus"></i>
+                        <button id="hero-play-btn" class="px-6 py-3 bg-white text-black font-bold rounded-xl flex items-center gap-2 hover:bg-purple-200 transition-colors cursor-pointer shadow-lg shadow-white/10">
+                            <i class="fa-solid fa-play"></i> Watch Now
                         </button>
                     </div>
                 </div>
             </section>
 
-            <!-- Categorized Submenu Row -->
             <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar py-2 border-b border-white/5 text-sm font-semibold text-gray-400">
                 <button class="px-4 py-1 text-purple-400 border-b-2 border-purple-500 whitespace-nowrap">Currently Airing</button>
                 <button class="px-4 py-1 hover:text-white transition-colors whitespace-nowrap">Today's Episodes</button>
@@ -184,9 +160,7 @@
                 <button class="px-4 py-1 hover:text-white transition-colors whitespace-nowrap">Upcoming Episodes</button>
             </div>
 
-            <!-- Netflix Sliding Rows -->
             <div class="space-y-10">
-                <!-- ROW 1: Continue Watching -->
                 <div class="space-y-4">
                     <h3 class="text-xl font-bold tracking-wide flex items-center gap-2">
                         <span class="w-1.5 h-5 bg-purple-500 rounded-full"></span>Continue Watching
@@ -194,7 +168,6 @@
                     <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-4" id="row-continue"></div>
                 </div>
 
-                <!-- ROW 2: Trending Anime -->
                 <div class="space-y-4">
                     <h3 class="text-xl font-bold tracking-wide flex items-center gap-2">
                         <span class="w-1.5 h-5 bg-purple-500 rounded-full"></span>Trending Anime
@@ -202,7 +175,6 @@
                     <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-4" id="row-trending"></div>
                 </div>
 
-                <!-- ROW 3: New Episodes -->
                 <div class="space-y-4">
                     <h3 class="text-xl font-bold tracking-wide flex items-center gap-2">
                         <span class="w-1.5 h-5 bg-purple-500 rounded-full"></span>New Episodes
@@ -212,23 +184,17 @@
             </div>
         </main>
 
-        <!-- ======================================================== -->
-        <!-- SCREEN 4: STREAMING VIDEO PLAYER PAGE                    -->
-        <!-- ======================================================== -->
         <main id="player-view" class="hidden space-y-6">
             <button onclick="showDashboard()" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-sm font-medium transition-colors cursor-pointer border border-white/5">
                 <i class="fa-solid fa-arrow-left"></i> Back to Hub
             </button>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Left: Iframe Embed and Selector Controls -->
                 <div class="lg:col-span-2 space-y-4">
-                    <!-- Glass Embed Shield Container -->
-                    <div class="glass-panel w-full aspect-video rounded-3xl overflow-hidden relative shadow-2xl">
+                    <div class="glass-panel w-full aspect-video rounded-3xl overflow-hidden relative shadow-2xl bg-black">
                         <iframe id="video-embed" src="" class="w-full h-full" frameborder="0" scrolling="no" allowfullscreen></iframe>
                     </div>
 
-                    <!-- Native Architecture Switches -->
                     <div class="glass-panel p-4 rounded-2xl flex flex-wrap items-center justify-between gap-4 text-sm">
                         <div class="flex items-center gap-2">
                             <span class="text-gray-400 font-medium">Server:</span>
@@ -236,27 +202,22 @@
                             <button id="btn-srv2" onclick="setServer('dub')" class="px-3 py-1.5 rounded-lg font-bold bg-white/5 text-gray-400 hover:bg-white/10 transition-colors cursor-pointer">Server 2 (Dub)</button>
                         </div>
                         <div class="flex items-center gap-2">
-                            <button id="btn-prev-ep" class="p-2 px-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"><i class="fa-solid fa-backward-step"></i></button>
+                            <button id="btn-prev-ep" class="p-2 px-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"><i class="fa-solid fa-backward-step"></i></button>
                             <span id="current-ep-display" class="font-semibold px-2">Episode 1</span>
-                            <button id="btn-next-ep" class="p-2 px-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"><i class="fa-solid fa-forward-step"></i></button>
+                            <button id="btn-next-ep" class="p-2 px-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"><i class="fa-solid fa-forward-step"></i></button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: Playlist Details / Architecture Hub -->
                 <div class="space-y-4">
                     <div class="glass-panel p-6 rounded-3xl space-y-4">
                         <div class="space-y-1">
                             <span id="player-status" class="text-xs font-bold text-purple-400 uppercase tracking-widest">AIRING</span>
                             <h2 id="player-title" class="text-2xl font-extrabold tracking-tight">Anime Title</h2>
                         </div>
-                        
                         <div class="flex flex-wrap gap-2 text-xs" id="player-genres"></div>
-                        
                         <p id="player-desc" class="text-sm text-gray-400 leading-relaxed line-clamp-4"></p>
-                        
                         <hr class="border-white/5">
-                        
                         <div>
                             <h4 class="text-sm font-bold text-gray-300 mb-3">Episodes Selection</h4>
                             <div class="grid grid-cols-4 sm:grid-cols-5 gap-2 max-h-48 overflow-y-auto pr-1 hide-scrollbar" id="episode-grid"></div>
@@ -267,9 +228,6 @@
         </main>
     </div>
 
-    <!-- ======================================================== -->
-    <!-- BOTTOM FLOATING PILL NAVIGATION BAR                      -->
-    <!-- ======================================================== -->
     <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 glass-panel px-6 py-3.5 rounded-full flex items-center gap-8 shadow-2xl shadow-purple-950/40 border-white/10">
         <button onclick="showDashboard()" class="flex flex-col items-center gap-1 text-purple-400 group cursor-pointer">
             <i class="fa-solid fa-house text-lg transition-transform group-hover:scale-110"></i>
@@ -289,58 +247,128 @@
         </button>
     </nav>
 
-
-    <!-- ======================================================== -->
-    <!-- LOGIC APPLICATION CORE SCRIPT                           -->
-    <!-- ======================================================== -->
     <script>
-        // Mock Catalog Database utilizing structural AniList IDs
-        const animeData = [
-            { id: 16498, title: "Jujutsu Kaisen S2", epCount: 23, current: 4, type: "Action, Fantasy", img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400&auto=format&fit=crop", desc: "A world where cursed energy shapes reality and battles forge destiny." },
-            { id: 153518, title: "Kaiju No. 8", epCount: 12, current: 12, type: "Action, Sci-Fi", img: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=400&auto=format&fit=crop", desc: "A literal monster taskforce agent turns into the threat he targets." },
-            { id: 101922, title: "Demon Slayer", epCount: 26, current: 1, type: "Action, Fantasy", img: "https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?q=80&w=400&auto=format&fit=crop", desc: "Tanjiro fights through demon-infested eras to redeem his cursed sister." },
-            { id: 154587, title: "Frieren: Beyond Journey", epCount: 28, current: 28, type: "Fantasy, Adventure", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=400&auto=format&fit=crop", desc: "An elf mage looks back at human connections long after the demon king is dead." },
-            { id: 21, title: "One Piece", epCount: 1100, current: 1085, type: "Action, Isekai", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop", desc: "The enduring journey for the singular, world-shifting ultimate crown." }
-        ];
+        // Array of targeting AniList IDs
+        const targetIds = [16498, 153518, 101922, 154587, 21, 140960, 166873];
+        let animeCatalog = [];
 
         let activeId = 16498;
         let activeEpisode = 1;
-        let activeServerMode = 'sub'; // 'sub' or 'dub'
+        let activeServerMode = 'sub';
 
-        // Screen 1 -> Screen 2 Logic
-        function triggerIntro() {
+        // Fetch Data Directly from official AniList GraphQL Endpoint
+        async function fetchAniListMetadata(ids) {
+            const query = `
+                query ($ids: [Int]) {
+                    Page {
+                        media(id_in: $ids, type: ANIME) {
+                            id
+                            title {
+                                english
+                                romaji
+                            }
+                            coverImage {
+                                extraLarge
+                                large
+                            }
+                            bannerImage
+                            description
+                            genres
+                            episodes
+                            status
+                            averageScore
+                        }
+                    }
+                }
+            `;
+
+            try {
+                const response = await fetch('https://graphql.anilist.co', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        query: query,
+                        variables: { ids: ids }
+                    })
+                });
+                
+                const json = await response.json();
+                return json.data.Page.media.map(item => ({
+                    id: item.id,
+                    title: item.title.english || item.title.romaji,
+                    img: item.coverImage.extraLarge || item.coverImage.large,
+                    banner: item.bannerImage || item.coverImage.extraLarge,
+                    desc: cleanDescription(item.description),
+                    genres: item.genres,
+                    epCount: item.episodes || 12,
+                    status: item.status,
+                    score: item.averageScore || '80'
+                }));
+            } catch (error) {
+                console.error("Failed fetching data from AniList API:", error);
+                return [];
+            }
+        }
+
+        // Helper tool to strip unwanted HTML tags from AniList description notes
+        function cleanDescription(html) {
+            if (!html) return "No description available.";
+            return html.replace(/<\/?[^>]+(>|$)/g, "");
+        }
+
+        // Screen Sequential Management
+        async function triggerIntro() {
             const gate = document.getElementById('welcome-gate');
             const intro = document.getElementById('intro-screen');
             const introLogo = document.getElementById('intro-logo');
             const progress = document.getElementById('intro-progress');
 
             gate.classList.add('opacity-0', 'pointer-events-none');
-            setTimeout(() => {
+            
+            setTimeout(async () => {
                 gate.classList.add('hidden');
                 intro.classList.remove('hidden');
                 intro.classList.add('flex');
+                
                 setTimeout(() => {
                     intro.classList.remove('opacity-0');
                     introLogo.classList.remove('opacity-0', 'scale-75');
                     progress.style.transform = 'translateX(0)';
                 }, 100);
-            }, 600);
 
-            // Intro Page Screen Timeout -> Main Dashboard
-            setTimeout(() => {
-                intro.classList.add('opacity-0');
+                // Start pulling precise API data during loading intro screen
+                animeCatalog = await fetchAniListMetadata(targetIds);
+                document.getElementById('loading-status').innerText = "Sync Complete. Injecting UI Panels...";
+
                 setTimeout(() => {
-                    intro.classList.add('hidden');
-                    buildDashboard();
-                    const app = document.getElementById('app-content');
-                    app.classList.remove('hidden');
-                    setTimeout(() => app.classList.remove('opacity-0'), 50);
-                }, 1000);
-            }, 3200);
+                    intro.classList.add('opacity-0');
+                    setTimeout(() => {
+                        intro.classList.add('hidden');
+                        hydrateDashboard();
+                        const app = document.getElementById('app-content');
+                        app.classList.remove('hidden');
+                        setTimeout(() => app.classList.remove('opacity-0'), 50);
+                    }, 1000);
+                }, 1200);
+
+            }, 600);
         }
 
-        // Render dynamic row elements
-        function buildDashboard() {
+        // Build UI Components with exact synchronized images
+        function hydrateDashboard() {
+            if(animeCatalog.length === 0) return;
+
+            // 1. Populate the Main Spotlight Hero (Using first element fetched)
+            const hero = animeCatalog[0];
+            document.getElementById('hero-bg').style.backgroundImage = `url('${hero.banner}')`;
+            document.getElementById('hero-title').innerText = hero.title;
+            document.getElementById('hero-desc').innerText = hero.desc;
+            document.getElementById('hero-play-btn').onclick = () => launchPlayer(hero.id, 1);
+
+            // 2. Build slider layout containers
             const rowContinue = document.getElementById('row-continue');
             const rowTrending = document.getElementById('row-trending');
             const rowNew = document.getElementById('row-new');
@@ -349,33 +377,37 @@
             rowTrending.innerHTML = '';
             rowNew.innerHTML = '';
 
-            animeData.forEach(anime => {
-                rowContinue.innerHTML += createCardMarkup(anime, `Ep ${anime.current} / ${anime.epCount}`);
-                rowTrending.innerHTML += createCardMarkup(anime, `<i class="fa-solid fa-fire text-amber-500 mr-1"></i> ${anime.id % 90 + 10}% rating`);
-                rowNew.innerHTML += createCardMarkup(anime, `Episode ${anime.epCount} Available`);
+            animeCatalog.forEach((anime, index) => {
+                // Continue watching simulation rows
+                const currentMockProgress = Math.floor(anime.epCount / 2) || 1;
+                rowContinue.innerHTML += createCardMarkup(anime, `Ep ${currentMockProgress} / ${anime.epCount}`);
+                
+                // Trending rows
+                rowTrending.innerHTML += createCardMarkup(anime, `<i class="fa-solid fa-star text-amber-400 mr-1"></i> Score: ${anime.score}%`);
+                
+                // Recently added rows
+                rowNew.innerHTML += createCardMarkup(anime, `${anime.status}`);
             });
         }
 
-        function createCardMarkup(anime, overlayText) {
+        function createCardMarkup(anime, tagString) {
             return `
-                <div onclick="launchPlayer(${anime.id}, 1)" class="glass-card min-w-[200px] md:min-w-[240px] rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 group relative">
-                    <div class="h-64 bg-cover bg-center" style="background-image: url('${anime.img}')"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-4">
-                        <span class="text-[10px] bg-purple-900/80 backdrop-blur-md px-2 py-0.5 rounded-md text-purple-200 font-bold self-start mb-1">${overlayText}</span>
+                <div onclick="launchPlayer(${anime.id}, 1)" class="glass-card min-w-[180px] md:min-w-[220px] rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 group relative">
+                    <div class="h-64 bg-cover bg-center bg-no-repeat" style="background-image: url('${anime.img}')"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent flex flex-col justify-end p-4">
+                        <span class="text-[10px] bg-purple-950/90 backdrop-blur-md px-2 py-0.5 rounded-md text-purple-300 font-bold self-start mb-1.5 border border-purple-500/20">${tagString}</span>
                         <h4 class="font-bold text-sm tracking-wide line-clamp-1 group-hover:text-purple-400 transition-colors">${anime.title}</h4>
                     </div>
                 </div>
             `;
         }
 
-        // Routing Views
         function showDashboard() {
             document.getElementById('player-view').classList.add('hidden');
             document.getElementById('dashboard-view').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Video Player Hydration Engines
         function launchPlayer(id, targetEp) {
             activeId = id;
             activeEpisode = targetEp;
@@ -384,21 +416,20 @@
             document.getElementById('player-view').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            const item = animeData.find(a => a.id === id) || animeData[0];
+            const targetAnime = animeCatalog.find(a => a.id === id);
+            if(!targetAnime) return;
 
-            // Hydrate text nodes
-            document.getElementById('player-title').innerText = item.title;
-            document.getElementById('player-desc').innerText = item.desc;
+            document.getElementById('player-title').innerText = targetAnime.title;
+            document.getElementById('player-desc').innerText = targetAnime.desc;
+            document.getElementById('player-status').innerText = targetAnime.status;
             
-            // Genres mapping
             const genresBox = document.getElementById('player-genres');
             genresBox.innerHTML = '';
-            item.type.split(',').forEach(genre => {
-                genresBox.innerHTML += `<span class="px-2.5 py-1 bg-white/5 rounded-md border border-white/5 text-gray-300 font-medium">${genre.trim()}</span>`;
+            targetAnime.genres.forEach(genre => {
+                genresBox.innerHTML += `<span class="px-2.5 py-1 bg-white/5 rounded-md border border-white/5 text-gray-300 font-medium">${genre}</span>`;
             });
 
-            // Hydrate active grids and stateful selectors
-            buildEpisodeGrid(item.epCount);
+            buildEpisodeGrid(targetAnime.epCount);
             updateVideoIframe();
         }
 
@@ -408,7 +439,7 @@
             for(let i = 1; i <= total; i++) {
                 const isActive = i === activeEpisode;
                 grid.innerHTML += `
-                    <button onclick="changeEpisode(${i})" class="p-2 text-center text-xs font-bold rounded-lg transition-all border cursor-pointer ${isActive ? 'bg-purple-600 border-purple-400 text-white shadow-md shadow-purple-600/20' : 'bg-white/5 border-white/5 text-gray-400 hover:bg-white/10 hover:text-white'}">
+                    <button onclick="changeEpisode(${i})" class="p-2 text-center text-xs font-bold rounded-lg transition-all border cursor-pointer ${isActive ? 'bg-purple-600 border-purple-400 text-white' : 'bg-white/5 border-white/5 text-gray-400 hover:bg-white/10'}">
                         ${i}
                     </button>
                 `;
@@ -417,7 +448,7 @@
 
         function changeEpisode(ep) {
             activeEpisode = ep;
-            const item = animeData.find(a => a.id === activeId);
+            const item = animeCatalog.find(a => a.id === activeId);
             buildEpisodeGrid(item.epCount);
             updateVideoIframe();
         }
@@ -428,11 +459,11 @@
             const s2 = document.getElementById('btn-srv2');
 
             if (mode === 'sub') {
-                s1.className = "px-3 py-1.5 rounded-lg font-bold bg-purple-600 text-white transition-colors cursor-pointer";
-                s2.className = "px-3 py-1.5 rounded-lg font-bold bg-white/5 text-gray-400 hover:bg-white/10 transition-colors cursor-pointer";
+                s1.className = "px-3 py-1.5 rounded-lg font-bold bg-purple-600 text-white cursor-pointer";
+                s2.className = "px-3 py-1.5 rounded-lg font-bold bg-white/5 text-gray-400 hover:bg-white/10 cursor-pointer";
             } else {
-                s2.className = "px-3 py-1.5 rounded-lg font-bold bg-purple-600 text-white transition-colors cursor-pointer";
-                s1.className = "px-3 py-1.5 rounded-lg font-bold bg-white/5 text-gray-400 hover:bg-white/10 transition-colors cursor-pointer";
+                s2.className = "px-3 py-1.5 rounded-lg font-bold bg-purple-600 text-white cursor-pointer";
+                s1.className = "px-3 py-1.5 rounded-lg font-bold bg-white/5 text-gray-400 hover:bg-white/10 cursor-pointer";
             }
             updateVideoIframe();
         }
@@ -442,13 +473,12 @@
             const display = document.getElementById('current-ep-display');
             const btnPrev = document.getElementById('btn-prev-ep');
             const btnNext = document.getElementById('btn-next-ep');
-            const item = animeData.find(a => a.id === activeId);
+            const item = animeCatalog.find(a => a.id === activeId);
 
-            // Set the strict source template
+            // Construct exact embed structure required by streaming architecture
             iframe.src = `https://vidnest.fun/animepahe/${activeId}/${activeEpisode}/${activeServerMode}`;
             display.innerText = `Episode ${activeEpisode}`;
 
-            // Handle standard navigation step boundaries
             btnPrev.disabled = activeEpisode <= 1;
             btnNext.disabled = activeEpisode >= item.epCount;
 
@@ -458,4 +488,3 @@
     </script>
 </body>
 </html>
-
