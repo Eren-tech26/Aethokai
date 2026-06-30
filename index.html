@@ -3,289 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AethoKai — Elite Glass-Obsidian OTT Engine</title>
+    <title>AethoKai — Premium Obsidian Glass OTT Interface</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --apple-blur: blur(35px) saturate(210%);
-            --bg-obsidian: #09090b;
-            --bg-charcoal: #111113;
-            --bg-card-gradient: linear-gradient(145deg, rgba(28, 28, 30, 0.75) 0%, rgba(12, 12, 14, 0.75) 100%);
+            --ios-blur: blur(40px) saturate(220%);
+            --color-obsidian: #070709;
+            --color-charcoal: #0e0e11;
+            --color-slate-gray: #16161a;
             --border-glass: rgba(255, 255, 255, 0.05);
-            --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --premium-ease: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-obsidian);
-            color: #f4f4f5;
+            background-color: var(--color-obsidian);
+            color: #f4f4f7;
             overflow-x: hidden;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.015em;
         }
 
-        /* High-Gloss Apple Morphism Viewports */
-        .iphone-dock-blur {
-            background: rgba(18, 18, 22, 0.75);
-            backdrop-filter: var(--apple-blur);
-            -webkit-backdrop-filter: var(--apple-blur);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .iphone-header-blur {
-            background: rgba(9, 9, 11, 0.7);
-            backdrop-filter: var(--apple-blur);
-            -webkit-backdrop-filter: var(--apple-blur);
+        /* Luxury iPhone Matte Glass Architecture Elements */
+        .iphone-blur-header {
+            background: rgba(7, 7, 9, 0.75);
+            backdrop-filter: var(--ios-blur);
+            -webkit-backdrop-filter: var(--ios-blur);
             border-bottom: 1px solid var(--border-glass);
         }
 
-        .glass-panel {
-            background: rgba(20, 20, 23, 0.4);
-            backdrop-filter: var(--apple-blur);
-            -webkit-backdrop-filter: var(--apple-blur);
-            border: 1px solid var(--border-glass);
+        .iphone-blur-dock {
+            background: rgba(14, 14, 17, 0.82);
+            backdrop-filter: var(--ios-blur);
+            -webkit-backdrop-filter: var(--ios-blur);
+            border: 1px solid rgba(255, 255, 255, 0.07);
         }
 
-        /* High-Definition Fixed Aspect Presentation Cards */
-        .netflix-card {
-            background: var(--bg-card-gradient);
+        .premium-glass-card {
+            background: linear-gradient(180deg, rgba(22, 22, 26, 0.8) 0%, rgba(9, 9, 11, 0.8) 100%);
             border: 1px solid var(--border-glass);
-            transition: all 0.45s var(--apple-ease);
+            transition: all 0.5s var(--premium-ease);
         }
-        .netflix-card:hover {
+        .premium-glass-card:hover {
             transform: scale(1.04) translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            border-color: rgba(255, 255, 255, 0.14);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85);
+            background: linear-gradient(180deg, rgba(28, 28, 33, 0.9) 0%, rgba(12, 12, 15, 0.9) 100%);
         }
 
-        /* Interactive Element Highlight Implementations */
-        .active-pill-white {
+        .pill-highlight-active {
             background: #ffffff !important;
-            color: #09090b !important;
+            color: #070709 !important;
         }
 
-        /* Custom Inertial Scrollers */
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .custom-scrollbar::-webkit-scrollbar { width: 5px; height: 5px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.5); }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 9px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+        /* Scroller Element Utilities configuration */
+        .hide-scroll-bars::-webkit-scrollbar { display: none; }
+        .hide-scroll-bars { -ms-overflow-style: none; scrollbar-width: none; }
+        .fine-scroller::-webkit-scrollbar { width: 4px; height: 4px; }
+        .fine-scroller::-webkit-scrollbar-track { background: rgba(0,0,0,0.6); }
+        .fine-scroller::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 10px; }
+        .fine-scroller::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
     </style>
 </head>
 <body class="antialiased selection:bg-white selection:text-black">
 
     <div class="min-h-screen flex flex-col pb-36">
         
-        <header class="iphone-header-blur w-full sticky top-0 z-40 px-4 md:px-10 py-4 flex items-center justify-between">
+        <header class="iphone-blur-header w-full sticky top-0 z-40 px-4 md:px-10 py-4 flex items-center justify-between">
             <div class="flex items-center gap-10">
-                <div class="flex items-center gap-3 cursor-pointer" onclick="switchSystemViewRoute('home')">
-                    <div class="w-9 h-9 rounded-xl bg-gradient-to-b from-zinc-100 to-zinc-400 text-black font-black flex items-center justify-center text-lg tracking-tighter shadow-inner">Æ</div>
-                    <span class="text-xl font-bold tracking-tight text-white uppercase bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">AethoKai</span>
+                <div class="flex items-center gap-3 cursor-pointer" onclick="dispatchViewRoute('home')">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-b from-zinc-100 to-zinc-400 text-black font-black flex items-center justify-center text-lg tracking-tighter shadow-md shadow-black/40">Æ</div>
+                    <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent uppercase">AethoKai</span>
                 </div>
                 
-                <nav class="hidden lg:flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-zinc-400">
-                    <button onclick="switchSystemViewRoute('home')" class="px-4 py-2 rounded-xl hover:text-white transition-colors cursor-pointer">Catalog Matrix</button>
-                    <button onclick="switchSystemViewRoute('watchlist')" class="px-4 py-2 rounded-xl hover:text-white transition-colors cursor-pointer">Vault Library</button>
-                    <button onclick="triggerGenreTaxonomyShelf('Action')" class="px-4 py-2 rounded-xl hover:text-white transition-colors cursor-pointer">Action</button>
-                    <button onclick="triggerGenreTaxonomyShelf('Fantasy')" class="px-4 py-2 rounded-xl hover:text-white transition-colors cursor-pointer">Fantasy</button>
-                    <button onclick="triggerGenreTaxonomyShelf('Sci-Fi')" class="px-4 py-2 rounded-xl hover:text-white transition-colors cursor-pointer">Sci-Fi</button>
+                <nav class="hidden lg:flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-400">
+                    <button onclick="dispatchViewRoute('home')" class="px-4 py-2 rounded-xl hover:text-white transition-colors cursor-pointer">Catalog Matrix</button>
+                    <button onclick="dispatchViewRoute('watchlist')" class="px-4 py-2 rounded-xl hover:text-white transition-colors cursor-pointer">Vault Manifest</button>
+                    <button onclick="executeGenreFilterPipeline('Action')" class="px-4 py-2 rounded-xl hover:text-white transition-colors cursor-pointer">Action</button>
+                    <button onclick="executeGenreFilterPipeline('Fantasy')" class="px-4 py-2 rounded-xl hover:text-white transition-colors cursor-pointer">Fantasy</button>
+                    <button onclick="executeGenreFilterPipeline('Sci-Fi')" class="px-4 py-2 rounded-xl hover:text-white transition-colors cursor-pointer">Sci-Fi</button>
                 </nav>
             </div>
 
             <div class="flex items-center gap-4 w-full max-w-xs md:max-w-sm">
                 <div class="relative w-full">
-                    <input type="text" id="live-catalog-search-bar" placeholder="Search collective global AniList database..." class="w-full bg-zinc-900/60 border border-zinc-800/80 focus:border-zinc-500 rounded-xl py-2 pl-10 pr-4 text-xs font-medium focus:outline-none transition-all text-zinc-100 placeholder-zinc-500 shadow-inner">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-zinc-500 text-xs"></i>
+                    <input type="text" id="global-live-search-input" placeholder="Search global network catalog registries..." class="w-full bg-zinc-900/50 border border-zinc-800/80 focus:border-zinc-500 rounded-xl py-2.5 pl-10 pr-4 text-xs font-medium focus:outline-none transition-all text-zinc-100 placeholder-zinc-500 shadow-inner">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-zinc-500 text-xs"></i>
                 </div>
             </div>
         </header>
 
         <main class="flex-1 w-full max-w-[1650px] mx-auto px-4 md:px-8 pt-6">
             
-            <div id="view-home" class="space-y-14 block-view-layer">
+            <div id="view-home" class="space-y-14 app-route-layer-block">
                 
-                <section class="relative w-full h-[520px] rounded-3xl overflow-hidden glass-panel group shadow-2xl bg-[#0b0b0d] border border-white/5">
+                <section class="relative w-full h-[450px] md:h-[550px] rounded-3xl overflow-hidden group shadow-2xl bg-[#09090b] border border-white/5">
                     
-                    <div class="absolute inset-0 w-full h-full overflow-hidden">
-                        <img id="spotlight-media-canvas" src="" alt="Spotlight Showcase Container" class="w-full h-full object-cover object-center scale-[1.01] transition-all duration-1000 ease-out group-hover:scale-105 opacity-90">
+                    <div class="absolute inset-0 w-full h-full">
+                        <img id="hero-spotlight-image-canvas" src="" alt="Spotlight Presentation Feed" class="w-full h-full object-cover object-top opacity-85 transition-transform duration-1000 ease-out group-hover:scale-102">
                     </div>
                     
-                    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"></div>
-                    <div class="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/20 to-transparent"></div>
-                    <div class="absolute inset-0 bg-black/20"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#070709] via-[#070709]/40 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#070709] via-transparent to-transparent"></div>
+                    <div class="absolute inset-0 bg-black/15"></div>
                     
-                    <div class="absolute bottom-0 left-0 p-6 md:p-14 max-w-3xl space-y-5 z-10">
+                    <div class="absolute bottom-0 left-0 p-6 md:p-14 max-w-3xl space-y-4 z-10">
                         <div class="flex items-center gap-2.5">
-                            <span class="px-3 py-1 bg-white/10 backdrop-blur-md border border-white/10 text-[9px] font-extrabold rounded-lg tracking-widest text-white uppercase shadow-sm">Featured Masterpiece</span>
-                            <span id="spotlight-media-rating" class="text-xs text-zinc-300 font-bold bg-zinc-900/80 px-2 py-0.5 rounded-md border border-white/5"><i class="fa-solid fa-star text-amber-400 mr-1"></i>--</span>
+                            <span class="px-3 py-1 bg-white/10 backdrop-blur-md border border-white/10 text-[9px] font-extrabold rounded-lg tracking-widest text-white uppercase shadow-sm">Premium Feature Selection</span>
+                            <span id="hero-spotlight-score-badge" class="text-xs text-zinc-300 font-bold bg-zinc-900/90 px-2 py-0.5 rounded-md border border-white/5"><i class="fa-solid fa-star text-amber-400 mr-1"></i>--</span>
                         </div>
-                        <h1 id="spotlight-media-header" class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-none line-clamp-2 Drop-shadow-xl">Syncing Active Core Framework Database...</h1>
-                        <p id="spotlight-media-summary" class="text-zinc-400 text-xs md:text-sm leading-relaxed line-clamp-3 font-medium text-justify max-w-2xl"></p>
+                        <h1 id="hero-spotlight-title-lbl" class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-none line-clamp-2 drop-shadow-xl">Synchronizing Global Master Data Catalogs...</h1>
+                        <p id="hero-spotlight-description-para" class="text-zinc-400 text-xs md:text-sm leading-relaxed line-clamp-3 font-medium text-justify max-w-2xl"></p>
                         
-                        <div class="flex items-center gap-4 pt-3">
-                            <button id="spotlight-media-play-trigger" class="px-7 py-3.5 bg-white text-black font-extrabold text-xs rounded-xl flex items-center gap-2.5 hover:bg-zinc-200 transition-all cursor-pointer shadow-xl transform active:scale-95">
-                                <i class="fa-solid fa-play text-[11px]"></i> Stream Track Episode 1
+                        <div class="flex items-center gap-3.5 pt-3">
+                            <button id="hero-spotlight-play-action-btn" class="px-7 py-3.5 bg-white text-black font-extrabold text-xs rounded-xl flex items-center gap-2.5 hover:bg-zinc-200 transition-all cursor-pointer shadow-xl transform active:scale-95">
+                                <i class="fa-solid fa-play text-[11px]"></i> Watch Episode 1
                             </button>
-                            <button id="spotlight-media-vault-trigger" class="p-3.5 bg-zinc-900/90 border border-zinc-800/80 hover:border-zinc-600 text-white rounded-xl transition-all cursor-pointer text-xs transform active:scale-95 shadow-lg">
+                            <button id="hero-spotlight-watchlist-action-btn" class="p-3.5 bg-zinc-900/90 border border-zinc-800/80 hover:border-zinc-500 text-white rounded-xl transition-all cursor-pointer text-xs transform active:scale-95 shadow-lg">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                             
-                            <div class="flex items-center gap-1.5 ml-4 bg-zinc-950/60 p-1.5 rounded-xl border border-white/5">
-                                <button onclick="shiftSpotlightSequenceTarget(-1)" class="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-white transition-all cursor-pointer"><i class="fa-solid fa-chevron-left text-[10px]"></i></button>
-                                <button onclick="shiftSpotlightSequenceTarget(1)" class="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-white transition-all cursor-pointer"><i class="fa-solid fa-chevron-right text-[10px]"></i></button>
+                            <div class="flex items-center gap-1 ml-3 bg-zinc-950/60 p-1.5 rounded-xl border border-white/5">
+                                <button onclick="stepSpotlightItemIndexSequence(-1)" class="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-white transition-all cursor-pointer"><i class="fa-solid fa-chevron-left text-[10px]"></i></button>
+                                <button onclick="stepSpotlightItemIndexSequence(1)" class="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-white transition-all cursor-pointer"><i class="fa-solid fa-chevron-right text-[10px]"></i></button>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <div class="space-y-12" id="netflix-shelves-vertical-matrix">
+                <div class="space-y-12" id="netflix-vertical-shelves-matrix-shell">
                     
                     <div class="space-y-4 hidden" id="shelf-row-history-block">
                         <div class="flex items-center justify-between px-1">
-                            <h3 class="text-xs font-bold uppercase tracking-widest text-zinc-400 flex items-center gap-2"><span class="w-1.5 h-3.5 bg-white rounded-full"></span>Continue Tracking Progression</h3>
+                            <h3 class="text-xs font-bold uppercase tracking-widest text-zinc-400 flex items-center gap-2"><span class="w-1.5 h-3.5 bg-white rounded-full"></span>Continue Watching Progress</h3>
                         </div>
-                        <div class="flex gap-5 overflow-x-auto hide-scrollbar pb-3 px-1" id="shelf-slider-history-row"></div>
+                        <div class="flex gap-5 overflow-x-auto hide-scroll-bars pb-3 px-1" id="shelf-slider-history-row-target"></div>
                     </div>
 
-                    <div id="dynamic-infinite-genre-shelves" class="space-y-12"></div>
+                    <div id="dynamic-endless-shelves-injection-well" class="space-y-12">
+                        </div>
 
                 </div>
             </div>
 
-            <div id="view-player" class="hidden space-y-6 block-view-layer">
+            <div id="view-player" class="hidden space-y-6 app-route-layer-block">
                 
                 <div class="flex items-center justify-between border-b border-zinc-900 pb-5">
-                    <button onclick="switchSystemViewRoute('home')" class="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white transition-colors cursor-pointer">
-                        <i class="fa-solid fa-arrow-left-long text-xs"></i> Exit Theater Grid Workspace
+                    <button onclick="dispatchViewRoute('home')" class="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white transition-colors cursor-pointer">
+                        <i class="fa-solid fa-arrow-left-long text-xs"></i> Exit Theater Workspace
                     </button>
                     <div class="flex items-center gap-2">
-                        <button id="cinema-layer-vault-toggle" class="px-5 py-2.5 bg-zinc-900 border border-zinc-800/80 hover:border-zinc-600 text-xs font-bold rounded-xl transition-all cursor-pointer shadow-md"></button>
+                        <button id="player-view-vault-action-toggle" class="px-5 py-2.5 bg-zinc-900 border border-zinc-800/80 hover:border-zinc-600 text-xs font-bold rounded-xl transition-all cursor-pointer shadow-md"></button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 items-start">
                     
                     <div class="xl:col-span-2 space-y-5">
-                        <div class="w-full aspect-video rounded-2xl overflow-hidden relative shadow-2xl bg-black border border-zinc-900/80 shadow-black/80">
-                            <iframe id="cinema-embedded-stream-portal" src="" class="w-full h-full" frameborder="0" scrolling="no" allowfullscreen></iframe>
+                        <div class="w-full aspect-video rounded-2xl overflow-hidden relative shadow-2xl bg-black border border-zinc-900/80 shadow-black/90">
+                            <iframe id="iframe-embedded-media-portal" src="" class="w-full h-full" frameborder="0" scrolling="no" allowfullscreen></iframe>
                         </div>
 
-                        <div class="glass-panel p-4.5 rounded-2xl flex flex-wrap items-center justify-between gap-5 text-xs border-white/5 shadow-lg">
+                        <div class="iphone-blur-dock p-4.5 rounded-2xl flex flex-wrap items-center justify-between gap-5 text-xs border-white/5 shadow-xl">
                             <div class="flex items-center gap-3">
-                                <span class="text-zinc-500 font-extrabold uppercase text-[10px] tracking-wider">Audio Feed Modulation:</span>
-                                <div class="flex bg-zinc-950 p-1 rounded-xl border border-zinc-800/60" id="cinema-audio-modulation-hub">
-                                    <button onclick="toggleCinemaAudioFeedMode('sub')" id="feed-sub-mode" class="px-4 py-1.5 rounded-lg font-extrabold text-[10px] uppercase transition-all cursor-pointer">Subbed Track</button>
-                                    <button onclick="toggleCinemaAudioFeedMode('dub')" id="feed-dub-mode" class="px-4 py-1.5 rounded-lg font-extrabold text-[10px] uppercase transition-all cursor-pointer">Dubbed Audio</button>
+                                <span class="text-zinc-500 font-extrabold uppercase text-[10px] tracking-wider">Audio Feed Track:</span>
+                                <div class="flex bg-zinc-950 p-1 rounded-xl border border-zinc-800/60" id="player-audio-modulation-hub">
+                                    <button onclick="switchPlayerAudioTrackLanguage('sub')" id="feed-sub-pill" class="px-4 py-1.5 rounded-lg font-extrabold text-[10px] uppercase transition-all cursor-pointer">Subbed</button>
+                                    <button onclick="switchPlayerAudioTrackLanguage('dub')" id="feed-dub-pill" class="px-4 py-1.5 rounded-lg font-extrabold text-[10px] uppercase transition-all cursor-pointer">Dubbed</button>
                                 </div>
                             </div>
 
                             <div class="flex items-center gap-3.5 bg-zinc-950 p-1 rounded-xl border border-zinc-800/60">
-                                <button id="sequence-back-step" class="w-8 h-8 flex items-center justify-center rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white transition-colors cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed"><i class="fa-solid fa-backward text-[10px]"></i></button>
-                                <span id="sequence-current-idx-lbl" class="font-bold text-zinc-300 tracking-widest text-[11px] px-2 uppercase min-w-[90px] text-center">Track Ep 01</span>
-                                <button id="sequence-forward-step" class="w-8 h-8 flex items-center justify-center rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white transition-colors cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed"><i class="fa-solid fa-forward text-[10px]"></i></button>
+                                <button id="player-stepping-back-btn" class="w-8 h-8 flex items-center justify-center rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white transition-colors cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed"><i class="fa-solid fa-backward text-[10px]"></i></button>
+                                <span id="player-stepping-current-lbl" class="font-bold text-zinc-300 tracking-widest text-[11px] px-2 uppercase min-w-[95px] text-center">EPISODE 01</span>
+                                <button id="player-stepping-next-btn" class="w-8 h-8 flex items-center justify-center rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white transition-colors cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed"><i class="fa-solid fa-forward text-[10px]"></i></button>
                             </div>
 
                             <div class="flex items-center gap-5 text-zinc-400 font-bold text-[11px]">
-                                <button onclick="triggerAutomatedNextSequenceTrack()" class="hover:text-white font-extrabold cursor-pointer flex items-center gap-2 transition-colors uppercase tracking-wider"><i class="fa-solid fa-forward-step text-[11px]"></i> Play Next</button>
+                                <button onclick="triggerAutomatedNextTrackAdvance()" class="hover:text-white font-extrabold cursor-pointer flex items-center gap-2 transition-colors uppercase tracking-wider"><i class="fa-solid fa-forward-step text-[11px]"></i> Advance Episode</button>
                             </div>
                         </div>
                     </div>
 
                     <div class="space-y-6">
-                        <div class="glass-panel p-6 rounded-2xl space-y-4 border-white/5 shadow-xl bg-zinc-900/20">
+                        <div class="iphone-blur-dock p-6 rounded-2xl space-y-4 border-white/5 shadow-xl bg-zinc-900/10">
                             <div class="space-y-2">
                                 <div class="flex items-center gap-2">
-                                    <span id="cinema-meta-status-tag" class="px-2.5 py-0.5 bg-white/5 border border-white/10 text-[9px] font-extrabold rounded text-zinc-400 tracking-widest uppercase">--</span>
-                                    <span id="cinema-meta-score-tag" class="text-[11px] text-zinc-300 font-bold bg-zinc-950/60 px-2 py-0.5 rounded border border-white/5"><i class="fa-solid fa-star text-amber-400 mr-1"></i>--</span>
+                                    <span id="player-meta-status-tag" class="px-2.5 py-0.5 bg-white/5 border border-white/10 text-[9px] font-extrabold rounded text-zinc-400 tracking-widest uppercase">--</span>
+                                    <span id="player-meta-score-tag" class="text-[11px] text-zinc-300 font-bold bg-zinc-950/60 px-2 py-0.5 rounded border border-white/5"><i class="fa-solid fa-star text-amber-400 mr-1"></i>--</span>
                                 </div>
-                                <h2 id="cinema-meta-title-lbl" class="text-xl font-bold text-white tracking-tight line-clamp-2">--</h2>
+                                <h2 id="player-meta-title-lbl" class="text-xl font-bold text-white tracking-tight line-clamp-2">--</h2>
                             </div>
-                            <p id="cinema-meta-description-para" class="text-xs text-zinc-400 leading-relaxed line-clamp-4 font-medium text-justify"></p>
+                            <p id="player-meta-description-para" class="text-xs text-zinc-400 leading-relaxed line-clamp-4 font-medium text-justify"></p>
                             
                             <hr class="border-zinc-900/60">
                             
                             <div class="space-y-3">
                                 <h4 class="text-[10px] font-extrabold tracking-widest uppercase text-zinc-500 flex items-center justify-between">
-                                    <span>Episode Selection Track Drawer</span>
-                                    <span id="drawer-count-indicator" class="text-zinc-600 text-[9px]">-- Structural Blocks</span>
+                                    <span>Track Playlist Drawer</span>
+                                    <span id="player-drawer-count-indicator" class="text-zinc-600 text-[9px]">-- Parts</span>
                                 </h4>
-                                <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 xl:grid-cols-4 gap-2 max-h-48 overflow-y-auto pr-1.5 custom-scrollbar" id="cinema-interactive-episode-drawer-grid">
+                                <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 xl:grid-cols-4 gap-2 max-h-48 overflow-y-auto pr-1.5 fine-scroller" id="player-drawer-grid-well">
                                     </div>
                             </div>
                         </div>
 
                         <div class="space-y-3">
-                            <h4 class="text-[10px] font-extrabold tracking-widest uppercase text-zinc-400 px-1">Contextual Relational Recommendations</h4>
-                            <div class="grid grid-cols-1 gap-2" id="cinema-relational-recommendation-stack">
+                            <h4 class="text-[10px] font-extrabold tracking-widest uppercase text-zinc-400 px-1">Contextual Recommendations</h4>
+                            <div class="grid grid-cols-1 gap-2" id="player-relational-recommendation-stack">
                                 </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="view-search" class="hidden space-y-6 block-view-layer">
+            <div id="view-search" class="hidden space-y-6 app-route-layer-block">
                 <div class="space-y-1.5 px-1">
-                    <h2 class="text-xl font-bold tracking-tight text-white" id="search-matrix-query-lbl">Live System Exploration Registry</h2>
-                    <p class="text-xs text-zinc-500">Active records queried directly from live remote system distribution databases via GraphQL layer routing.</p>
+                    <h2 class="text-xl font-bold tracking-tight text-white" id="search-view-query-lbl">Live Dynamic Exploration Hub</h2>
+                    <p class="text-xs text-zinc-500">Active matching query catalog indexes pulled live from public GraphQL server networks.</p>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 px-1" id="search-matrix-results-injection-grid">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 px-1" id="search-view-injection-grid-target">
                     </div>
             </div>
 
-            <div id="view-watchlist" class="hidden space-y-6 block-view-layer">
+            <div id="view-watchlist" class="hidden space-y-6 app-route-layer-block">
                 <div class="space-y-1.5 px-1">
-                    <h2 class="text-xl font-bold tracking-tight text-white">Personal Vault Storage Manifest</h2>
-                    <p class="text-xs text-zinc-500">Custom selection items cataloged directly inside the current active browser sandbox tracking storage arrays.</p>
+                    <h2 class="text-xl font-bold tracking-tight text-white">Vault Manifest Storage</h2>
+                    <p class="text-xs text-zinc-500">Custom selected content elements saved inside the active browser sandbox storage structures array layers.</p>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 px-1" id="watchlist-vault-injection-grid">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 px-1" id="watchlist-view-injection-grid-target">
                     </div>
+            </div>
+
+            <div id="view-profile" class="hidden space-y-6 app-route-layer-block">
+                <div class="max-w-md mx-auto iphone-blur-dock p-8 rounded-3xl text-center space-y-6 border-white/5 mt-10 shadow-2xl">
+                    <div class="w-24 h-24 bg-gradient-to-tr from-zinc-700 to-zinc-400 rounded-full mx-auto flex items-center justify-center border-2 border-white/10 shadow-lg">
+                        <i class="fa-solid fa-user text-3xl text-black"></i>
+                    </div>
+                    <div class="space-y-1">
+                        <h2 class="text-xl font-extrabold tracking-tight text-white">Elite User Profile Context</h2>
+                        <p class="text-xs text-zinc-500">AethoKai Client Matrix Member Level Alpha</p>
+                    </div>
+                    <div class="bg-zinc-950/60 border border-zinc-800/80 rounded-2xl p-4 text-left space-y-2 text-xs font-semibold text-zinc-400">
+                        <div class="flex justify-between"><span>Data Synchronizer:</span><span class="text-zinc-200">Active GraphQL</span></div>
+                        <div class="flex justify-between"><span>System Environment:</span><span class="text-zinc-200">Production Standard</span></div>
+                        <div class="flex justify-between"><span>Local Node Vault Count:</span><span class="text-zinc-200" id="profile-vault-count-lbl">0 Keys</span></div>
+                    </div>
+                </div>
             </div>
 
         </main>
     </div>
 
-    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 iphone-dock-blur px-10 py-4 rounded-2xl flex items-center gap-12 shadow-3xl max-w-sm w-[90%] justify-center shadow-black/90">
-        <button onclick="switchSystemViewRoute('home')" id="dock-action-home" class="flex flex-col items-center gap-1 text-white cursor-pointer transition-all hover:scale-105 active:scale-95">
-            <i class="fa-solid fa-compass text-base"></i>
-            <span class="text-[9px] font-extrabold tracking-widest uppercase">Browse</span>
+    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 iphone-blur-dock px-8 py-3.5 rounded-2xl flex items-center justify-between gap-8 md:gap-10 shadow-3xl max-w-lg w-[92%] shadow-black/95">
+        <button onclick="dispatchViewRoute('home')" id="dock-btn-home" class="flex flex-col items-center gap-1 text-white cursor-pointer transition-all hover:scale-105 active:scale-95">
+            <i class="fa-solid fa-compass text-base"></i><span class="text-[8px] font-extrabold tracking-widest uppercase">Browse</span>
         </button>
-        <button onclick="switchSystemViewRoute('watchlist')" id="dock-action-watchlist" class="flex flex-col items-center gap-1 text-zinc-500 hover:text-white cursor-pointer transition-all hover:scale-105 active:scale-95">
-            <i class="fa-solid fa-folder-closed text-base"></i>
-            <span class="text-[9px] font-extrabold tracking-widest uppercase">Vault</span>
+        <button onclick="executeGenreFilterPipeline('Trending')" id="dock-btn-trending" class="flex flex-col items-center gap-1 text-zinc-500 hover:text-white cursor-pointer transition-all hover:scale-105 active:scale-95">
+            <i class="fa-solid fa-fire text-base"></i><span class="text-[8px] font-extrabold tracking-widest uppercase">Trending</span>
+        </button>
+        <button onclick="executeGenreFilterPipeline('Airing')" id="dock-btn-airing" class="flex flex-col items-center gap-1 text-zinc-500 hover:text-white cursor-pointer transition-all hover:scale-105 active:scale-95">
+            <i class="fa-solid fa-tv text-base"></i><span class="text-[8px] font-extrabold tracking-widest uppercase">Airing</span>
+        </button>
+        <button onclick="dispatchViewRoute('watchlist')" id="dock-btn-watchlist" class="flex flex-col items-center gap-1 text-zinc-500 hover:text-white cursor-pointer transition-all hover:scale-105 active:scale-95">
+            <i class="fa-solid fa-folder-closed text-base"></i><span class="text-[8px] font-extrabold tracking-widest uppercase">Vault</span>
+        </button>
+        <button onclick="dispatchViewRoute('profile')" id="dock-btn-profile" class="flex flex-col items-center gap-1 text-zinc-500 hover:text-white cursor-pointer transition-all hover:scale-105 active:scale-95">
+            <i class="fa-solid fa-user-gear text-base"></i><span class="text-[8px] font-extrabold tracking-widest uppercase">Profile</span>
         </button>
     </nav>
 
 
     <script>
-        // System Wide Core Reference Index Configurations Target Nodes
-        const initializationQueryTargetIds = [16498, 153518, 101922, 154587, 21, 140960, 166873, 113415, 142838, 171018, 154512, 11061, 104578, 143270, 11757, 101759, 131518, 114562, 5114];
-        const systemicCategorizationGenresList = ["Action", "Adventure", "Fantasy", "Sci-Fi", "Thriller", "Romance", "Drama", "Mystery"];
+        // System Bootstrap Global Identification Indexes Array Config Map
+        const initializationQuerySourceIds = [16498, 153518, 101922, 154587, 21, 140960, 166873, 113415, 142838, 171018, 154512, 11061, 104578, 143270, 11757, 101759, 131518, 114562, 5114, 127230, 163132, 145064, 151801];
+        const systemicCategorizationGenresList = ["Action", "Adventure", "Fantasy", "Sci-Fi", "Thriller", "Romance", "Drama", "Mystery", "Comedy", "Supernatural"];
         
         let globalSystemCacheMatrix = [];
         let indexSpotlightCarouselTracker = 0;
-        let runningSlideshowLoopTimerInstance = null;
+        let runningCarouselLoopTimerInstance = null;
 
-        // Current Active System Tracking Variable Assets
+        // Current Active Tracking System State Context Variables
         let activeIdentityTargetId = 16498;
         let activeEpisodeTrackingIndex = 1;
         let activeAudioFeedLanguageMode = 'sub';
 
-        // Global Boot Synchronization Initialization Pipeline Hook
+        // Global Orchestration Initialization Hook
         window.addEventListener('DOMContentLoaded', async () => {
-            // Extract complete bulk data configuration parameters from public backend endpoints
-            globalSystemCacheMatrix = await executeGraphQLMultiBatchQuery(initializationQueryTargetIds);
+            // Extract complete foundational dataset mapping array from live servers
+            globalSystemCacheMatrix = await executeGraphQLMultiBatchQuery(initializationQuerySourceIds);
             
             initializeLayoutRenderPipelines();
             synchronizeTrackingHistoryShelfRail();
             setupLiveFilteringEngineEvents();
             commenceAutomatedSpotlightSlideshowLoop();
+            
+            // Sync initial state profile configurations
+            document.getElementById('profile-vault-count-lbl').innerText = `${accessPersistentStorageKey('vault').length} Selection Keys`;
         });
 
         // ======================================================== -->
-        // CORE GRAPHQL TRANSPORT SERVICE LAYER ARCHITECTURE ENGINE -->
+        // DYNAMIC CORE GRAPHQL DATA TRANSPORT SERVICE PIPELINE    -->
         // ======================================================== -->
         async function executeGraphQLMultiBatchQuery(idsArray) {
             const compiledGraphQuery = `
@@ -321,7 +341,7 @@
         async function executeGraphQLSearchLiveQuery(queryStringPattern) {
             const searchableGqlString = `
                 query ($search: String) {
-                    Page(page: 1, perPage: 30) {
+                    Page(page: 1, perPage: 32) {
                         media(search: $search, type: ANIME) {
                             id
                             title { english romaji }
@@ -350,7 +370,7 @@
                 if (!responseParsedJson.data || !responseParsedJson.data.Page.media) return [];
                 return structuralSanitizationDataAdapter(responseParsedJson.data.Page.media);
             } catch (networkTransportFaultContext) {
-                console.error("System Network Layer Transport Execution Exception Context Frame: ", networkTransportFaultContext);
+                console.error("System Network Layer Transport Execution Exception: ", networkTransportFaultContext);
                 return [];
             }
         }
@@ -361,34 +381,35 @@
                 title: node.title.english || node.title.romaji,
                 img: node.coverImage.extraLarge || node.coverImage.large,
                 banner: node.bannerImage || node.coverImage.extraLarge || node.coverImage.large,
-                desc: node.description ? node.description.replace(/<\/?[^>]+(>|$)/g, "") : "No descriptive metadata index record compiled for active sequence item catalog logs.",
-                genres: node.genres || ["General Collection"],
+                desc: node.description ? node.description.replace(/<\/?[^>]+(>|$)/g, "") : "No detailed descriptions structural logs provided for dynamic catalog record index entries.",
+                genres: node.genres || ["General Media Framework"],
                 episodesCount: node.episodes || 12,
                 status: node.status || "COMPLETED",
-                score: node.averageScore ? (node.averageScore / 10).toFixed(1) : "7.8",
+                score: node.averageScore ? (node.averageScore / 10).toFixed(1) : "7.9",
                 relatedRecommendations: node.recommendations?.nodes?.map(n => n.mediaRecommendation).filter(Boolean).map(r => ({
                     id: r.id,
                     title: r.title.english || r.title.romaji,
                     img: r.coverImage.large,
-                    score: r.averageScore ? (r.averageScore / 10).toFixed(1) : "7.5"
+                    score: r.averageScore ? (r.averageScore / 10).toFixed(1) : "7.6"
                 })) || []
             }));
         }
 
         // ======================================================== -->
-        // VIEW LAYERING NAVIGATION MANAGEMENT (SINGLE PAGE SYSTEM) -->
+        // VIEW INTERACTIVE ROUTING TRANSFORMATION LAYER CONTROLLER -->
         // ======================================================== -->
-        function switchSystemViewRoute(targetRouteIdentifier) {
-            const blockViewLayers = document.querySelectorAll('.block-view-layer');
+        function dispatchViewRoute(targetRouteIdentifier) {
+            const blockViewLayers = document.querySelectorAll('.app-route-layer-block');
             blockViewLayers.forEach(layer => layer.classList.add('hidden'));
 
             document.getElementById(`view-${targetRouteIdentifier}`).classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            const structuralDockIdentifiers = { 'home': 'dock-action-home', 'watchlist': 'dock-action-watchlist' };
-            Object.entries(structuralDockIdentifiers).forEach(([routeKey, elementId]) => {
+            const structuralDockIds = { 'home': 'dock-btn-home', 'watchlist': 'dock-btn-watchlist', 'profile': 'dock-btn-profile' };
+            Object.entries(structuralDockIds).forEach(([routeKey, elementId]) => {
                 const targetedDockButton = document.getElementById(elementId);
                 if (!targetedDockButton) return;
+                
                 if (routeKey === targetRouteIdentifier) {
                     targetedDockButton.classList.remove('text-zinc-500');
                     targetedDockButton.classList.add('text-white');
@@ -399,20 +420,23 @@
             });
 
             if (targetRouteIdentifier === 'watchlist') compilePersonalVaultLibraryGrid();
+            if (targetRouteIdentifier === 'profile') {
+                document.getElementById('profile-vault-count-lbl').innerText = `${accessPersistentStorageKey('vault').length} Selection Keys`;
+            }
         }
 
         // ======================================================== -->
-        // INTERACTIVE CORE GRAPHICAL DISPLAY RENDER COMPILERS       -->
+        // RENDER PROCESSING CORES: DISPLAY PIPELINE ARCHITECTURES  -->
         // ======================================================== -->
         function initializeLayoutRenderPipelines() {
             if (globalSystemCacheMatrix.length === 0) return;
 
-            // Render Node Frame A: Update System Feature Theater Elements
+            // Render Node Frame 1: Set Spotlight Billboard Content Block
             renderSpotlightFeatureBillboard(globalSystemCacheMatrix[indexSpotlightCarouselTracker]);
 
-            // Render Node Frame B: Compile Netflix-Style Endless Continuous Rows
-            const endlessShelfInjectionTarget = document.getElementById('dynamic-infinite-genre-shelves');
-            endlessShelfInjectionTarget.innerHTML = '';
+            // Render Node Frame 2: Compile Endless Netflix-Style Vertical Genre Shelves Stacks
+            const endlessShelfInjectionWell = document.getElementById('dynamic-endless-shelves-injection-well');
+            endlessShelfInjectionWell.innerHTML = '';
 
             systemicCategorizationGenresList.forEach(genreName => {
                 const filteredGenreCollectionMatches = globalSystemCacheMatrix.filter(anime => anime.genres.includes(genreName));
@@ -427,16 +451,16 @@
                         <div class="space-y-4 shelf-group-box">
                             <div class="flex items-center justify-between px-1">
                                 <h3 class="text-xs font-bold uppercase tracking-widest text-zinc-400 flex items-center gap-2">
-                                    <span class="w-1.5 h-3.5 bg-zinc-600 rounded-full"></span>Best in ${genreName}
+                                    <span class="w-1.5 h-3.5 bg-zinc-700 rounded-full"></span>Top Tier ${genreName}
                                 </h3>
-                                <span class="text-[10px] text-zinc-600 font-extrabold uppercase tracking-widest cursor-pointer hover:text-white transition-colors" onclick="triggerGenreTaxonomyShelf('${genreName}')">See All</span>
+                                <span class="text-[10px] text-zinc-600 font-extrabold uppercase tracking-widest cursor-pointer hover:text-white transition-colors" onclick="executeGenreFilterPipeline('${genreName}')">Expand</span>
                             </div>
-                            <div class="flex gap-5 overflow-x-auto hide-scrollbar pb-3 px-1">
+                            <div class="flex gap-5 overflow-x-auto hide-scroll-bars pb-3 px-1">
                                 ${continuousRowItemsSliderHTML}
                             </div>
                         </div>
                     `;
-                    endlessShelfInjectionTarget.innerHTML += shelfShellMarkupTemplate;
+                    endlessShelfInjectionWell.innerHTML += shelfShellMarkupTemplate;
                 }
             });
         }
@@ -444,18 +468,18 @@
         function renderSpotlightFeatureBillboard(targetMediaObject) {
             if (!targetMediaObject) return;
 
-            const displayImageCanvas = document.getElementById('spotlight-media-canvas');
+            const displayImageCanvas = document.getElementById('hero-spotlight-image-canvas');
             displayImageCanvas.src = targetMediaObject.banner;
 
-            document.getElementById('spotlight-media-header').innerText = targetMediaObject.title;
-            document.getElementById('spotlight-media-summary').innerText = targetMediaObject.desc;
-            document.getElementById('spotlight-media-rating').innerHTML = `<i class="fa-solid fa-star text-amber-400 mr-1"></i> ${targetMediaObject.score} Rating`;
+            document.getElementById('hero-spotlight-title-lbl').innerText = targetMediaObject.title;
+            document.getElementById('hero-spotlight-description-para').innerText = targetMediaObject.desc;
+            document.getElementById('hero-spotlight-score-badge').innerHTML = `<i class="fa-solid fa-star text-amber-400 mr-1"></i> ${targetMediaObject.score} Meta Score`;
 
-            document.getElementById('spotlight-media-play-trigger').onclick = () => activateCinemaTheaterSession(targetMediaObject.id, 1);
+            document.getElementById('hero-spotlight-play-action-btn').onclick = () => activateCinemaTheaterSession(targetMediaObject.id, 1);
 
             const activeVaultTrackingArray = accessPersistentStorageKey('vault');
             const isItemSavedInLibrary = activeVaultTrackingArray.includes(targetMediaObject.id);
-            const vaultTriggerButton = document.getElementById('spotlight-media-vault-trigger');
+            const vaultTriggerButton = document.getElementById('hero-spotlight-watchlist-action-btn');
             
             vaultTriggerButton.innerHTML = isItemSavedInLibrary ? `<i class="fa-solid fa-check text-green-400"></i>` : `<i class="fa-solid fa-plus"></i>`;
             vaultTriggerButton.onclick = () => { 
@@ -464,8 +488,8 @@
             };
         }
 
-        function shiftSpotlightSequenceTarget(directionalStepFactor) {
-            clearInterval(runningSlideshowLoopTimerInstance);
+        function stepSpotlightItemIndexSequence(directionalStepFactor) {
+            clearInterval(runningCarouselLoopTimerInstance);
             
             indexSpotlightCarouselTracker += directionalStepFactor;
             if (indexSpotlightCarouselTracker >= globalSystemCacheMatrix.length) indexSpotlightCarouselTracker = 0;
@@ -476,17 +500,17 @@
         }
 
         function commenceAutomatedSpotlightSlideshowLoop() {
-            runningSlideshowLoopTimerInstance = setInterval(() => {
+            runningCarouselLoopTimerInstance = setInterval(() => {
                 indexSpotlightCarouselTracker++;
                 if (indexSpotlightCarouselTracker >= globalSystemCacheMatrix.length) indexSpotlightCarouselTracker = 0;
                 renderSpotlightFeatureBillboard(globalSystemCacheMatrix[indexSpotlightCarouselTracker]);
-            }, 8000);
+            }, 9000);
         }
 
         function constructNetflixStandardCardTemplate(animeDataStructure, internalTagBadgeContent) {
             return `
-                <div onclick="activateCinemaTheaterSession(${animeDataStructure.id}, 1)" class="netflix-card min-w-[165px] md:min-w-[195px] rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 group relative shadow-lg bg-zinc-900">
-                    <div class="h-60 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-105" style="background-image: url('${animeDataStructure.img}')"></div>
+                <div onclick="activateCinemaTheaterSession(${animeDataStructure.id}, 1)" class="premium-glass-card min-w-[165px] md:min-w-[195px] rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 group relative shadow-lg">
+                    <div class="h-60 bg-cover bg-center bg-no-repeat transition-all duration-700 ease-out" style="background-image: url('${animeDataStructure.img}')"></div>
                     <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent flex flex-col justify-end p-4">
                         <span class="text-[9px] bg-zinc-950/90 border border-white/10 px-2 py-0.5 rounded-md text-zinc-300 font-extrabold self-start mb-2 uppercase tracking-wider backdrop-blur-sm shadow">${internalTagBadgeContent}</span>
                         <h4 class="font-bold text-xs tracking-tight line-clamp-1 group-hover:text-white text-zinc-200 transition-colors">${animeDataStructure.title}</h4>
@@ -496,38 +520,38 @@
         }
 
         // ======================================================== -->
-        // CINEMA THEATER LIVE CONTROLLER MEDIA CONTEXT HANDLING    -->
+        // HIGH FIDELITY MEDIA PLAYBACK SESSION THEATER LOGIC       -->
         // ======================================================== -->
         function activateCinemaTheaterSession(targetTrackingId, directEpisodeSelectionIndex) {
             activeIdentityTargetId = targetTrackingId;
             activeEpisodeTrackingIndex = parseInt(directEpisodeSelectionIndex);
 
-            switchSystemViewRoute('player');
+            dispatchViewRoute('player');
 
             let runtimeMatchingMediaInstance = globalSystemCacheMatrix.find(item => item.id === targetTrackingId);
             
-            // Protection dynamic recovery array layer 
+            // Protection fallback handling layer if trace configuration indices are matching unindexed nodes
             if (!runtimeMatchingMediaInstance) {
                 runtimeMatchingMediaInstance = {
                     id: targetTrackingId,
-                    title: "Dynamic Synchronization Feed",
+                    title: "Dynamic Synchronization Feed Channel",
                     img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400",
                     banner: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1200",
-                    desc: "Connecting live runtime transport streams directly into active client matrix layouts. Fetching tracking validation sequences live.",
+                    desc: "Injecting operational pipeline pathways live from remote network storage containers. Dynamic synchronization tracing streaming asset keys now.",
                     genres: ["Action"],
                     episodesCount: 24,
                     status: "RELEASING",
-                    score: "8.0",
+                    score: "8.1",
                     relatedRecommendations: []
                 };
             }
 
-            // Bind UI Core View Parameters Meta Blocks
-            document.getElementById('cinema-meta-title-lbl').innerText = runtimeMatchingMediaInstance.title;
-            document.getElementById('cinema-meta-description-para').innerText = runtimeMatchingMediaInstance.desc;
-            document.getElementById('cinema-meta-status-tag').innerText = runtimeMatchingMediaInstance.status;
-            document.getElementById('cinema-meta-score-tag').innerHTML = `<i class="fa-solid fa-star text-amber-400 mr-1"></i> ${runtimeMatchingMediaInstance.score}`;
-            document.getElementById('drawer-count-indicator').innerText = `${runtimeMatchingMediaInstance.episodesCount} Parts Indexed`;
+            // Bind Visual Dom Structural Content Node Parameters
+            document.getElementById('player-meta-title-lbl').innerText = runtimeMatchingMediaInstance.title;
+            document.getElementById('player-meta-description-para').innerText = runtimeMatchingMediaInstance.desc;
+            document.getElementById('player-meta-status-tag').innerText = runtimeMatchingMediaInstance.status;
+            document.getElementById('player-meta-score-tag').innerHTML = `<i class="fa-solid fa-star text-amber-400 mr-1"></i> ${runtimeMatchingMediaInstance.score}`;
+            document.getElementById('player-drawer-count-indicator').innerText = `${runtimeMatchingMediaInstance.episodesCount} Parts Total`;
 
             synchronizeCinemaInteractiveControlInterfaces(runtimeMatchingMediaInstance);
             commitPlaybackHistorySequenceTracking(targetTrackingId, activeEpisodeTrackingIndex);
@@ -538,13 +562,13 @@
         }
 
         function compileDynamicInteractiveEpisodeDrawerGrid(totalEpisodesCount) {
-            const episodeDrawerContainerGrid = document.getElementById('cinema-interactive-episode-drawer-grid');
+            const episodeDrawerContainerGrid = document.getElementById('player-drawer-grid-well');
             episodeDrawerContainerGrid.innerHTML = '';
             
             for (let targetIdx = 1; targetIdx <= totalEpisodesCount; targetIdx++) {
                 const isTargetIndexCurrentlySelected = targetIdx === activeEpisodeTrackingIndex;
                 episodeDrawerContainerGrid.innerHTML += `
-                    <button onclick="shiftCinemaEpisodeSpecificTarget(${targetIdx})" class="py-2.5 px-1 rounded-xl font-extrabold text-xs tracking-tight transition-all text-center border cursor-pointer ${isTargetIndexCurrentlySelected ? 'bg-white text-black border-white shadow-xl transform scale-95' : 'bg-zinc-900/50 border-zinc-800/80 text-zinc-400 hover:text-white hover:bg-zinc-800' laboratory-class}">
+                    <button onclick="shiftCinemaEpisodeSpecificTarget(${targetIdx})" class="py-2.5 px-1 rounded-xl font-extrabold text-xs tracking-tight transition-all text-center border cursor-pointer ${isTargetIndexCurrentlySelected ? 'bg-white text-black border-white shadow-xl transform scale-95' : 'bg-zinc-900/50 border-zinc-800/80 text-zinc-400 hover:text-white hover:bg-zinc-800'}">
                         ${targetIdx < 10 ? '0' + targetIdx : targetIdx}
                     </button>
                 `;
@@ -552,13 +576,13 @@
         }
 
         function compileDynamicContextualRecommendationsStack(recommendationsDataArray) {
-            const recommendationStackContainer = document.getElementById('cinema-relational-recommendation-stack');
+            const recommendationStackContainer = document.getElementById('player-relational-recommendation-stack');
             recommendationStackContainer.innerHTML = '';
 
             if (!recommendationsDataArray || recommendationsDataArray.length === 0) {
                 recommendationStackContainer.innerHTML = `
                     <div class="p-5 border border-zinc-900/80 rounded-2xl text-center text-xs text-zinc-600 font-bold uppercase tracking-widest bg-zinc-950/20">
-                        No relational tracking nodes verified.
+                        No relationship nodes compiled.
                     </div>`;
                 return;
             }
@@ -569,7 +593,7 @@
                         <img src="${recItem.img}" class="w-10 h-14 object-cover rounded-lg flex-shrink-0 shadow shadow-black">
                         <div class="space-y-1 min-w-0 flex-1">
                             <h5 class="text-xs font-bold text-zinc-300 group-hover:text-white transition-colors line-clamp-1">${recItem.title}</h5>
-                            <span class="text-[10px] text-zinc-500 font-extrabold uppercase tracking-wider block"><i class="fa-solid fa-star text-amber-400 text-[8px] mr-0.5"></i> Score Match ${recItem.score}</span>
+                            <span class="text-[10px] text-zinc-500 font-extrabold uppercase tracking-wider block"><i class="fa-solid fa-star text-amber-400 text-[8px] mr-0.5"></i> Rating Matrix Match ${recItem.score}</span>
                         </div>
                     </div>
                 `;
@@ -600,7 +624,7 @@
             executeIframeTransportPortalLinkage();
         }
 
-        function toggleCinemaAudioFeedMode(targetSelectedLanguageMode) {
+        function switchPlayerAudioTrackLanguage(targetSelectedLanguageMode) {
             activeAudioFeedLanguageMode = targetSelectedLanguageMode;
             const currentSelectedMediaObj = globalSystemCacheMatrix.find(item => item.id === activeIdentityTargetId);
             synchronizeCinemaInteractiveControlInterfaces(currentSelectedMediaObj);
@@ -608,19 +632,19 @@
         }
 
         function synchronizeCinemaInteractiveControlInterfaces(associatedMediaInstance) {
-            const feedSubButton = document.getElementById('feed-sub-mode');
-            const feedDubButton = document.getElementById('feed-dub-mode');
+            const feedSubButton = document.getElementById('feed-sub-pill');
+            const feedDubButton = document.getElementById('feed-dub-pill');
 
             if (activeAudioFeedLanguageMode === 'sub') {
-                feedSubButton.className = "px-4 py-1.5 rounded-lg font-extrabold text-[10px] uppercase transition-all cursor-pointer active-pill-white shadow-md";
+                feedSubButton.className = "px-4 py-1.5 rounded-lg font-extrabold text-[10px] uppercase transition-all cursor-pointer pill-highlight-white pill-highlight-active shadow-md";
                 feedDubButton.className = "px-4 py-1.5 rounded-lg font-extrabold text-[10px] uppercase transition-all cursor-pointer text-zinc-500 hover:text-white";
             } else {
-                feedDubButton.className = "px-4 py-1.5 rounded-lg font-extrabold text-[10px] uppercase transition-all cursor-pointer active-pill-white shadow-md";
+                feedDubButton.className = "px-4 py-1.5 rounded-lg font-extrabold text-[10px] uppercase transition-all cursor-pointer pill-highlight-white pill-highlight-active shadow-md";
                 feedSubButton.className = "px-4 py-1.5 rounded-lg font-extrabold text-[10px] uppercase transition-all cursor-pointer text-zinc-500 hover:text-white";
             }
 
-            const stepBackwardButton = document.getElementById('sequence-back-step');
-            const stepForwardButton = document.getElementById('sequence-forward-step');
+            const stepBackwardButton = document.getElementById('player-stepping-back-btn');
+            const stepForwardButton = document.getElementById('player-stepping-next-btn');
             const calculatedTotalMaxEpisodes = associatedMediaInstance ? associatedMediaInstance.episodesCount : 12;
 
             stepBackwardButton.disabled = activeEpisodeTrackingIndex <= 1;
@@ -629,17 +653,17 @@
             stepBackwardButton.onclick = () => { if (activeEpisodeTrackingIndex > 1) shiftCinemaEpisodeSpecificTarget(activeEpisodeTrackingIndex - 1); };
             stepForwardButton.onclick = () => { if (activeEpisodeTrackingIndex < calculatedTotalMaxEpisodes) shiftCinemaEpisodeSpecificTarget(activeEpisodeTrackingIndex + 1); };
 
-            const theaterVaultActionToggleBtn = document.getElementById('cinema-layer-vault-toggle');
+            const theaterVaultActionToggleBtn = document.getElementById('player-view-vault-action-toggle');
             const isSavedInVaultManifest = accessPersistentStorageKey('vault').includes(activeIdentityTargetId);
             
-            theaterVaultActionToggleBtn.innerHTML = isSavedInVaultManifest ? `<i class="fa-solid fa-check text-green-400 mr-2"></i> Vault Preserved` : `<i class="fa-solid fa-plus mr-2"></i> Save to Vault`;
+            theaterVaultActionToggleBtn.innerHTML = isSavedInVaultManifest ? `<i class="fa-solid fa-check text-green-400 mr-2"></i> In Manifest` : `<i class="fa-solid fa-plus mr-2"></i> Save to Vault`;
             theaterVaultActionToggleBtn.onclick = () => { 
                 invertPersistentStorageTokenKey('vault', activeIdentityTargetId); 
                 synchronizeCinemaInteractiveControlInterfaces(associatedMediaInstance); 
             };
         }
 
-        function triggerAutomatedNextSequenceTrack() {
+        function triggerAutomatedNextTrackAdvance() {
             const associatedMediaInstance = globalSystemCacheMatrix.find(item => item.id === activeIdentityTargetId);
             const absoluteMaxCountLimit = associatedMediaInstance ? associatedMediaInstance.episodesCount : 12;
             if (activeEpisodeTrackingIndex < absoluteMaxCountLimit) {
@@ -647,16 +671,17 @@
             }
         }
 
+        // Exact integration path mapping execution channel
         function executeIframeTransportPortalLinkage() {
-            document.getElementById('sequence-current-idx-lbl').innerText = `EPISODE ${activeEpisodeTrackingIndex < 10 ? '0' + activeEpisodeTrackingIndex : activeEpisodeTrackingIndex}`;
-            document.getElementById('cinema-embedded-stream-portal').src = `https://vidnest.fun/animepahe/${activeIdentityTargetId}/${activeEpisodeTrackingIndex}/${activeAudioFeedLanguageMode}`;
+            document.getElementById('player-stepping-current-lbl').innerText = `EPISODE ${activeEpisodeTrackingIndex < 10 ? '0' + activeEpisodeTrackingIndex : activeEpisodeTrackingIndex}`;
+            document.getElementById('iframe-embedded-media-portal').src = `https://vidnest.fun/animepahe/${activeIdentityTargetId}/${activeEpisodeTrackingIndex}/${activeAudioFeedLanguageMode}`;
         }
 
         // ======================================================== -->
-        // USER DATA ARCHIVE PERSISTENCE MANAGEMENT LOGIC          -->
+        // USER CONFIG DATA ARCHIVE STORAGE PERSISTENCE LAYERS      -->
         // ======================================================== -->
         function accessPersistentStorageKey(storageEngineTargetKey) {
-            const targetedRawJSONString = localStorage.getItem(`aethokai_ott_v2_${storageEngineTargetKey}`);
+            const targetedRawJSONString = localStorage.getItem(`aethokai_ott_v3_${storageEngineTargetKey}`);
             return targetedRawJSONString ? JSON.parse(targetedRawJSONString) : [];
         }
 
@@ -667,20 +692,20 @@
             } else {
                 compiledExtractionArray.push(uniqueIdentityToken);
             }
-            localStorage.setItem(`aethokai_ott_v2_${storageEngineTargetKey}`, JSON.stringify(compiledExtractionArray));
+            localStorage.setItem(`aethokai_ott_v3_${storageEngineTargetKey}`, JSON.stringify(compiledExtractionArray));
         }
 
         function commitPlaybackHistorySequenceTracking(mediaId, trackingProgressIndexValue) {
             let completeTrackingHistoryLogs = accessPersistentStorageKey('history');
             completeTrackingHistoryLogs = completeTrackingHistoryLogs.filter(record => record.id !== mediaId);
             completeTrackingHistoryLogs.unshift({ id: mediaId, lastWatchedEpisode: trackingProgressIndexValue });
-            localStorage.setItem('aethokai_ott_v2_history', JSON.stringify(completeTrackingHistoryLogs.slice(0, 18)));
+            localStorage.setItem('aethokai_ott_v3_history', JSON.stringify(completeTrackingHistoryLogs.slice(0, 15)));
         }
 
         function synchronizeTrackingHistoryShelfRail() {
             const completeTrackingHistoryLogs = accessPersistentStorageKey('history');
             const structuralHistoryBlockShell = document.getElementById('shelf-row-history-block');
-            const historySliderTargetRow = document.getElementById('shelf-slider-history-row');
+            const historySliderTargetRow = document.getElementById('shelf-slider-history-row-target');
 
             if (completeTrackingHistoryLogs.length === 0) {
                 structuralHistoryBlockShell.classList.add('hidden');
@@ -695,16 +720,16 @@
                 if (lookupMediaInstanceMatch) {
                     const percentageCalculatedCompletionWidth = (historyLogNode.lastWatchedEpisode / lookupMediaInstanceMatch.episodesCount) * 100;
                     historySliderTargetRow.innerHTML += `
-                        <div onclick="activateCinemaTheaterSession(${lookupMediaInstanceMatch.id}, ${historyLogNode.lastWatchedEpisode})" class="netflix-card min-w-[210px] rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 group relative bg-zinc-900 border border-white/5">
+                        <div onclick="activateCinemaTheaterSession(${lookupMediaInstanceMatch.id}, ${historyLogNode.lastWatchedEpisode})" class="premium-glass-card min-w-[215px] rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 group relative border border-white/5 bg-zinc-900">
                             <div class="h-32 bg-cover bg-center" style="background-image: url('${lookupMediaInstanceMatch.banner}')"></div>
-                            <div class="p-3.5 bg-zinc-950 space-y-2">
+                            <div class="p-3.5 bg-[#0c0c0f] space-y-2">
                                 <h5 class="font-bold text-xs text-zinc-300 group-hover:text-white transition-colors line-clamp-1">${lookupMediaInstanceMatch.title}</h5>
                                 <div class="flex items-center justify-between text-[10px] font-extrabold text-zinc-500 uppercase tracking-wider">
-                                    <span>Resume Part ${historyLogNode.lastWatchedEpisode}</span>
-                                    <span class="text-white text-[9px]">CONTINUE</span>
+                                    <span>Part ${historyLogNode.lastWatchedEpisode} of ${lookupMediaInstanceMatch.episodesCount}</span>
+                                    <span class="text-white text-[9px] tracking-widest font-black">RESUME</span>
                                 </div>
-                                <div class="w-full h-1 bg-zinc-800/80 rounded-full overflow-hidden mt-1">
-                                    <div class="bg-zinc-200 h-full rounded-full" style="width: ${percentageCalculatedCompletionWidth}%"></div>
+                                <div class="w-full h-1 bg-zinc-800 rounded-full overflow-hidden mt-1">
+                                    <div class="bg-white h-full rounded-full" style="width: ${percentageCalculatedCompletionWidth}%"></div>
                                 </div>
                             </div>
                         </div>
@@ -715,13 +740,13 @@
 
         function compilePersonalVaultLibraryGrid() {
             const verifiedVaultCollectionTokens = accessPersistentStorageKey('vault');
-            const targetVaultGridDestination = document.getElementById('watchlist-vault-injection-grid');
+            const targetVaultGridDestination = document.getElementById('watchlist-view-injection-grid-target');
             targetVaultGridDestination.innerHTML = '';
 
             if (verifiedVaultCollectionTokens.length === 0) {
                 targetVaultGridDestination.innerHTML = `
-                    <div class="col-span-full py-20 border border-dashed border-zinc-800 rounded-3xl text-center text-xs text-zinc-600 font-extrabold uppercase tracking-widest bg-zinc-900/10">
-                        No selection tokens pinned to active vault archives.
+                    <div class="col-span-full py-20 border border-dashed border-zinc-800 rounded-3xl text-center text-xs text-zinc-600 font-extrabold uppercase tracking-widest bg-zinc-900/5">
+                        Your custom preserved selection vault configuration is empty.
                     </div>`;
                 return;
             }
@@ -735,30 +760,30 @@
         }
 
         // ======================================================== -->
-        // DYNAMIC FILTERING & REALS SEARCH INFRASTRUCTURE HOOKS    -->
+        // DYNAMIC FILTERING & GLOBAL LIVE SEARCH INFRASTRUCTURE    -->
         // ======================================================== -->
         function setupLiveFilteringEngineEvents() {
-            const inputFieldEventAnchor = document.getElementById('live-catalog-search-bar');
+            const inputFieldEventAnchor = document.getElementById('global-live-search-input');
             
             inputFieldEventAnchor.addEventListener('input', deployDebouncedActionThrottler(async (event) => {
                 const calculatedSearchStringPattern = event.target.value.trim();
                 if (calculatedSearchStringPattern.length < 2) return;
 
-                switchSystemViewRoute('search');
-                document.getElementById('search-matrix-query-lbl').innerText = `Registry Match Lookup: "${calculatedSearchStringPattern}"`;
+                dispatchViewRoute('search');
+                document.getElementById('search-view-query-lbl').innerText = `Active Query Results: "${calculatedSearchStringPattern}"`;
                 
-                const searchResultsInjectionGrid = document.getElementById('search-matrix-results-injection-grid');
+                const searchResultsInjectionGrid = document.getElementById('search-view-injection-grid-target');
                 searchResultsInjectionGrid.innerHTML = `
-                    <div class="col-span-full py-20 text-center text-xs font-bold uppercase tracking-widest text-zinc-500 animate-pulse bg-zinc-900/10 rounded-2xl border border-zinc-900">
-                        Opening network communications queries to live catalog indexes...
+                    <div class="col-span-full py-20 text-center text-xs font-bold uppercase tracking-widest text-zinc-500 animate-pulse bg-zinc-900/5 rounded-2xl border border-zinc-900/60">
+                        Broadcasting communication signals to query catalog indexes...
                     </div>`;
 
                 const processedNetworkDataMatches = await executeGraphQLSearchLiveQuery(calculatedSearchStringPattern);
                 
                 if (processedNetworkDataMatches.length === 0) {
                     searchResultsInjectionGrid.innerHTML = `
-                        <div class="col-span-full py-20 text-center text-xs font-bold uppercase tracking-widest text-zinc-600 bg-zinc-900/10 rounded-2xl border border-zinc-900">
-                            No functional trace tracks located matching search syntax parameters.
+                        <div class="col-span-full py-20 text-center text-xs font-bold uppercase tracking-widest text-zinc-600 bg-zinc-900/5 rounded-2xl border border-zinc-900/60">
+                            No functional tracks discovered matching search query syntax.
                         </div>`;
                     return;
                 }
@@ -774,18 +799,30 @@
             }, 600));
         }
 
-        function triggerGenreTaxonomyShelf(selectedGenreIdentifierToken) {
-            switchSystemViewRoute('search');
-            document.getElementById('search-matrix-query-lbl').innerText = `Genre Track Category Exploration: ${selectedGenreIdentifierToken}`;
-            const targetResultsGrid = document.getElementById('search-matrix-results-injection-grid');
+        function executeGenreFilterPipeline(selectedGenreIdentifierToken) {
+            dispatchViewRoute('search');
             
-            const isolatedCategorizedGenreMatches = globalSystemCacheMatrix.filter(anime => anime.genres.includes(selectedGenreIdentifierToken));
+            const targetResultsGrid = document.getElementById('search-view-injection-grid-target');
             targetResultsGrid.innerHTML = '';
             
+            let isolatedCategorizedGenreMatches = [];
+            
+            if (selectedGenreIdentifierToken === 'Trending') {
+                document.getElementById('search-view-query-lbl').innerText = "Dynamic Discovery Layer: Trending Collections";
+                isolatedCategorizedGenreMatches = [...globalSystemCacheMatrix].slice(0, 12);
+            } else if (selectedGenreIdentifierToken === 'Airing') {
+                document.getElementById('search-view-query-lbl').innerText = "Dynamic Discovery Layer: Currently Airing Tracks";
+                isolatedCategorizedGenreMatches = globalSystemCacheMatrix.filter(anime => anime.status === 'RELEASING');
+                if (isolatedCategorizedGenreMatches.length === 0) isolatedCategorizedGenreMatches = [...globalSystemCacheMatrix].slice(6, 14);
+            } else {
+                document.getElementById('search-view-query-lbl').innerText = `Genre Navigation Track: ${selectedGenreIdentifierToken}`;
+                isolatedCategorizedGenreMatches = globalSystemCacheMatrix.filter(anime => anime.genres.includes(selectedGenreIdentifierToken));
+            }
+
             if (isolatedCategorizedGenreMatches.length === 0) {
                 targetResultsGrid.innerHTML = `
-                    <div class="col-span-full py-20 text-center text-xs font-bold text-zinc-600 uppercase tracking-widest bg-zinc-900/10 rounded-2xl border border-zinc-900">
-                        No active taxonomy traces cached for specified structural identifiers.
+                    <div class="col-span-full py-20 text-center text-xs font-bold text-zinc-600 uppercase tracking-widest bg-zinc-900/5 rounded-2xl border border-zinc-900/60">
+                        No localized trace records tracked under target configuration criteria.
                     </div>`;
                 return;
             }
@@ -793,6 +830,17 @@
             isolatedCategorizedGenreMatches.forEach(matchingTrackItem => {
                 targetResultsGrid.innerHTML += constructNetflixStandardCardTemplate(matchingTrackItem, matchingTrackItem.score);
             });
+            
+            // Sync bottom navigation active highlight tracking updates
+            const dockButtonElementsList = ['dock-btn-home', 'dock-btn-trending', 'dock-btn-airing', 'dock-btn-watchlist', 'dock-btn-profile'];
+            dockButtonElementsList.forEach(id => {
+                const button = document.getElementById(id);
+                if (!button) return;
+                button.classList.remove('text-white');
+                button.classList.add('text-zinc-500');
+            });
+            if (selectedGenreIdentifierToken === 'Trending') document.getElementById('dock-btn-trending').className = "flex flex-col items-center gap-1 text-white cursor-pointer transition-all";
+            if (selectedGenreIdentifierToken === 'Airing') document.getElementById('dock-btn-airing').className = "flex flex-col items-center gap-1 text-white cursor-pointer transition-all";
         }
 
         function deployDebouncedActionThrottler(executionCallbackRoutine, structuralDelayDuration) {
