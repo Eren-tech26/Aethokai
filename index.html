@@ -1,14 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AethoKai - Premium Anime Streaming</title>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -16,135 +14,75 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --blur-glass: blur(40px) saturate(220%);
+            --bg-dark: #09090b;
+            --bg-card: #121214;
+            --border-glass: rgba(255, 255, 255, 0.06);
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f0f1e 100%);
-            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #09090b 0%, #1a1a1e 50%, #09090b 100%);
+            color: #f4f4f5;
             overflow-x: hidden;
         }
 
-        /* Glass Morphism */
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .glass-header {
+            background: rgba(18, 18, 20, 0.7);
+            backdrop-filter: var(--blur-glass);
+            -webkit-backdrop-filter: var(--blur-glass);
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .glass-card {
+            background: linear-gradient(145deg, rgba(28, 28, 30, 0.6) 0%, rgba(12, 12, 14, 0.6) 100%);
+            backdrop-filter: var(--blur-glass);
+            border: 1px solid var(--border-glass);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .anime-poster {
+            aspect-ratio: 2/3;
+            object-fit: cover;
             border-radius: 12px;
         }
 
-        .glass-premium {
-            background: rgba(20, 25, 50, 0.7);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(168, 85, 247, 0.2);
-            border-radius: 16px;
-        }
-
-        /* Purple Liquid Flow Animation */
-        .liquid-flow {
-            position: relative;
-            height: 200px;
-            overflow: hidden;
-            background: linear-gradient(180deg, transparent 0%, rgba(168, 85, 247, 0.3) 50%, transparent 100%);
-        }
-
-        .liquid-wave {
-            position: absolute;
-            width: 200%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:rgba(168,85,247,0.5);stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:rgba(168,85,247,0.1);stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0,150 Q300,100 600,150 T1200,150 L1200,400 L0,400 Z' fill='url(%23grad)'/%3E%3Cpath d='M0,180 Q300,120 600,180 T1200,180 L1200,400 L0,400 Z' fill='rgba(168,85,247,0.3)' style='animation: wave 8s infinite;'/%3E%3C/svg%3E") repeat-x;
-            animation: flow 15s linear infinite;
-        }
-
-        @keyframes flow {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        @keyframes wave {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(20px); }
-        }
-
-        /* Gradient Text */
-        .gradient-text {
-            background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #8b5cf6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Glow Effect */
-        .glow {
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
-        }
-
-        .glow-sm {
-            box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
-        }
-
-        /* Scroll Animations */
-        .scroll-container {
-            scroll-behavior: smooth;
-        }
-
-        .anime-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        .anime-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
-        }
-
-        .anime-card-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 16px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .anime-card:hover .anime-card-overlay {
-            opacity: 1;
-        }
-
-        /* Hero Slider */
-        .hero-slider {
+        .hero-section {
             position: relative;
             height: 500px;
+            border-radius: 24px;
             overflow: hidden;
-            border-radius: 16px;
+            background: linear-gradient(135deg, #1a1a1e 0%, #09090b 100%);
         }
 
-        .hero-slide {
+        .hero-backdrop {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            transition: opacity 0.8s ease;
-            opacity: 0;
-        }
-
-        .hero-slide.active {
-            opacity: 1;
-        }
-
-        .hero-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.8s ease;
         }
 
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(10, 14, 39, 0.7) 0%, rgba(168, 85, 247, 0.2) 100%);
+            background: linear-gradient(135deg, rgba(9, 9, 11, 0.8) 0%, rgba(18, 18, 20, 0.4) 50%, transparent 100%);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -152,23 +90,25 @@
             z-index: 10;
         }
 
-        /* Button Styles */
-        .btn {
+        .gradient-text {
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            color: white;
             padding: 12px 24px;
             border: none;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-            color: white;
         }
 
         .btn-primary:hover {
@@ -180,6 +120,11 @@
             background: rgba(255, 255, 255, 0.1);
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
 
         .btn-secondary:hover {
@@ -187,11 +132,32 @@
             border-color: rgba(255, 255, 255, 0.4);
         }
 
-        /* Modal */
+        .category-pill {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .category-pill.active {
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            border-color: transparent;
+            color: white;
+        }
+
+        .category-pill:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
         .modal {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -210,6 +176,9 @@
             max-height: 90vh;
             overflow-y: auto;
             border-radius: 20px;
+            background: rgba(18, 18, 20, 0.95);
+            backdrop-filter: var(--blur-glass);
+            border: 1px solid var(--border-glass);
             animation: slideUp 0.3s ease;
         }
 
@@ -218,16 +187,34 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* Episode Drawer */
+        .player-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            background: #000;
+        }
+
+        .player-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+        }
+
         .episode-drawer {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             height: 70vh;
-            background: linear-gradient(180deg, rgba(20, 25, 50, 0.95) 0%, rgba(10, 14, 39, 0.98) 100%);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(168, 85, 247, 0.2);
+            background: linear-gradient(180deg, rgba(18, 18, 20, 0.95) 0%, rgba(9, 9, 11, 0.98) 100%);
+            backdrop-filter: var(--blur-glass);
+            border-top: 1px solid var(--border-glass);
             border-radius: 24px 24px 0 0;
             z-index: 40;
             animation: slideUpDrawer 0.3s ease;
@@ -239,662 +226,656 @@
             to { transform: translateY(0); }
         }
 
-        /* Player Container */
-        .player-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            background: #000;
-        }
-
-        .player-container iframe {
-            position: absolute;
-            top: 0;
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 12px;
+            right: 0;
+            glass-card: rgba(18, 18, 20, 0.8);
+            backdrop-filter: var(--blur-glass);
+            border-top: 1px solid var(--border-glass);
+            z-index: 40;
+            padding-bottom: env(safe-area-inset-bottom);
         }
 
-        /* Welcome Page Animation */
-        .welcome-logo {
-            font-size: 72px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #8b5cf6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        /* Intro Animation */
-        .intro-text {
-            font-size: 48px;
-            font-weight: 700;
-            text-align: center;
-            margin: 20px 0;
-            animation: fadeInUp 1s ease;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Category Pills */
-        .category-pill {
-            padding: 8px 16px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 12px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .nav-item.active {
+            color: #a855f7;
+        }
+
+        .nav-item:not(.active) {
+            color: #999;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 16px;
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            border-radius: 2px;
+        }
+
+        .watch-history-item {
+            display: flex;
+            gap: 12px;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
         }
 
-        .category-pill.active {
-            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-            border-color: transparent;
+        .watch-history-item:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        .category-pill:hover {
-            background: rgba(255, 255, 255, 0.2);
+        .watch-history-thumb {
+            width: 60px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
         }
 
-        /* Responsive */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #a855f7 0%, #ec4899 100%);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
         @media (max-width: 768px) {
-            .hero-slider {
+            .hero-section {
                 height: 300px;
             }
 
             .hero-overlay {
-                padding: 20px;
-            }
-
-            .intro-text {
-                font-size: 32px;
-            }
-
-            .welcome-logo {
-                font-size: 48px;
+                padding: 24px;
             }
         }
     </style>
 </head>
 <body>
-    <div id="root"></div>
+    <div class="min-h-screen pb-40">
+        <!-- Header -->
+        <header class="glass-header sticky top-0 z-40 px-4 md:px-8 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center font-bold text-white text-lg">Æ</div>
+                <span class="text-xl font-bold gradient-text">AethoKai</span>
+            </div>
+            <div class="hidden md:flex gap-2">
+                <input type="text" id="search-input" placeholder="Search anime..." class="px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 text-sm">
+            </div>
+        </header>
 
-    <script type="text/babel">
-        const { useState, useEffect, useRef } = React;
-
-        const AethoKai = () => {
-            const [currentPage, setCurrentPage] = useState('welcome');
-            const [selectedAnime, setSelectedAnime] = useState(null);
-            const [playingEpisode, setPlayingEpisode] = useState(1);
-            const [heroSlide, setHeroSlide] = useState(0);
-            const [searchQuery, setSearchQuery] = useState('');
-            const [filterCategory, setFilterCategory] = useState('All');
-            const [showEpisodeDrawer, setShowEpisodeDrawer] = useState(false);
-            const [myList, setMyList] = useState([]);
-            const [favorites, setFavorites] = useState([]);
-            const [subDubMode, setSubDubMode] = useState('sub');
-
-            // Anime Database
-            const animeData = [
-                {
-                    id: 16498,
-                    title: 'Attack on Titan',
-                    poster: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&h=450&fit=crop',
-                    banner: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1200&h=400&fit=crop',
-                    episodes: 88,
-                    currentEpisode: 45,
-                    subAvailable: true,
-                    dubAvailable: true,
-                    genres: ['Action', 'Fantasy'],
-                    rating: 9.1,
-                    description: 'Humanity fights for survival against giant humanoid creatures.',
-                    status: 'Completed',
-                    trending: true,
-                    topRated: true
-                },
-                {
-                    id: 20953,
-                    title: 'Demon Slayer',
-                    poster: 'https://images.unsplash.com/photo-1607604276583-eef5d076629e?w=300&h=450&fit=crop',
-                    banner: 'https://images.unsplash.com/photo-1607604276583-eef5d076629e?w=1200&h=400&fit=crop',
-                    episodes: 55,
-                    currentEpisode: 55,
-                    subAvailable: true,
-                    dubAvailable: true,
-                    genres: ['Action', 'Fantasy'],
-                    rating: 8.9,
-                    description: 'A young demon slayer seeks revenge and salvation.',
-                    status: 'Airing',
-                    trending: true,
-                    topRated: true
-                },
-                {
-                    id: 21202,
-                    title: 'Jujutsu Kaisen',
-                    poster: 'https://images.unsplash.com/photo-1611081281486-a01980e01a18?w=300&h=450&fit=crop',
-                    banner: 'https://images.unsplash.com/photo-1611081281486-a01980e01a18?w=1200&h=400&fit=crop',
-                    episodes: 72,
-                    currentEpisode: 72,
-                    subAvailable: true,
-                    dubAvailable: true,
-                    genres: ['Action', 'Fantasy'],
-                    rating: 8.8,
-                    description: 'A high schooler swallows a cursed finger and joins a secret organization.',
-                    status: 'Airing',
-                    trending: true
-                },
-                {
-                    id: 37521,
-                    title: 'Re:Zero',
-                    poster: 'https://images.unsplash.com/photo-1606402395410-6e7ad0a7e0fc?w=300&h=450&fit=crop',
-                    banner: 'https://images.unsplash.com/photo-1606402395410-6e7ad0a7e0fc?w=1200&h=400&fit=crop',
-                    episodes: 50,
-                    currentEpisode: 50,
-                    subAvailable: true,
-                    dubAvailable: false,
-                    genres: ['Fantasy', 'Romance', 'Isekai'],
-                    rating: 8.7,
-                    description: 'A teenager discovers he has the ability to go back in time.',
-                    status: 'Airing',
-                    trending: false
-                },
-                {
-                    id: 40748,
-                    title: 'Sword Art Online',
-                    poster: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&h=450&fit=crop',
-                    banner: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1200&h=400&fit=crop',
-                    episodes: 96,
-                    currentEpisode: 96,
-                    subAvailable: true,
-                    dubAvailable: true,
-                    genres: ['Action', 'Fantasy', 'Romance'],
-                    rating: 8.2,
-                    description: 'Players get trapped in a virtual reality MMORPG.',
-                    status: 'Completed',
-                    trending: false
-                },
-                {
-                    id: 38000,
-                    title: 'Solo Leveling',
-                    poster: 'https://images.unsplash.com/photo-1607604276583-eef5d076629e?w=300&h=450&fit=crop',
-                    banner: 'https://images.unsplash.com/photo-1607604276583-eef5d076629e?w=1200&h=400&fit=crop',
-                    episodes: 12,
-                    currentEpisode: 12,
-                    subAvailable: true,
-                    dubAvailable: true,
-                    genres: ['Action', 'Fantasy'],
-                    rating: 8.9,
-                    description: 'A weak hunter discovers a mysterious power.',
-                    status: 'Airing',
-                    trending: true,
-                    topRated: true
-                },
-                {
-                    id: 37999,
-                    title: 'Toaru Majutsu Index',
-                    poster: 'https://images.unsplash.com/photo-1611081281486-a01980e01a18?w=300&h=450&fit=crop',
-                    banner: 'https://images.unsplash.com/photo-1611081281486-a01980e01a18?w=1200&h=400&fit=crop',
-                    episodes: 75,
-                    currentEpisode: 75,
-                    subAvailable: true,
-                    dubAvailable: true,
-                    genres: ['Action', 'Fantasy'],
-                    rating: 7.9,
-                    description: 'A high school student becomes involved in supernatural events.',
-                    status: 'Completed',
-                    trending: false
-                },
-                {
-                    id: 38482,
-                    title: 'That Time I Got Reincarnated',
-                    poster: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&h=450&fit=crop',
-                    banner: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1200&h=400&fit=crop',
-                    episodes: 48,
-                    currentEpisode: 48,
-                    subAvailable: true,
-                    dubAvailable: true,
-                    genres: ['Isekai', 'Comedy', 'Fantasy'],
-                    rating: 8.5,
-                    description: 'Reincarnated as a slime in a fantasy world.',
-                    status: 'Airing',
-                    trending: false
-                }
-            ];
-
-            // Filter anime based on search and category
-            const filteredAnime = animeData.filter(anime => {
-                const matchesSearch = anime.title.toLowerCase().includes(searchQuery.toLowerCase());
-                const matchesCategory = filterCategory === 'All' || anime.genres.includes(filterCategory) || 
-                    (filterCategory === 'Trending' && anime.trending) ||
-                    (filterCategory === 'Top Rated' && anime.topRated) ||
-                    (filterCategory === 'Airing' && anime.status === 'Airing');
-                return matchesSearch && matchesCategory;
-            });
-
-            // Hero slider rotation
-            useEffect(() => {
-                const timer = setInterval(() => {
-                    setHeroSlide((prev) => (prev + 1) % animeData.length);
-                }, 8000);
-                return () => clearInterval(timer);
-            }, []);
-
-            const toggleMyList = (anime) => {
-                setMyList(prev => 
-                    prev.find(a => a.id === anime.id) 
-                        ? prev.filter(a => a.id !== anime.id)
-                        : [...prev, anime]
-                );
-            };
-
-            const toggleFavorite = (anime) => {
-                setFavorites(prev =>
-                    prev.find(a => a.id === anime.id)
-                        ? prev.filter(a => a.id !== anime.id)
-                        : [...prev, anime]
-                );
-            };
-
-            const playAnime = (anime) => {
-                setSelectedAnime(anime);
-                setPlayingEpisode(anime.currentEpisode);
-            };
-
-            // Welcome Page
-            if (currentPage === 'welcome') {
-                return (
-                    <div className="min-h-screen flex flex-col items-center justify-center overflow-hidden relative">
-                        <div className="absolute inset-0 opacity-30">
-                            <div className="absolute top-20 left-20 w-72 h-72 bg-purple-600 rounded-full mix-blend-screen filter blur-3xl"></div>
-                            <div className="absolute bottom-20 right-20 w-72 h-72 bg-pink-600 rounded-full mix-blend-screen filter blur-3xl"></div>
-                        </div>
-                        
-                        <div className="z-10 text-center">
-                            <div className="welcome-logo mb-8">AethoKai</div>
-                            <div className="intro-text">Welcome to Premium Anime Streaming</div>
-                            <p className="text-xl text-gray-300 mb-12 max-w-md">Experience the finest anime collection with premium quality, multiple language options, and personalized recommendations.</p>
-                            <button
-                                onClick={() => setCurrentPage('intro')}
-                                className="btn btn-primary text-lg px-8 py-3"
-                            >
-                                Enter AethoKai
-                            </button>
-                        </div>
-
-                        <div className="liquid-flow absolute bottom-0 w-full">
-                            <div className="liquid-wave"></div>
-                        </div>
-                    </div>
-                );
-            }
-
-            // Intro Animation Page
-            if (currentPage === 'intro') {
-                return (
-                    <div className="min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-                        <div className="absolute inset-0 opacity-20">
-                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(168,85,247,0.3)_0%,transparent_50%)]"></div>
-                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(236,72,153,0.3)_0%,transparent_50%)]"></div>
-                        </div>
-                        
-                        <div className="z-10 text-center space-y-8 animate-pulse">
-                            <div className="text-6xl font-black gradient-text">
-                                AethoKai
-                            </div>
-                            <div className="text-3xl font-bold text-white">
-                                Discovering Stories
-                            </div>
-                            <div className="mt-20">
-                                <div className="w-16 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full animate-pulse"></div>
-                            </div>
-                        </div>
-
-                        <button
-                            onClick={() => setCurrentPage('home')}
-                            className="absolute bottom-10 btn btn-primary"
-                        >
-                            Continue
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-4 md:px-8 pt-6 pb-20">
+            <!-- Hero Section -->
+            <div id="hero-section" class="hero-section glass-card mb-12 group">
+                <div id="hero-backdrop" class="hero-backdrop"></div>
+                <div class="hero-overlay">
+                    <h1 id="hero-title" class="text-4xl md:text-5xl font-black mb-4 text-white">Loading...</h1>
+                    <p id="hero-desc" class="text-sm md:text-base text-gray-300 max-w-2xl mb-6 line-clamp-3">Getting anime details...</p>
+                    <div class="flex gap-3 flex-wrap">
+                        <button id="hero-play-btn" class="btn-primary">
+                            <i class="fas fa-play text-xs"></i> Play Episode 1
+                        </button>
+                        <button id="hero-watchlist-btn" class="btn-secondary">
+                            <i class="fas fa-plus"></i> My List
+                        </button>
+                        <button id="hero-favorite-btn" class="btn-secondary">
+                            <i class="fas fa-heart"></i> Favorite
                         </button>
                     </div>
-                );
-            }
+                </div>
+            </div>
 
-            // Main Home Page
-            if (currentPage === 'home') {
-                return (
-                    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white pb-32">
-                        {/* Header */}
-                        <div className="sticky top-0 z-40 glass-premium m-3 rounded-xl">
-                            <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-                                <div className="text-2xl font-black gradient-text">AethoKai</div>
-                                <div className="hidden md:flex gap-4 flex-1 mx-8">
-                                    <div className="relative flex-1 max-w-md">
-                                        <input
-                                            type="text"
-                                            placeholder="Search anime..."
-                                            value={searchQuery}
-                                            onChange={(e) => setSearchQuery(e.target.value)}
-                                            className="w-full px-4 py-2 pl-10 rounded-lg bg-rgba(255,255,255,0.1) border border-purple-500 border-opacity-30 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
-                                        />
-                                        <Search className="absolute left-3 top-2.5 w-5 h-5 text-purple-400" />
-                                    </div>
-                                </div>
-                            </div>
+            <!-- Continue Watching Section -->
+            <div id="continue-section" class="mb-12 hidden">
+                <div class="section-title">Continue Watching</div>
+                <div id="continue-slider" class="flex gap-4 overflow-x-auto hide-scrollbar pb-4"></div>
+            </div>
+
+            <!-- Trending Section -->
+            <div class="mb-12">
+                <div class="section-title">Trending Now</div>
+                <div id="trending-slider" class="flex gap-4 overflow-x-auto hide-scrollbar pb-4"></div>
+            </div>
+
+            <!-- Top Rated Section -->
+            <div class="mb-12">
+                <div class="section-title">Top Rated</div>
+                <div id="top-rated-slider" class="flex gap-4 overflow-x-auto hide-scrollbar pb-4"></div>
+            </div>
+
+            <!-- Genre Filter -->
+            <div class="mb-12">
+                <div class="section-title">Browse by Genre</div>
+                <div class="flex gap-3 overflow-x-auto hide-scrollbar pb-4 flex-wrap">
+                    <button class="category-pill active" onclick="filterByGenre('All')">All</button>
+                    <button class="category-pill" onclick="filterByGenre('Action')">Action</button>
+                    <button class="category-pill" onclick="filterByGenre('Adventure')">Adventure</button>
+                    <button class="category-pill" onclick="filterByGenre('Fantasy')">Fantasy</button>
+                    <button class="category-pill" onclick="filterByGenre('Romance')">Romance</button>
+                    <button class="category-pill" onclick="filterByGenre('Comedy')">Comedy</button>
+                    <button class="category-pill" onclick="filterByGenre('Drama')">Drama</button>
+                    <button class="category-pill" onclick="filterByGenre('Sci-Fi')">Sci-Fi</button>
+                </div>
+            </div>
+
+            <!-- Currently Airing -->
+            <div class="mb-12">
+                <div class="section-title">Currently Airing</div>
+                <div id="airing-slider" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4"></div>
+            </div>
+
+            <!-- New Episodes -->
+            <div class="mb-12">
+                <div class="section-title">New Episodes</div>
+                <div id="new-episodes-slider" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4"></div>
+            </div>
+
+            <!-- Popular Movies -->
+            <div class="mb-12">
+                <div class="section-title">Popular Movies</div>
+                <div id="movies-slider" class="flex gap-4 overflow-x-auto hide-scrollbar pb-4"></div>
+            </div>
+        </main>
+
+        <!-- Player Modal -->
+        <div id="player-modal" class="modal hidden" onclick="if(event.target===this) closePlayer()">
+            <div class="modal-content p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 id="player-title" class="text-2xl font-bold text-white">Anime Title</h2>
+                    <button onclick="closePlayer()" class="text-2xl text-gray-400 hover:text-white">✕</button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2">
+                        <!-- Player -->
+                        <div class="player-container mb-6">
+                            <iframe id="video-player" src="" frameborder="0" scrolling="no" allowfullscreen></iframe>
                         </div>
 
-                        {/* Hero Slider */}
-                        <div className="hero-slider mx-3 md:mx-6 my-6">
-                            {animeData.map((anime, idx) => (
-                                <div key={anime.id} className={`hero-slide ${idx === heroSlide ? 'active' : ''}`}>
-                                    <img src={anime.banner} alt={anime.title} />
-                                </div>
-                            ))}
-                            <div className="hero-overlay">
-                                <h1 className="text-5xl font-black mb-4">{animeData[heroSlide].title}</h1>
-                                <p className="text-lg text-gray-200 max-w-2xl mb-6">{animeData[heroSlide].description}</p>
-                                <div className="flex gap-4">
-                                    <button
-                                        onClick={() => playAnime(animeData[heroSlide])}
-                                        className="btn btn-primary"
-                                    >
-                                        <span>▶</span> Play
-                                    </button>
-                                    <button
-                                        onClick={() => toggleMyList(animeData[heroSlide])}
-                                        className="btn btn-secondary"
-                                    >
-                                        <span>+</span> {myList.find(a => a.id === animeData[heroSlide].id) ? 'In List' : 'Add to List'}
-                                    </button>
-                                    <button
-                                        onClick={() => toggleFavorite(animeData[heroSlide])}
-                                        className="btn btn-secondary"
-                                    >
-                                        <span>❤️</span>
-                                    </button>
-                                </div>
+                        <!-- Controls -->
+                        <div class="glass-card p-4 rounded-lg space-y-4">
+                            <!-- Sub/Dub Toggle -->
+                            <div class="flex gap-3 items-center">
+                                <span class="text-sm font-bold text-gray-400">Audio:</span>
+                                <button id="btn-sub" class="px-4 py-2 bg-white text-black font-bold rounded-lg text-xs cursor-pointer" onclick="switchAudio('sub')">Subbed</button>
+                                <button id="btn-dub" class="px-4 py-2 bg-gray-800 text-white font-bold rounded-lg text-xs cursor-pointer" onclick="switchAudio('dub')">Dubbed</button>
                             </div>
-                            <button
-                                onClick={() => setHeroSlide((prev) => (prev - 1 + animeData.length) % animeData.length)}
-                                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white bg-opacity-20 hover:bg-opacity-40 transition"
-                            >
-                                <ChevronLeft size={24} />
-                            </button>
-                            <button
-                                onClick={() => setHeroSlide((prev) => (prev + 1) % animeData.length)}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white bg-opacity-20 hover:bg-opacity-40 transition"
-                            >
-                                <ChevronRight size={24} />
-                            </button>
-                        </div>
 
-                        {/* Category Filter */}
-                        <div className="max-w-7xl mx-auto px-6 mb-8 overflow-x-auto pb-2">
-                            <div className="flex gap-3 min-w-max">
-                                {['All', 'Action', 'Fantasy', 'Romance', 'Isekai', 'Comedy', 'Trending', 'Top Rated', 'Airing'].map(cat => (
-                                    <button
-                                        key={cat}
-                                        onClick={() => setFilterCategory(cat)}
-                                        className={`category-pill whitespace-nowrap ${filterCategory === cat ? 'active' : ''}`}
-                                    >
-                                        {cat}
-                                    </button>
-                                ))}
+                            <!-- Episode Navigation -->
+                            <div class="flex gap-3 items-center flex-wrap">
+                                <button id="btn-prev" onclick="previousEpisode()" class="btn-secondary text-xs">
+                                    <i class="fas fa-backward"></i> Previous
+                                </button>
+                                <span id="episode-display" class="font-bold text-white text-sm">Episode 1 / 12</span>
+                                <button id="btn-next" onclick="nextEpisode()" class="btn-secondary text-xs">
+                                    Next <i class="fas fa-forward"></i>
+                                </button>
+                                <button onclick="showEpisodeDrawer()" class="btn-secondary text-xs ml-auto">
+                                    <i class="fas fa-list"></i> Episodes
+                                </button>
                             </div>
-                        </div>
 
-                        {/* Anime Grid */}
-                        <div className="max-w-7xl mx-auto px-6 mb-12">
-                            <h2 className="text-2xl font-bold mb-6">Popular Anime</h2>
-                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                                {filteredAnime.map(anime => (
-                                    <div
-                                        key={anime.id}
-                                        onClick={() => playAnime(anime)}
-                                        className="anime-card group"
-                                    >
-                                        <img src={anime.poster} alt={anime.title} className="w-full h-80 object-cover" />
-                                        <div className="anime-card-overlay">
-                                            <h3 className="font-bold text-lg mb-2 line-clamp-2">{anime.title}</h3>
-                                            <div className="flex items-center gap-2 text-sm mb-3">
-                                                <span className="text-yellow-400">⭐ {anime.rating}</span>
-                                                <span className="text-purple-300">{anime.episodes} eps</span>
-                                            </div>
-                                            <button className="btn btn-primary w-full justify-center mb-2">
-                                                ▶ Play
-                                            </button>
-                                            <div className="flex gap-2">
-                                                <button
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        toggleMyList(anime);
-                                                    }}
-                                                    className="btn btn-secondary flex-1 justify-center"
-                                                >
-                                                    +
-                                                </button>
-                                                <button
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        toggleFavorite(anime);
-                                                    }}
-                                                    className={`btn flex-1 justify-center ${favorites.find(a => a.id === anime.id) ? 'btn-primary' : 'btn-secondary'}`}
-                                                >
-                                                    ❤️
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* My List Section */}
-                        {myList.length > 0 && (
-                            <div className="max-w-7xl mx-auto px-6 mb-12">
-                                <h2 className="text-2xl font-bold mb-6">📋 My List</h2>
-                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                                    {myList.map(anime => (
-                                        <div
-                                            key={anime.id}
-                                            onClick={() => playAnime(anime)}
-                                            className="anime-card"
-                                        >
-                                            <img src={anime.poster} alt={anime.title} className="w-full h-80 object-cover" />
-                                            <div className="anime-card-overlay">
-                                                <h3 className="font-bold text-lg mb-2">{anime.title}</h3>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Player Modal */}
-                        {selectedAnime && (
-                            <div className="modal" onClick={() => setSelectedAnime(null)}>
-                                <div className="modal-content glass-premium p-6" onClick={(e) => e.stopPropagation()}>
-                                    <div className="flex justify-between items-center mb-4">
-                                        <h2 className="text-3xl font-bold">{selectedAnime.title}</h2>
-                                        <button
-                                            onClick={() => setSelectedAnime(null)}
-                                            className="text-2xl font-bold hover:text-purple-400"
-                                        >
-                                            ✕
-                                        </button>
-                                    </div>
-
-                                    {/* Player */}
-                                    <div className="player-container mb-6">
-                                        <iframe
-                                            src={`https://vidnest.fun/animepahe/${selectedAnime.id}/${playingEpisode}/${subDubMode}`}
-                                            frameBorder="0"
-                                            scrolling="no"
-                                            allowFullScreen
-                                            title="Anime Player"
-                                        ></iframe>
-                                    </div>
-
-                                    {/* Player Controls */}
-                                    <div className="space-y-4">
-                                        {/* Sub/Dub Toggle */}
-                                        <div className="flex gap-4 items-center flex-wrap">
-                                            <span className="font-bold">Audio:</span>
-                                            {selectedAnime.subAvailable && (
-                                                <button
-                                                    onClick={() => setSubDubMode('sub')}
-                                                    className={`btn ${subDubMode === 'sub' ? 'btn-primary' : 'btn-secondary'}`}
-                                                >
-                                                    Subbed
-                                                </button>
-                                            )}
-                                            {selectedAnime.dubAvailable && (
-                                                <button
-                                                    onClick={() => setSubDubMode('dub')}
-                                                    className={`btn ${subDubMode === 'dub' ? 'btn-primary' : 'btn-secondary'}`}
-                                                >
-                                                    Dubbed
-                                                </button>
-                                            )}
-                                        </div>
-
-                                        {/* Episode Navigation */}
-                                        <div className="flex gap-4 items-center flex-wrap">
-                                            <button
-                                                onClick={() => setPlayingEpisode(Math.max(1, playingEpisode - 1))}
-                                                className="btn btn-secondary"
-                                                disabled={playingEpisode === 1}
-                                            >
-                                                ← Previous
-                                            </button>
-                                            <span className="font-bold">Episode {playingEpisode} / {selectedAnime.episodes}</span>
-                                            <button
-                                                onClick={() => setPlayingEpisode(Math.min(selectedAnime.episodes, playingEpisode + 1))}
-                                                className="btn btn-secondary"
-                                                disabled={playingEpisode === selectedAnime.episodes}
-                                            >
-                                                Next →
-                                            </button>
-                                            <button
-                                                onClick={() => setShowEpisodeDrawer(true)}
-                                                className="btn btn-secondary ml-auto"
-                                            >
-                                                📋 Episodes
-                                            </button>
-                                        </div>
-
-                                        {/* Info */}
-                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-purple-500 border-opacity-30">
-                                            <div>
-                                                <p className="text-sm text-gray-400">Rating</p>
-                                                <p className="font-bold text-lg">⭐ {selectedAnime.rating}</p>
-                                            </div>
-                                            <div>
-                                                <p className="text-sm text-gray-400">Episodes</p>
-                                                <p className="font-bold text-lg">{selectedAnime.episodes}</p>
-                                            </div>
-                                            <div>
-                                                <p className="text-sm text-gray-400">Status</p>
-                                                <p className="font-bold text-lg">{selectedAnime.status}</p>
-                                            </div>
-                                            <div>
-                                                <p className="text-sm text-gray-400">Genres</p>
-                                                <p className="font-bold text-sm">{selectedAnime.genres.join(', ')}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Episode Drawer */}
-                        {showEpisodeDrawer && selectedAnime && (
-                            <div
-                                className="episode-drawer"
-                                onClick={(e) => {
-                                    if (e.target === e.currentTarget) setShowEpisodeDrawer(false);
-                                }}
-                            >
-                                <div className="p-6">
-                                    <div className="flex justify-between items-center mb-6">
-                                        <h3 className="text-2xl font-bold">Episodes - {selectedAnime.title}</h3>
-                                        <button
-                                            onClick={() => setShowEpisodeDrawer(false)}
-                                            className="text-2xl font-bold hover:text-purple-400"
-                                        >
-                                            ✕
-                                        </button>
-                                    </div>
-
-                                    <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                                        {Array.from({ length: selectedAnime.episodes }, (_, i) => i + 1).map(ep => (
-                                            <button
-                                                key={ep}
-                                                onClick={() => {
-                                                    setPlayingEpisode(ep);
-                                                    setShowEpisodeDrawer(false);
-                                                }}
-                                                className={`p-3 rounded-lg font-bold transition ${
-                                                    playingEpisode === ep
-                                                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
-                                                        : 'bg-white bg-opacity-10 hover:bg-opacity-20 text-white'
-                                                }`}
-                                            >
-                                                {ep}
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Bottom Navigation */}
-                        <div className="fixed bottom-0 left-0 right-0 glass-premium mx-3 mb-3 rounded-xl z-40">
-                            <div className="max-w-7xl mx-auto px-6 py-3 flex justify-around">
-                                <button className="flex flex-col items-center gap-1 text-purple-400 hover:text-white transition">
-                                    <Home size={24} />
-                                    <span className="text-xs">Home</span>
-                                </button>
-                                <button className="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition">
-                                    <Flame size={24} />
-                                    <span className="text-xs">Trending</span>
-                                </button>
-                                <button className="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition">
-                                    <Tv size={24} />
-                                    <span className="text-xs">Airing</span>
-                                </button>
-                                <button className="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition">
-                                    <Search size={24} />
-                                    <span className="text-xs">Search</span>
-                                </button>
-                                <button className="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition">
-                                    <Heart size={24} />
-                                    <span className="text-xs">Favorites</span>
-                                </button>
-                                <button className="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition">
-                                    <User size={24} />
-                                    <span className="text-xs">Profile</span>
-                                </button>
+                            <!-- Auto Next -->
+                            <div class="flex items-center gap-2">
+                                <input type="checkbox" id="auto-next" checked>
+                                <label for="auto-next" class="text-sm text-gray-300 cursor-pointer">Auto play next episode</label>
                             </div>
                         </div>
                     </div>
-                );
-            }
-        };
 
-        ReactDOM.render(<AethoKai />, document.getElementById('root'));
+                    <!-- Sidebar: Info & Recommendations -->
+                    <div class="space-y-6">
+                        <!-- Info -->
+                        <div class="glass-card p-4 rounded-lg space-y-3">
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase font-bold">Rating</p>
+                                <p class="text-lg font-bold text-white"><i class="fas fa-star text-yellow-400"></i> <span id="player-rating">8.5</span></p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase font-bold">Episodes</p>
+                                <p id="player-episodes" class="text-lg font-bold text-white">12</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase font-bold">Status</p>
+                                <p id="player-status" class="text-lg font-bold text-white">Airing</p>
+                            </div>
+                            <hr class="border-gray-800">
+                            <p id="player-desc" class="text-xs text-gray-400 line-clamp-4">Anime description...</p>
+                        </div>
+
+                        <!-- Recommendations -->
+                        <div class="space-y-3">
+                            <h3 class="section-title">Recommendations</h3>
+                            <div id="recommendations-box" class="space-y-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Episode Drawer -->
+        <div id="episode-drawer" class="episode-drawer hidden" onclick="if(event.target===this) document.getElementById('episode-drawer').classList.add('hidden')">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold">Select Episode</h3>
+                    <button onclick="document.getElementById('episode-drawer').classList.add('hidden')" class="text-2xl text-gray-400 hover:text-white">✕</button>
+                </div>
+                <div id="episode-grid" class="grid grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2"></div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav glass-header">
+            <div class="flex justify-around max-w-7xl mx-auto">
+                <div class="nav-item active" onclick="navigateToPage('home')">
+                    <i class="fas fa-home text-xl"></i>
+                    <span class="text-xs font-bold">Home</span>
+                </div>
+                <div class="nav-item" onclick="showTrending()">
+                    <i class="fas fa-fire text-xl"></i>
+                    <span class="text-xs font-bold">Trending</span>
+                </div>
+                <div class="nav-item" onclick="showAiring()">
+                    <i class="fas fa-tv text-xl"></i>
+                    <span class="text-xs font-bold">Airing</span>
+                </div>
+                <div class="nav-item" onclick="openSearch()">
+                    <i class="fas fa-search text-xl"></i>
+                    <span class="text-xs font-bold">Search</span>
+                </div>
+                <div class="nav-item" onclick="showMyList()">
+                    <i class="fas fa-heart text-xl"></i>
+                    <span class="text-xs font-bold">My List</span>
+                </div>
+                <div class="nav-item" onclick="showProfile()">
+                    <i class="fas fa-user text-xl"></i>
+                    <span class="text-xs font-bold">Profile</span>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        // AniList API Configuration
+        const ANILIST_ENDPOINT = 'https://graphql.anilist.co';
+        const STREAMING_BASE = 'https://vidnest.fun/animepahe';
+
+        // State Management
+        let currentAnimeId = null;
+        let currentEpisode = 1;
+        let currentAudio = 'sub';
+        let animeCache = [];
+        let watchHistory = JSON.parse(localStorage.getItem('aethokai_history') || '[]');
+        let myList = JSON.parse(localStorage.getItem('aethokai_mylist') || '[]');
+        let favorites = JSON.parse(localStorage.getItem('aethokai_favorites') || '[]');
+
+        // Popular Anime IDs (AniList)
+        const popularAnimes = [16498, 20953, 21202, 153518, 101922, 154587, 141467, 140960];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAnimeData();
+            setupEventListeners();
+        });
+
+        // GraphQL Query for Anime Data
+        const animeQuery = `
+            query ($ids: [Int]) {
+                Page(page: 1, perPage: 20) {
+                    media(id_in: $ids, type: ANIME) {
+                        id
+                        title {
+                            english
+                            romaji
+                        }
+                        coverImage {
+                            extraLarge
+                            large
+                        }
+                        bannerImage
+                        description
+                        genres
+                        episodes
+                        status
+                        averageScore
+                        popularity
+                    }
+                }
+            }
+        `;
+
+        async function loadAnimeData() {
+            try {
+                const response = await fetch(ANILIST_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        query: animeQuery,
+                        variables: { ids: popularAnimes }
+                    })
+                });
+
+                const data = await response.json();
+                if (data.data && data.data.Page.media) {
+                    animeCache = data.data.Page.media;
+                    renderSections();
+                }
+            } catch (err) {
+                console.error('Failed to load anime data:', err);
+            }
+        }
+
+        function renderSections() {
+            if (animeCache.length === 0) return;
+
+            // Hero
+            const hero = animeCache[0];
+            document.getElementById('hero-backdrop').style.backgroundImage = `url('${hero.bannerImage}')`;
+            document.getElementById('hero-title').textContent = hero.title.english || hero.title.romaji;
+            document.getElementById('hero-desc').textContent = hero.description?.replace(/<[^>]*>/g, '').slice(0, 150) + '...';
+            document.getElementById('hero-play-btn').onclick = () => playAnime(hero.id, 1);
+            document.getElementById('hero-watchlist-btn').onclick = () => toggleMyList(hero.id);
+            document.getElementById('hero-favorite-btn').onclick = () => toggleFavorite(hero.id);
+
+            // Trending
+            const trending = animeCache.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
+            document.getElementById('trending-slider').innerHTML = trending.map(a => animeCard(a)).join('');
+
+            // Top Rated
+            const topRated = animeCache.sort((a, b) => (b.averageScore || 0) - (a.averageScore || 0));
+            document.getElementById('top-rated-slider').innerHTML = topRated.map(a => animeCard(a)).join('');
+
+            // Airing
+            const airing = animeCache.filter(a => a.status === 'RELEASING');
+            document.getElementById('airing-slider').innerHTML = airing.map(a => animeCard(a)).join('');
+
+            // Continue Watching
+            if (watchHistory.length > 0) {
+                document.getElementById('continue-section').classList.remove('hidden');
+                document.getElementById('continue-slider').innerHTML = watchHistory.map(wh => {
+                    const anime = animeCache.find(a => a.id === wh.id);
+                    if (!anime) return '';
+                    return `
+                        <div class="glass-card rounded-lg overflow-hidden flex-shrink-0 w-56 cursor-pointer" onclick="playAnime(${anime.id}, ${wh.episode})">
+                            <img src="${anime.coverImage.large}" class="w-full h-32 object-cover">
+                            <div class="p-3 bg-black bg-opacity-40">
+                                <h4 class="text-sm font-bold text-white truncate">${anime.title.english || anime.title.romaji}</h4>
+                                <p class="text-xs text-gray-400">Resume: Episode ${wh.episode}</p>
+                                <div class="progress-bar mt-2">
+                                    <div class="progress-fill" style="width: ${(wh.episode / anime.episodes) * 100}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        function animeCard(anime) {
+            return `
+                <div class="glass-card rounded-lg overflow-hidden flex-shrink-0 min-w-[160px] cursor-pointer group" onclick="playAnime(${anime.id}, 1)">
+                    <div class="relative overflow-hidden">
+                        <img src="${anime.coverImage.large}" class="anime-poster w-full h-64 group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute top-2 left-2 bg-black bg-opacity-60 px-2 py-1 rounded text-xs font-bold text-yellow-400">
+                            ⭐ ${anime.averageScore / 10}
+                        </div>
+                    </div>
+                    <div class="p-3 bg-black bg-opacity-40">
+                        <h4 class="text-xs font-bold text-white truncate">${anime.title.english || anime.title.romaji}</h4>
+                        <p class="text-[10px] text-gray-400">${anime.episodes || '?'} episodes</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function playAnime(animeId, episode = 1) {
+            currentAnimeId = animeId;
+            currentEpisode = episode;
+            currentAudio = 'sub';
+
+            const anime = animeCache.find(a => a.id === animeId);
+            if (!anime) return;
+
+            // Update UI
+            document.getElementById('player-title').textContent = anime.title.english || anime.title.romaji;
+            document.getElementById('player-rating').textContent = (anime.averageScore / 10).toFixed(1);
+            document.getElementById('player-episodes').textContent = anime.episodes || 'Unknown';
+            document.getElementById('player-status').textContent = anime.status;
+            document.getElementById('player-desc').textContent = anime.description?.replace(/<[^>]*>/g, '') || '';
+            document.getElementById('episode-display').textContent = `Episode ${episode} / ${anime.episodes}`;
+
+            // Load player
+            updatePlayerSource();
+
+            // Update buttons
+            updatePlayerButtons();
+
+            // Render episodes grid
+            renderEpisodeGrid(anime.episodes);
+
+            // Update watchlist button
+            const inList = myList.includes(animeId);
+            document.getElementById('player-watchlist-btn').textContent = inList ? '✓ In My List' : '+ Add to My List';
+
+            // Save to history
+            watchHistory = watchHistory.filter(h => h.id !== animeId);
+            watchHistory.unshift({ id: animeId, episode });
+            localStorage.setItem('aethokai_history', JSON.stringify(watchHistory.slice(0, 20)));
+
+            // Show modal
+            document.getElementById('player-modal').classList.remove('hidden');
+        }
+
+        function updatePlayerSource() {
+            const url = `${STREAMING_BASE}/${currentAnimeId}/${currentEpisode}/${currentAudio}`;
+            document.getElementById('video-player').src = url;
+        }
+
+        function updatePlayerButtons() {
+            const anime = animeCache.find(a => a.id === currentAnimeId);
+            if (!anime) return;
+
+            document.getElementById('btn-prev').disabled = currentEpisode <= 1;
+            document.getElementById('btn-next').disabled = currentEpisode >= anime.episodes;
+
+            // Update audio buttons
+            document.getElementById('btn-sub').style.background = currentAudio === 'sub' ? '#fff' : '#27272a';
+            document.getElementById('btn-sub').style.color = currentAudio === 'sub' ? '#000' : '#fff';
+            document.getElementById('btn-dub').style.background = currentAudio === 'dub' ? '#fff' : '#27272a';
+            document.getElementById('btn-dub').style.color = currentAudio === 'dub' ? '#000' : '#fff';
+        }
+
+        function renderEpisodeGrid(totalEpisodes) {
+            const grid = document.getElementById('episode-grid');
+            grid.innerHTML = '';
+            for (let i = 1; i <= totalEpisodes; i++) {
+                const btn = document.createElement('button');
+                btn.className = `p-2 rounded font-bold text-xs cursor-pointer transition-all ${i === currentEpisode ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`;
+                btn.textContent = i;
+                btn.onclick = () => {
+                    currentEpisode = i;
+                    updatePlayerSource();
+                    updatePlayerButtons();
+                    renderEpisodeGrid(totalEpisodes);
+                    document.getElementById('episode-display').textContent = `Episode ${i} / ${totalEpisodes}`;
+                };
+                grid.appendChild(btn);
+            }
+        }
+
+        function previousEpisode() {
+            if (currentEpisode > 1) {
+                currentEpisode--;
+                updatePlayerSource();
+                updatePlayerButtons();
+                document.getElementById('episode-display').textContent = `Episode ${currentEpisode} / ${animeCache.find(a => a.id === currentAnimeId)?.episodes}`;
+            }
+        }
+
+        function nextEpisode() {
+            const anime = animeCache.find(a => a.id === currentAnimeId);
+            if (currentEpisode < anime.episodes) {
+                currentEpisode++;
+                updatePlayerSource();
+                updatePlayerButtons();
+                document.getElementById('episode-display').textContent = `Episode ${currentEpisode} / ${anime.episodes}`;
+            }
+        }
+
+        function switchAudio(audio) {
+            currentAudio = audio;
+            updatePlayerSource();
+            updatePlayerButtons();
+        }
+
+        function showEpisodeDrawer() {
+            document.getElementById('episode-drawer').classList.remove('hidden');
+        }
+
+        function closePlayer() {
+            document.getElementById('player-modal').classList.add('hidden');
+        }
+
+        function toggleMyList(animeId) {
+            const index = myList.indexOf(animeId);
+            if (index > -1) {
+                myList.splice(index, 1);
+            } else {
+                myList.push(animeId);
+            }
+            localStorage.setItem('aethokai_mylist', JSON.stringify(myList));
+        }
+
+        function toggleFavorite(animeId) {
+            const index = favorites.indexOf(animeId);
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push(animeId);
+            }
+            localStorage.setItem('aethokai_favorites', JSON.stringify(favorites));
+        }
+
+        function setupEventListeners() {
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                if (query.length > 2) {
+                    searchAnime(query);
+                }
+            });
+
+            // Auto next episode after 90% watch time
+            const observer = new MutationObserver(() => {
+                if (document.getElementById('auto-next').checked) {
+                    // Could integrate with actual player time tracking
+                }
+            });
+        }
+
+        function navigateToPage(page) {
+            if (page === 'home') {
+                location.reload();
+            }
+        }
+
+        function showTrending() {
+            alert('Showing trending anime (coming soon)');
+        }
+
+        function showAiring() {
+            alert('Showing currently airing anime (coming soon)');
+        }
+
+        function openSearch() {
+            document.getElementById('search-input').focus();
+        }
+
+        function showMyList() {
+            const myListAnimes = animeCache.filter(a => myList.includes(a.id));
+            alert(`My List (${myListAnimes.length} items)`);
+        }
+
+        function showProfile() {
+            alert('Profile (coming soon)');
+        }
+
+        function filterByGenre(genre) {
+            console.log('Filter by:', genre);
+            // Implementation for genre filtering
+        }
+
+        async function searchAnime(query) {
+            const searchQuery = `
+                query ($search: String) {
+                    Page(page: 1, perPage: 10) {
+                        media(search: $search, type: ANIME) {
+                            id
+                            title {
+                                english
+                                romaji
+                            }
+                            coverImage { large }
+                        }
+                    }
+                }
+            `;
+
+            try {
+                const response = await fetch(ANILIST_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        query: searchQuery,
+                        variables: { search: query }
+                    })
+                });
+
+                const data = await response.json();
+                if (data.data?.Page.media) {
+                    const results = data.data.Page.media;
+                    console.log('Search results:', results);
+                    // Could render search results in a dropdown
+                }
+            } catch (err) {
+                console.error('Search failed:', err);
+            }
+        }
     </script>
 </body>
 </html>
