@@ -3,457 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AethoKai — Premium Cinematic Stream Platform</title>
+    <title>AethoKai — Ultra OTT Streaming Core</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --ios-blur: blur(30px) saturate(210%);
-            --glass-bg: rgba(10, 10, 12, 0.45);
-            --glass-border: rgba(255, 255, 255, 0.06);
-            --accent-glow: rgba(139, 92, 246, 0.15);
+            --apple-blur: blur(40px) saturate(220%);
+            --bg-obsidian: #09090b;
+            --bg-charcoal: #121214;
+            --border-glass: rgba(255, 255, 255, 0.06);
+            --gray-gradient: linear-gradient(180deg, #1c1c1e 0%, #09090b 100%);
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #040406;
+            background-color: var(--bg-obsidian);
+            color: #f4f4f5;
             overflow-x: hidden;
-            color: #f3f4f6;
         }
 
-        /* --- Dynamic Interactive Liquid Canvas Base --- */
-        .liquid-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
-            background: linear-gradient(180deg, #050508 0%, #0c0a12 100%);
-            overflow: hidden;
-        }
-        .liquid-fluid-blob {
-            position: absolute;
-            background: linear-gradient(145deg, #5b21b6 0%, #a855f7 50%, #4c1d95 100%);
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.38;
-            mix-blend-mode: screen;
-            animation: fluidic-movement 22s infinite alternate ease-in-out;
-        }
-        .blob-alpha { width: 700px; height: 700px; top: -15%; left: -10%; animation-duration: 18s; }
-        .blob-beta { width: 850px; height: 850px; bottom: -25%; right: -15%; animation-duration: 26s; background: linear-gradient(135deg, #2e1065 0%, #6d28d9 100%); }
-        .blob-gamma { width: 550px; height: 550px; top: 35%; left: 40%; animation-duration: 20s; background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 100%); opacity: 0.25; }
-
-        @keyframes fluidic-movement {
-            0% { transform: translate(0, 0) scale(1) rotate(0deg); border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
-            50% { transform: translate(90px, 80px) scale(1.15) rotate(140deg); border-radius: 70% 30% 52% 48% / 30% 65% 35% 70%; }
-            100% { transform: translate(-50px, -40px) scale(0.95) rotate(280deg); border-radius: 48% 52% 65% 35% / 50% 40% 60% 50%; }
+        /* Premium iPhone Glassmorphism Profiles */
+        .iphone-glass-header {
+            background: rgba(18, 18, 20, 0.65);
+            backdrop-filter: var(--apple-blur);
+            -webkit-backdrop-filter: var(--apple-blur);
+            border-bottom: 1px solid var(--border-glass);
         }
 
-        /* --- iOS-Inspired Glossy Glassmorphism Engine --- */
-        .premium-glossy-base {
-            background: var(--glass-bg);
-            backdrop-filter: var(--ios-blur);
-            -webkit-backdrop-filter: var(--ios-blur);
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.7);
-        }
-        .premium-glass-panel {
-            background: rgba(18, 18, 22, 0.5);
-            backdrop-filter: var(--ios-blur);
-            -webkit-backdrop-filter: var(--ios-blur);
-            border: 1px solid var(--glass-border);
-        }
-        .premium-glass-card {
-            background: rgba(255, 255, 255, 0.015);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            transition: all 0.5s cubic-bezier(0.15, 0.85, 0.35, 1);
-        }
-        .premium-glass-card:hover {
-            transform: translateY(-8px) scale(1.025);
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(168, 85, 247, 0.35);
-            box-shadow: 0 20px 40px -10px var(--accent-glow);
+        .iphone-glass-panel {
+            background: rgba(24, 24, 27, 0.45);
+            backdrop-filter: var(--apple-blur);
+            -webkit-backdrop-filter: var(--apple-blur);
+            border: 1px solid var(--border-glass);
         }
 
-        /* Interactive Scroll Control UI styling */
+        .iphone-glass-card {
+            background: linear-gradient(145deg, rgba(28, 28, 30, 0.7) 0%, rgba(12, 12, 14, 0.7) 100%);
+            border: 1px solid var(--border-glass);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .iphone-glass-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.15);
+            background: linear-gradient(145deg, rgba(38, 38, 41, 0.8) 0%, rgba(18, 18, 20, 0.8) 100%);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Smooth Custom Interactive Scroll Elements */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .custom-scrollbar::-webkit-scrollbar { width: 5px; height: 5px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(168, 85, 247, 0.4); }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.4); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
 
-        .ios-active-pill {
-            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
-            color: #040406 !important;
-            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+        .active-pill {
+            background: #ffffff;
+            color: #09090b !important;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-purple-500 selection:text-white">
+<body class="antialiased">
 
-    <div class="liquid-canvas">
-        <div class="liquid-fluid-blob blob-alpha"></div>
-        <div class="liquid-fluid-blob blob-beta"></div>
-        <div class="liquid-fluid-blob blob-gamma"></div>
-        <div class="absolute inset-0 bg-black/40 z-[-1]"></div>
-    </div>
-
-    <div id="welcome-gate" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md transition-all duration-1000 ease-in-out">
-        <div class="premium-glossy-base max-w-lg w-full p-10 rounded-[2.5rem] text-center space-y-8 border-white/10 relative overflow-hidden group">
-            <div class="absolute -top-12 -left-12 w-40 h-40 bg-purple-600/10 blur-2xl rounded-full"></div>
-            <div class="absolute -bottom-12 -right-12 w-40 h-40 bg-indigo-600/10 blur-2xl rounded-full"></div>
-            
-            <div class="w-24 h-24 bg-gradient-to-br from-neutral-800 to-neutral-950 rounded-[2rem] flex items-center justify-center mx-auto shadow-2xl border border-white/10 relative">
-                <i class="fa-solid fa-play text-4xl text-purple-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]"></i>
-                <div class="absolute inset-0 border border-purple-500/30 rounded-[2rem] animate-pulse"></div>
-            </div>
-            
-            <div class="space-y-2">
-                <h1 class="text-5xl font-black tracking-tight bg-gradient-to-b from-white via-neutral-200 to-neutral-400 bg-clip-text text-transparent">AethoKai</h1>
-                <p class="text-xs font-semibold tracking-widest uppercase text-purple-400/80">Premium Entertainment Architecture</p>
-            </div>
-            
-            <p class="text-neutral-400 text-sm leading-relaxed max-w-sm mx-auto">
-                Experience ultra-fluid transitions structured over high-fidelity glass surfaces. Fully tied to live AniList databases and decoupled stream servers.
-            </p>
-            
-            <button onclick="transitionToIntro()" class="w-full py-4.5 px-6 rounded-2xl bg-gradient-to-r from-neutral-100 to-neutral-300 hover:from-white hover:to-neutral-100 text-neutral-950 font-bold tracking-wide shadow-xl transition-all duration-300 transform active:scale-[0.98] cursor-pointer">
-                LAUNCH ENGINE
-            </button>
-        </div>
-    </div>
-
-    <div id="intro-screen" class="fixed inset-0 z-40 hidden flex flex-col items-center justify-center bg-[#030305] transition-opacity duration-1000 opacity-0">
-        <div class="text-center space-y-6 max-w-md px-6">
-            <div class="overflow-hidden">
-                <h2 id="intro-logo" class="text-6xl font-black tracking-tighter text-white translate-y-full transition-transform duration-1000 ease-out">
-                    ÆTHO<span class="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">KAI</span>
-                </h2>
-            </div>
-            <div class="w-64 h-[2px] bg-neutral-900 rounded-full mx-auto overflow-hidden relative">
-                <div id="intro-progress" class="absolute inset-y-0 left-0 bg-gradient-to-r from-purple-500 via-indigo-500 to-purple-400 w-full transform -translate-x-full transition-transform duration-[2500ms] ease-out"></div>
-            </div>
-            <p id="loading-status" class="text-[11px] font-medium text-neutral-500 tracking-widest uppercase animate-pulse">Initializing pipeline layers...</p>
-        </div>
-    </div>
-
-    <div id="app-content" class="hidden opacity-0 transition-opacity duration-1000 max-w-[1680px] mx-auto p-4 md:p-8 pb-36">
+    <div class="min-h-screen flex flex-col pb-32">
         
-        <header class="premium-glass-panel w-full px-6 py-4 md:px-10 rounded-[2rem] flex items-center justify-between mb-8 sticky top-4 z-30 shadow-xl border-white/5">
-            <div class="flex items-center gap-4 cursor-pointer group" onclick="switchRoutingView('dashboard')">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-b from-neutral-800 to-neutral-950 flex items-center justify-center font-black text-xl border border-white/10 group-hover:border-purple-500/40 transition-colors">Æ</div>
-                <span class="text-2xl font-black tracking-tighter bg-gradient-to-r from-white via-neutral-200 to-neutral-400 bg-clip-text text-transparent">AethoKai</span>
-            </div>
-
-            <div class="hidden xl:flex items-center gap-1.5 bg-black/40 p-1.5 rounded-xl border border-white/5">
-                <button onclick="filterGenre('All', this)" class="px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ios-active-pill">All</button>
-                <button onclick="filterGenre('Action', this)" class="px-4 py-2 rounded-lg text-sm font-semibold text-neutral-400 hover:text-white transition-all cursor-pointer">Action</button>
-                <button onclick="filterGenre('Fantasy', this)" class="px-4 py-2 rounded-lg text-sm font-semibold text-neutral-400 hover:text-white transition-all cursor-pointer">Fantasy</button>
-                <button onclick="filterGenre('Romance', this)" class="px-4 py-2 rounded-lg text-sm font-semibold text-neutral-400 hover:text-white transition-all cursor-pointer">Romance</button>
-                <button onclick="filterGenre('Isekai', this)" class="px-4 py-2 rounded-lg text-sm font-semibold text-neutral-400 hover:text-white transition-all cursor-pointer">Isekai</button>
-                <button onclick="filterGenre('Comedy', this)" class="px-4 py-2 rounded-lg text-sm font-semibold text-neutral-400 hover:text-white transition-all cursor-pointer">Comedy</button>
-            </div>
-
-            <div class="flex items-center gap-4">
-                <div class="relative hidden md:block w-72">
-                    <input type="text" id="header-search-input" placeholder="Search titles, directors, genres..." class="w-full bg-black/40 border border-white/5 rounded-2xl py-2.5 pl-11 pr-4 text-xs font-medium focus:outline-none focus:border-purple-500 focus:bg-black/80 transition-all text-neutral-200 placeholder-neutral-500">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-neutral-500 text-xs"></i>
+        <header class="iphone-glass-header w-full sticky top-0 z-40 px-4 md:px-10 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-3 cursor-pointer" onclick="navigateRoute('home')">
+                    <div class="w-9 h-9 rounded-xl bg-white text-black font-black flex items-center justify-center text-lg tracking-tighter">Æ</div>
+                    <span class="text-xl font-bold tracking-tight text-white">AethoKai</span>
                 </div>
+                
+                <nav class="hidden lg:flex items-center gap-1 text-sm font-medium text-zinc-400">
+                    <button onclick="navigateRoute('home')" class="px-3 py-1.5 rounded-lg hover:text-white transition-colors cursor-pointer">Browse</button>
+                    <button onclick="navigateRoute('watchlist')" class="px-3 py-1.5 rounded-lg hover:text-white transition-colors cursor-pointer">My Library</button>
+                    <button onclick="triggerGenreExplorer('Action')" class="px-3 py-1.5 rounded-lg hover:text-white transition-colors cursor-pointer">Action</button>
+                    <button onclick="triggerGenreExplorer('Fantasy')" class="px-3 py-1.5 rounded-lg hover:text-white transition-colors cursor-pointer">Fantasy</button>
+                    <button onclick="triggerGenreExplorer('Sci-Fi')" class="px-3 py-1.5 rounded-lg hover:text-white transition-colors cursor-pointer">Sci-Fi</button>
+                </nav>
+            </div>
 
-                <div onclick="switchRoutingView('profile')" class="w-11 h-11 rounded-2xl border border-white/10 overflow-hidden cursor-pointer bg-neutral-900/60 flex items-center justify-center hover:border-white/30 transition-all">
-                    <i class="fa-solid fa-user-ninja text-neutral-400 text-sm"></i>
+            <div class="flex items-center gap-4 w-full max-w-xs md:max-w-sm justify-end">
+                <div class="relative w-full">
+                    <input type="text" id="global-search-input" placeholder="Search global AniList catalog..." class="w-full bg-zinc-900/60 border border-zinc-800 focus:border-zinc-600 rounded-xl py-2 pl-10 pr-4 text-xs font-medium focus:outline-none transition-all text-zinc-200 placeholder-zinc-500">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-zinc-500 text-xs"></i>
                 </div>
             </div>
         </header>
 
-        <div id="view-dashboard" class="space-y-14 transition-all duration-500">
+        <main class="flex-1 w-full max-w-[1600px] mx-auto px-4 md:px-8 pt-6">
             
-            <section class="relative w-full h-[520px] rounded-[2.5rem] overflow-hidden premium-glass-panel group shadow-2xl border-white/5">
-                <div id="hero-banner-image" class="absolute inset-0 bg-cover bg-center transition-all duration-1000 scale-100 group-hover:scale-[1.015] blur-none"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-[#040406] via-[#040406]/40 to-transparent"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-[#040406] via-[#040406]/10 to-transparent"></div>
+            <div id="route-home" class="space-y-12 view-layer">
                 
-                <div class="absolute bottom-0 left-0 p-8 md:p-14 max-w-3xl space-y-5 z-10">
-                    <div class="flex items-center gap-2">
-                        <span class="px-3 py-1 bg-purple-600/80 backdrop-blur-md text-[10px] font-bold rounded-md tracking-widest uppercase text-white border border-purple-400/20">FEATURED MASTERPIECE</span>
-                        <span id="hero-meta-score" class="text-xs text-amber-400 font-semibold flex items-center gap-1"><i class="fa-solid fa-star"></i> 9.2</span>
-                    </div>
-                    <h2 id="hero-meta-title" class="text-4xl md:text-6xl font-black tracking-tighter leading-none text-white">Loading Title...</h2>
-                    <p id="hero-meta-desc" class="text-neutral-300 text-xs md:text-sm leading-relaxed line-clamp-3 font-medium opacity-90"></p>
+                <section class="relative w-full h-[460px] rounded-3xl overflow-hidden iphone-glass-panel group shadow-2xl">
+                    <div id="hero-backdrop" class="absolute inset-0 bg-cover bg-center transition-all duration-1000 group-hover:scale-[1.01]"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-zinc-950 via-transparent to-transparent"></div>
                     
-                    <div class="flex items-center gap-4 pt-3">
-                        <button id="hero-cta-play" class="px-8 py-3.5 bg-white text-black font-bold rounded-xl flex items-center gap-2.5 hover:bg-neutral-200 transition-all cursor-pointer shadow-lg active:scale-[0.98]">
-                            <i class="fa-solid fa-play text-xs"></i> Stream Episode 1
-                        </button>
-                        <button id="hero-cta-list" class="p-3.5 premium-glass-panel hover:bg-white/10 rounded-xl transition-all cursor-pointer border-white/10">
-                            <i class="fa-solid fa-plus text-sm"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="absolute right-8 bottom-8 flex gap-2 z-10">
-                    <button onclick="cycleHeroBanner(-1)" class="w-10 h-10 rounded-lg premium-glass-panel flex items-center justify-center hover:bg-white/10 border-white/10 cursor-pointer text-xs"><i class="fa-solid fa-chevron-left"></i></button>
-                    <button onclick="cycleHeroBanner(1)" class="w-10 h-10 rounded-lg premium-glass-panel flex items-center justify-center hover:bg-white/10 border-white/10 cursor-pointer text-xs"><i class="fa-solid fa-chevron-right"></i></button>
-                </div>
-            </section>
-
-            <div class="space-y-4">
-                <div class="flex items-center justify-between border-b border-white/5 pb-2">
-                    <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar text-xs font-bold tracking-wide text-neutral-400" id="schedule-sub-menu">
-                        <button onclick="toggleScheduleTab('airing', this)" class="px-4 py-2 text-purple-400 border-b-2 border-purple-400 whitespace-nowrap cursor-pointer">Currently Airing</button>
-                        <button onclick="toggleScheduleTab('today', this)" class="px-4 py-2 hover:text-white transition-colors whitespace-nowrap cursor-pointer">Today's Episodes</button>
-                        <button onclick="toggleScheduleTab('tomorrow', this)" class="px-4 py-2 hover:text-white transition-colors whitespace-nowrap cursor-pointer">Tomorrow's Schedule</button>
-                        <button onclick="toggleScheduleTab('recent', this)" class="px-4 py-2 hover:text-white transition-colors whitespace-nowrap cursor-pointer">Recently Released</button>
-                        <button onclick="toggleScheduleTab('upcoming', this)" class="px-4 py-2 hover:text-white transition-colors whitespace-nowrap cursor-pointer">Upcoming Episodes</button>
-                    </div>
-                </div>
-                <div id="schedule-tab-content" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 text-xs text-neutral-400 hidden p-2 rounded-xl bg-neutral-900/20 border border-white/5">
-                    </div>
-            </div>
-
-            <div class="space-y-12" id="dashboard-rows-container">
-                <div class="space-y-4 hidden" id="wrapper-continue">
-                    <h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white">
-                        <span class="w-1 h-4 bg-purple-500 rounded-full"></span>Continue Watching
-                    </h3>
-                    <div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-continue"></div>
-                </div>
-
-                <div class="space-y-4">
-                    <h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white">
-                        <span class="w-1 h-4 bg-purple-500 rounded-full"></span>Trending Anime
-                    </h3>
-                    <div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-trending"></div>
-                </div>
-
-                <div class="space-y-4">
-                    <h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white">
-                        <span class="w-1 h-4 bg-purple-500 rounded-full"></span>Top 10 Masterpieces
-                    </h3>
-                    <div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-top10"></div>
-                </div>
-
-                <div class="space-y-4">
-                    <h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white">
-                        <span class="w-1 h-4 bg-purple-500 rounded-full"></span>New Episodes
-                    </h3>
-                    <div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-new"></div>
-                </div>
-
-                <div class="space-y-4">
-                    <h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white">
-                        <span class="w-1 h-4 bg-purple-500 rounded-full"></span>Popular Movies
-                    </h3>
-                    <div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-movies"></div>
-                </div>
-
-                <div class="space-y-4">
-                    <h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white">
-                        <span class="w-1 h-4 bg-purple-500 rounded-full"></span>Recommended For You
-                    </h3>
-                    <div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-recommended"></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="view-player" class="hidden space-y-6 transition-all duration-500">
-            <div class="flex items-center justify-between">
-                <button onclick="switchRoutingView('dashboard')" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-semibold tracking-wide transition-all cursor-pointer border border-white/5">
-                    <i class="fa-solid fa-chevron-left text-[10px]"></i> Close Cinema Player
-                </button>
-                <div class="flex items-center gap-2">
-                    <button id="player-watchlist-toggle" class="p-3 bg-white/5 border border-white/5 rounded-xl text-xs font-bold hover:bg-white/10 transition-colors cursor-pointer"></button>
-                    <button id="player-favorite-toggle" class="p-3 bg-white/5 border border-white/5 rounded-xl text-xs font-bold hover:bg-white/10 transition-colors cursor-pointer"></button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 items-start">
-                
-                <div class="xl:col-span-2 space-y-4">
-                    <div class="premium-glass-panel w-full aspect-video rounded-[2rem] overflow-hidden relative shadow-2xl bg-black border border-white/5">
-                        <iframe id="main-video-iframe" src="" class="w-full h-full object-cover" frameborder="0" scrolling="no" allowfullscreen></iframe>
-                    </div>
-
-                    <div class="premium-glass-panel p-4 rounded-2xl flex flex-wrap items-center justify-between gap-4 text-xs border-white/5">
-                        <div class="flex items-center gap-3">
-                            <div class="flex bg-black/40 p-1 rounded-xl border border-white/5" id="server-selector-container">
-                                <button id="srv-sub-btn" onclick="toggleServerMapping('sub')" class="px-3.5 py-1.5 rounded-lg font-bold text-[11px] uppercase transition-all cursor-pointer">Server 1 (Sub)</button>
-                                <button id="srv-dub-btn" onclick="toggleServerMapping('dub')" class="px-3.5 py-1.5 rounded-lg font-bold text-[11px] uppercase transition-all cursor-pointer">Server 2 (Dub)</button>
-                            </div>
+                    <div class="absolute bottom-0 left-0 p-6 md:p-12 max-w-2xl space-y-4 z-10">
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 bg-white/10 backdrop-blur-md text-[9px] font-bold rounded tracking-widest text-zinc-300 uppercase">Spotlight Feature</span>
+                            <span id="hero-score" class="text-xs text-zinc-400 font-semibold"><i class="fa-solid fa-star text-white mr-1"></i>--</span>
                         </div>
-
-                        <div class="flex items-center gap-4">
-                            <button id="control-prev-btn" class="w-9 h-9 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 transition-all border border-white/5 disabled:opacity-20 cursor-pointer"><i class="fa-solid fa-step-backward"></i></button>
-                            <span id="control-track-display" class="font-bold uppercase tracking-wider text-neutral-300 text-[11px]">Episode --</span>
-                            <button id="control-next-btn" class="w-9 h-9 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 transition-all border border-white/5 disabled:opacity-20 cursor-pointer"><i class="fa-solid fa-step-forward"></i></button>
-                        </div>
-
-                        <div class="flex items-center gap-4 text-neutral-400 font-semibold">
-                            <label class="flex items-center gap-2 cursor-pointer select-none">
-                                <input type="checkbox" id="cfg-auto-next" checked class="accent-purple-500 rounded"> Auto Next
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-6">
-                    <div class="premium-glass-panel p-6 rounded-[2rem] space-y-5 border-white/5">
-                        <div class="space-y-2">
-                            <div class="flex items-center gap-2">
-                                <span id="meta-player-status" class="px-2 py-0.5 bg-purple-950/60 border border-purple-500/30 text-[9px] font-bold rounded text-purple-300 tracking-widest uppercase">AIRING</span>
-                                <span id="meta-player-season" class="text-[10px] text-neutral-500 font-bold uppercase tracking-wider">Season 1</span>
-                            </div>
-                            <h3 id="meta-player-title" class="text-xl font-extrabold tracking-tight text-white line-clamp-2">Anime Title Container</h3>
-                        </div>
-
-                        <div class="flex flex-wrap gap-1.5 text-[10px]" id="meta-player-genres"></div>
-                        <p id="meta-player-desc" class="text-xs text-neutral-400 leading-relaxed line-clamp-4 font-medium"></p>
+                        <h1 id="hero-title" class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight line-clamp-2">Loading Core Catalog...</h1>
+                        <p id="hero-description" class="text-zinc-400 text-xs md:text-sm leading-relaxed line-clamp-3 font-medium"></p>
                         
-                        <hr class="border-white/5">
-                        
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between">
-                                <h4 class="text-xs font-bold tracking-wider uppercase text-neutral-300">Episodes Collection</h4>
-                                <span id="episode-drawer-counter" class="text-[10px] font-medium text-neutral-500">-- / --</span>
-                            </div>
-                            <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 xl:grid-cols-4 gap-2 max-h-52 overflow-y-auto pr-1 custom-scrollbar" id="player-episode-drawer">
-                                </div>
+                        <div class="flex items-center gap-3 pt-2">
+                            <button id="hero-play-btn" class="px-6 py-3 bg-white text-black font-bold text-xs rounded-xl flex items-center gap-2 hover:bg-zinc-200 transition-colors cursor-pointer shadow-lg">
+                                <i class="fa-solid fa-play text-[10px]"></i> Watch Episode 1
+                            </button>
+                            <button id="hero-watchlist-btn" class="p-3 bg-zinc-900/80 border border-zinc-800 hover:bg-zinc-800 text-white rounded-xl transition-colors cursor-pointer text-xs">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
                         </div>
+                    </div>
+                </section>
+
+                <div class="space-y-10" id="home-rails-shell">
+                    
+                    <div class="space-y-3 hidden" id="rail-continue-box">
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-zinc-400 flex items-center gap-2"><span class="w-1 h-3 bg-white rounded-full"></span>Continue Watching</h3>
+                        <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-2" id="rail-continue-slider"></div>
                     </div>
 
                     <div class="space-y-3">
-                        <h4 class="text-xs font-bold tracking-wider uppercase text-neutral-400 px-1">Related Masterpieces</h4>
-                        <div class="grid grid-cols-1 gap-3" id="player-context-recommendations">
-                            </div>
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-zinc-400 flex items-center gap-2"><span class="w-1 h-3 bg-white rounded-full"></span>Trending Masterpieces</h3>
+                        <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-2" id="rail-trending-slider"></div>
                     </div>
 
-                </div>
-            </div>
-        </div>
-
-        <div id="view-search" class="hidden space-y-6 transition-all duration-500">
-            <div class="space-y-1">
-                <h3 class="text-2xl font-black tracking-tight text-white">Global Search Matrix</h3>
-                <p class="text-xs text-neutral-400">Querying real-time AniList servers across thousands of synchronized media tracks.</p>
-            </div>
-            
-            <div class="relative w-full max-w-2xl">
-                <input type="text" id="dedicated-search-field" placeholder="Type name, studio, or trope keyword..." class="w-full bg-neutral-900/40 premium-glass-panel rounded-2xl py-4 pl-14 pr-6 text-sm font-medium focus:outline-none focus:border-purple-500 transition-all text-neutral-200">
-                <i class="fa-solid fa-magnifying-glass absolute left-5 top-4.5 text-neutral-400 text-base"></i>
-            </div>
-
-            <div id="search-results-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 pt-4">
-                <div class="col-span-full py-12 text-center text-neutral-500 text-xs font-medium uppercase tracking-wider">Enter characters to populate records matrix</div>
-            </div>
-        </div>
-
-        <div id="view-profile" class="hidden space-y-10 transition-all duration-500">
-            <div class="premium-glass-panel p-8 rounded-[2.5rem] flex flex-col sm:flex-row items-center gap-6 border-white/5">
-                <div class="w-24 h-24 bg-gradient-to-tr from-purple-600 via-indigo-600 to-purple-400 rounded-[2rem] flex items-center justify-center text-3xl font-black shadow-xl">Æ</div>
-                <div class="space-y-1 text-center sm:text-left">
-                    <h3 class="text-3xl font-black tracking-tight text-white">Operator Core UI</h3>
-                    <p class="text-xs text-purple-400 font-semibold tracking-wider uppercase">Tier: Grandmaster Archivist</p>
-                    <p class="text-xs text-neutral-500 pt-1 font-medium">Platform Schema Identity Tracker — Localized Mode</p>
+                    <div class="space-y-3">
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-zinc-400 flex items-center gap-2"><span class="w-1 h-3 bg-white rounded-full"></span>Highest Rated Selections</h3>
+                        <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-2" id="rail-rated-slider"></div>
+                    </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
-                <div class="space-y-4">
-                    <h4 class="text-base font-bold tracking-tight text-white flex items-center gap-2"><i class="fa-solid fa-bookmark text-purple-400 text-xs"></i> My Watch List</h4>
-                    <div id="profile-watchlist-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
+            <div id="route-player" class="hidden space-y-6 view-layer">
+                <div class="flex items-center justify-between border-b border-zinc-900 pb-4">
+                    <button onclick="navigateRoute('home')" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-white transition-colors cursor-pointer">
+                        <i class="fa-solid fa-arrow-left"></i> Return to Catalog Matrix
+                    </button>
+                    <div class="flex items-center gap-2">
+                        <button id="player-watchlist-btn" class="px-4 py-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-xs font-bold rounded-xl transition-colors cursor-pointer"></button>
+                    </div>
                 </div>
 
-                <div class="space-y-4">
-                    <h4 class="text-base font-bold tracking-tight text-white flex items-center gap-2"><i class="fa-solid fa-heart text-pink-400 text-xs"></i> Bookmarked Favorites</h4>
-                    <div id="profile-favorites-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
+                <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 items-start">
+                    
+                    <div class="xl:col-span-2 space-y-4">
+                        <div class="w-full aspect-video rounded-2xl overflow-hidden relative shadow-2xl bg-black border border-zinc-900">
+                            <iframe id="cinema-iframe" src="" class="w-full h-full" frameborder="0" scrolling="no" allowfullscreen></iframe>
+                        </div>
+
+                        <div class="iphone-glass-panel p-4 rounded-xl flex flex-wrap items-center justify-between gap-4 text-xs">
+                            <div class="flex items-center gap-2">
+                                <span class="text-zinc-500 font-bold uppercase text-[10px]">Audio Track:</span>
+                                <div class="flex bg-zinc-950 p-1 rounded-lg border border-zinc-800" id="server-selector-row">
+                                    <button onclick="switchMediaServerMode('sub')" id="srv-sub" class="px-3 py-1 rounded-md font-bold text-[10px] uppercase transition-all cursor-pointer">Subbed</button>
+                                    <button onclick="switchMediaServerMode('dub')" id="srv-dub" class="px-3 py-1 rounded-md font-bold text-[10px] uppercase transition-all cursor-pointer">Dubbed</button>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-3">
+                                <button id="track-prev-btn" class="w-8 h-8 flex items-center justify-center rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white transition-colors cursor-pointer disabled:opacity-20"><i class="fa-solid fa-backward text-[10px]"></i></button>
+                                <span id="track-current-label" class="font-bold text-zinc-300 tracking-wider text-[11px] px-1 uppercase">Episode 01</span>
+                                <button id="track-next-btn" class="w-8 h-8 flex items-center justify-center rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white transition-colors cursor-pointer disabled:opacity-20"><i class="fa-solid fa-forward text-[10px]"></i></button>
+                            </div>
+
+                            <div class="flex items-center gap-4 text-zinc-500 font-semibold text-[11px]">
+                                <button onclick="triggerStepNextSequence()" class="text-zinc-400 hover:text-white font-bold cursor-pointer flex items-center gap-1"><i class="fa-solid fa-forward-step text-[10px]"></i> Skip To Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="iphone-glass-panel p-5 rounded-2xl space-y-4">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2">
+                                    <span id="player-meta-status" class="px-2 py-0.5 bg-white/5 border border-white/10 text-[9px] font-bold rounded text-zinc-400 tracking-widest uppercase">--</span>
+                                    <span id="player-meta-score" class="text-[10px] text-zinc-400 font-bold"><i class="fa-solid fa-star text-white mr-1"></i>--</span>
+                                </div>
+                                <h2 id="player-meta-title" class="text-lg font-bold text-white tracking-tight line-clamp-2">--</h2>
+                            </div>
+                            <p id="player-meta-desc" class="text-xs text-zinc-400 leading-relaxed line-clamp-4 font-medium"></p>
+                            
+                            <hr class="border-zinc-900">
+                            
+                            <div class="space-y-2">
+                                <h4 class="text-[10px] font-bold tracking-wider uppercase text-zinc-500">Select Track Target</h4>
+                                <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 xl:grid-cols-4 gap-1.5 max-h-44 overflow-y-auto pr-1 custom-scrollbar" id="player-episode-drawer">
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h4 class="text-[10px] font-bold tracking-wider uppercase text-zinc-400 px-1">Contextual Recommendations</h4>
+                            <div class="grid grid-cols-1 gap-2" id="player-recommendations-box">
+                                </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
+            <div id="route-search" class="hidden space-y-6 view-layer">
+                <div class="space-y-1">
+                    <h2 class="text-xl font-bold tracking-tight text-white" id="search-title-label">Live Discovery Registry</h2>
+                    <p class="text-xs text-zinc-500">Active records extracted directly via core GraphQL server communication.</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4" id="search-results-grid">
+                    </div>
+            </div>
+
+            <div id="route-watchlist" class="hidden space-y-8 view-layer">
+                <div class="space-y-1">
+                    <h2 class="text-xl font-bold tracking-tight text-white">My Watch Library</h2>
+                    <p class="text-xs text-zinc-500">Personal bookmark tracking assets preserved inside local system configuration space.</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4" id="watchlist-records-grid">
+                    </div>
+            </div>
+
+        </main>
     </div>
 
-    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 premium-glossy-base px-8 py-4 rounded-full flex items-center gap-10 shadow-3xl border-white/10" id="floating-ios-nav">
-        <button onclick="switchRoutingView('dashboard', this)" class="flex flex-col items-center gap-1 text-purple-400 group cursor-pointer transition-transform duration-300">
-            <i class="fa-solid fa-house text-lg transform group-hover:scale-110 transition-transform"></i>
-            <span class="text-[9px] font-extrabold tracking-widest uppercase">Home</span>
+    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-zinc-900/80 backdrop-blur-2xl px-8 py-3.5 rounded-2xl flex items-center gap-10 shadow-3xl border border-white/5">
+        <button onclick="navigateRoute('home')" id="dock-home" class="flex flex-col items-center gap-1 text-white cursor-pointer transition-all">
+            <i class="fa-solid fa-compass text-base"></i>
+            <span class="text-[9px] font-bold tracking-widest uppercase">Browse</span>
         </button>
-        <button onclick="switchRoutingView('dashboard', this); setTimeout(()=>window.scrollTo({top: document.getElementById('slider-trending').offsetTop - 120, behavior:'smooth'}), 100);" class="flex flex-col items-center gap-1 text-neutral-400 hover:text-white group cursor-pointer transition-transform duration-300">
-            <i class="fa-solid fa-fire text-lg transform group-hover:scale-110 transition-transform"></i>
-            <span class="text-[9px] font-extrabold tracking-widest uppercase">Trending</span>
-        </button>
-        <button onclick="switchRoutingView('search', this)" class="flex flex-col items-center gap-1 text-neutral-400 hover:text-white group cursor-pointer transition-transform duration-300">
-            <i class="fa-solid fa-magnifying-glass text-lg transform group-hover:scale-110 transition-transform"></i>
-            <span class="text-[9px] font-extrabold tracking-widest uppercase">Search</span>
-        </button>
-        <button onclick="switchRoutingView('profile', this)" class="flex flex-col items-center gap-1 text-neutral-400 hover:text-white group cursor-pointer transition-transform duration-300">
-            <i class="fa-solid fa-folder-open text-lg transform group-hover:scale-110 transition-transform"></i>
-            <span class="text-[9px] font-extrabold tracking-widest uppercase">My List</span>
+        <button onclick="navigateRoute('watchlist')" id="dock-watchlist" class="flex flex-col items-center gap-1 text-zinc-500 hover:text-white cursor-pointer transition-all">
+            <i class="fa-solid fa-folder-open text-base"></i>
+            <span class="text-[9px] font-bold tracking-widest uppercase">Library</span>
         </button>
     </nav>
 
 
     <script>
-        // Structural targeting identities configuration setup
-        const primaryQueryIds = [16498, 153518, 101922, 154587, 21, 140960, 166873, 113415, 171018, 142838];
-        let masterCatalog = [];
-        let heroIndex = 0;
+        // High quality production index targeting anchors config
+        const bootstrapCollectionIds = [16498, 153518, 101922, 154587, 21, 140960, 166873, 113415, 142838, 171018, 154512];
+        let localMemoryCache = [];
+        
+        // Runtime platform reactive state variables
+        let activeTargetId = 16498;
+        let activeTrackEpisode = 1;
+        let activeServerMode = 'sub';
 
-        // Current runtime application pointers
-        let runtimeActiveId = 16498;
-        let runtimeActiveEpisode = 1;
-        let runtimeActiveServer = 'sub';
+        // Global Boot Initialization Hook Sequence
+        window.addEventListener('DOMContentLoaded', async () => {
+            // Initializing system background parameters
+            localMemoryCache = await fireGraphQLBulkExtract(bootstrapCollectionIds);
+            renderPlatformHomeLayout();
+            syncActiveContinueWatchingRail();
+            setupSearchEventHandlers();
+        });
 
-        // Direct Execution Entrypoint via Engine Launch Action
-        async function transitionToIntro() {
-            const gate = document.getElementById('welcome-gate');
-            const intro = document.getElementById('intro-screen');
-            const logo = document.getElementById('intro-logo');
-            const progress = document.getElementById('intro-progress');
-
-            gate.classList.add('opacity-0', 'pointer-events-none');
-            
-            setTimeout(async () => {
-                gate.classList.add('hidden');
-                intro.classList.remove('hidden');
-                intro.classList.add('flex');
-                
-                setTimeout(() => {
-                    intro.classList.remove('opacity-0');
-                    logo.classList.remove('translate-y-full');
-                    progress.style.transform = 'translateX(0)';
-                }, 100);
-
-                // Fetch database objects asynchronously via GraphQL
-                document.getElementById('loading-status').innerText = "Syncing network channels via AniList...";
-                masterCatalog = await executeAniListBulkFetch(primaryQueryIds);
-                
-                document.getElementById('loading-status').innerText = "Compiling display pipelines...";
-                
-                setTimeout(() => {
-                    intro.classList.add('opacity-0');
-                    setTimeout(() => {
-                        intro.classList.add('hidden');
-                        initializeSystemDashboard();
-                        const mainApp = document.getElementById('app-content');
-                        mainApp.classList.remove('hidden');
-                        setTimeout(() => mainApp.classList.remove('opacity-0'), 50);
-                    }, 1000);
-                }, 1500);
-
-            }, 600);
-        }
-
-        // GraphQL Query Dispatcher Engine Execution
-        async function executeAniListBulkFetch(ids) {
-            const graphqlQueryStr = `
+        // Deep Core GraphQL Extraction Processing Pipeline Engine
+        async function fireGraphQLBulkExtract(idArray) {
+            const graphQuery = `
                 query ($ids: [Int]) {
-                    Page(page: 1, perPage: 15) {
+                    Page(page: 1, perPage: 20) {
                         media(id_in: $ids, type: ANIME) {
                             id
                             title { english romaji }
@@ -464,10 +274,7 @@
                             episodes
                             status
                             averageScore
-                            season
-                            seasonYear
-                            format
-                            recommendations(perPage: 6) {
+                            recommendations(perPage: 5) {
                                 nodes {
                                     mediaRecommendation {
                                         id
@@ -481,373 +288,343 @@
                     }
                 }
             `;
+            return dispatchNetworkRequestPayload(graphQuery, { ids: idArray });
+        }
 
+        async function fireGraphQLSearchQuery(searchString) {
+            const searchGql = `
+                query ($search: String) {
+                    Page(page: 1, perPage: 24) {
+                        media(search: $search, type: ANIME) {
+                            id
+                            title { english romaji }
+                            coverImage { extraLarge large }
+                            bannerImage
+                            description
+                            genres
+                            episodes
+                            status
+                            averageScore
+                        }
+                    }
+                }
+            `;
+            return dispatchNetworkRequestPayload(searchGql, { search: searchString });
+        }
+
+        async function dispatchNetworkRequestPayload(queryString, variablesObject) {
             try {
                 const response = await fetch('https://graphql.anilist.co', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify({ query: graphqlQueryStr, variables: { ids: ids } })
+                    body: JSON.stringify({ query: queryString, variables: variablesObject })
                 });
-                const responseJson = await response.json();
-                return transformPayloadStructure(responseJson.data.Page.media);
-            } catch(e) {
-                console.error("Critical Failure targeting AniList Pipeline API down.", e);
-                return getEmergencyFallbackDatabase();
+                const parsed = await response.json();
+                if(!parsed.data || !parsed.data.Page.media) return [];
+                return normalizeNetworkPayload(parsed.data.Page.media);
+            } catch (err) {
+                console.error("GraphQL Transport Interruption Engine Fault Context: ", err);
+                return [];
             }
         }
 
-        function transformPayloadStructure(mediaArray) {
-            return mediaArray.map(item => ({
-                id: item.id,
-                title: item.title.english || item.title.romaji,
-                img: item.coverImage.extraLarge || item.coverImage.large,
-                banner: item.bannerImage || item.coverImage.extraLarge,
-                desc: item.description ? item.description.replace(/<\/?[^>]+(>|$)/g, "") : "No description metadata available.",
-                genres: item.genres || ["Action"],
-                epCount: item.episodes || 24,
-                status: item.status || "AIRING",
-                score: item.averageScore ? (item.averageScore / 10).toFixed(1) : "8.4",
-                seasonString: `${item.season || 'ANY'} ${item.seasonYear || '2026'}`,
-                format: item.format || "TV",
-                related: item.recommendations?.nodes?.map(n => n.mediaRecommendation).filter(Boolean) || []
+        function normalizeNetworkPayload(mediaNodesArray) {
+            return mediaNodesArray.map(node => ({
+                id: node.id,
+                title: node.title.english || node.title.romaji,
+                img: node.coverImage.extraLarge || node.coverImage.large,
+                banner: node.bannerImage || node.coverImage.extraLarge || node.coverImage.large,
+                desc: node.description ? node.description.replace(/<\/?[^>]+(>|$)/g, "") : "No catalog details structural description documented for entry sequence.",
+                genres: node.genres || ["General"],
+                episodesCount: node.episodes || 12,
+                status: node.status || "COMPLETED",
+                score: node.averageScore ? (node.averageScore / 10).toFixed(1) : "7.9",
+                relatedTracks: node.recommendations?.nodes?.map(n => n.mediaRecommendation).filter(Boolean).map(r => ({
+                    id: r.id,
+                    title: r.title.english || r.title.romaji,
+                    img: r.coverImage.large,
+                    score: r.averageScore ? (r.averageScore / 10).toFixed(1) : "8.0"
+                })) || []
             }));
         }
 
-        // Framework View Router Orchestrator
-        function switchRoutingView(targetViewId, elementNode = null) {
-            const views = ['view-dashboard', 'view-player', 'view-search', 'view-profile'];
-            views.forEach(v => document.getElementById(v).classList.add('hidden'));
-            
-            document.getElementById(`view-${targetViewId}`).classList.remove('hidden');
+        // Single-Page Layout Routing Pipeline Matrix Controller
+        function navigateRoute(targetViewName) {
+            const layerViews = document.querySelectorAll('.view-layer');
+            layerViews.forEach(v => v.classList.add('hidden'));
+
+            document.getElementById(`route-${targetViewName}`).classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // Handle bottom pill button indicator state shifts
-            if(elementNode && elementNode.parentElement) {
-                Array.from(elementNode.parentElement.children).forEach(btn => {
-                    btn.classList.remove('text-purple-400');
-                    btn.classList.add('text-neutral-400');
-                });
-                elementNode.classList.remove('text-neutral-400');
-                elementNode.classList.add('text-purple-400');
-            }
-
-            if(targetViewId === 'profile') syncProfileRepositoryGrids();
-        }
-
-        // Dashboard Data Allocation Builder
-        function initializeSystemDashboard() {
-            if(masterCatalog.length === 0) return;
-            renderHeroSpotlightModule();
-
-            const rows = {
-                'slider-trending': [...masterCatalog].sort((a,b) => b.score - a.score),
-                'slider-top10': [...masterCatalog].slice(0, 10),
-                'slider-new': masterCatalog.filter(m => m.status === 'RELEASING' || m.epCount > 12),
-                'slider-movies': masterCatalog.filter(m => m.format === 'MOVIE' || m.epCount === 1),
-                'slider-recommended': [...masterCatalog].reverse()
-            };
-
-            Object.entries(rows).forEach(([domId, dataset]) => {
-                const targetNode = document.getElementById(domId);
-                if(!targetNode) return;
-                targetNode.innerHTML = '';
-                dataset.forEach(anime => {
-                    targetNode.innerHTML += createStreamCardMarkup(anime, `<i class="fa-solid fa-star text-amber-500 mr-1 text-[9px]"></i> ${anime.score}`);
-                });
+            // Navigation pill interactive highlight rendering transformations
+            const tabs = { 'home': 'dock-home', 'watchlist': 'dock-watchlist' };
+            Object.entries(tabs).forEach(([key, id]) => {
+                const el = document.getElementById(id);
+                if(!el) return;
+                if(key === targetViewName) {
+                    el.classList.remove('text-zinc-500');
+                    el.classList.add('text-white');
+                } else {
+                    el.classList.remove('text-white');
+                    el.classList.add('text-zinc-500');
+                }
             });
 
-            syncContinueWatchingSlider();
-            loadScheduleMatrixData('airing');
+            if(targetViewName === 'watchlist') renderWatchlistLibraryLayout();
         }
 
-        function createStreamCardMarkup(anime, trackingTag) {
+        // Framework Home Core Injector Mapping Handler
+        function renderPlatformHomeLayout() {
+            if(localMemoryCache.length === 0) return;
+
+            // Injector Node 1: Spotlight Master Area Banner Structure
+            const spotlightObject = localMemoryCache[0];
+            document.getElementById('hero-backdrop').style.backgroundImage = `url('${spotlightObject.banner}')`;
+            document.getElementById('hero-title').innerText = spotlightObject.title;
+            document.getElementById('hero-description').innerText = spotlightObject.desc;
+            document.getElementById('hero-score').innerHTML = `<i class="fa-solid fa-star text-white mr-1"></i> ${spotlightObject.score}`;
+            
+            document.getElementById('hero-play-btn').onclick = () => launchTheaterSession(spotlightObject.id, 1);
+            
+            const isSaved = readStorageArrayKey('watchlist').includes(spotlightObject.id);
+            const wlBtn = document.getElementById('hero-watchlist-btn');
+            wlBtn.innerHTML = isSaved ? `<i class="fa-solid fa-check text-white"></i>` : `<i class="fa-solid fa-plus"></i>`;
+            wlBtn.onclick = () => { toggleStorageTokenKey('watchlist', spotlightObject.id); renderPlatformHomeLayout(); };
+
+            // Injector Node 2: Trending & Rated Horizontal Tracks Mapping Processing Loops
+            const trendingSlider = document.getElementById('rail-trending-slider');
+            const ratedSlider = document.getElementById('rail-rated-slider');
+
+            trendingSlider.innerHTML = '';
+            ratedSlider.innerHTML = '';
+
+            const sortedByScore = [...localMemoryCache].sort((a,b) => b.score - a.score);
+
+            localMemoryCache.forEach(anime => {
+                trendingSlider.innerHTML += generateStandardOttCard(anime, anime.status);
+            });
+
+            sortedByScore.forEach(anime => {
+                ratedSlider.innerHTML += generateStandardOttCard(anime, `<i class="fa-solid fa-star text-zinc-400 mr-1"></i> ${anime.score}`);
+            });
+        }
+
+        function generateStandardOttCard(animeObject, tagElementMarkup) {
             return `
-                <div onclick="initiateCinemaStream(${anime.id}, 1)" class="premium-glass-card min-w-[170px] md:min-w-[210px] rounded-[1.5rem] overflow-hidden cursor-pointer flex-shrink-0 group relative">
-                    <div class="h-64 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-105" style="background-image: url('${anime.img}')"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex flex-col justify-end p-4">
-                        <span class="text-[9px] bg-neutral-900/90 backdrop-blur-md px-2 py-0.5 rounded text-purple-300 font-bold self-start mb-1.5 uppercase border border-white/5">${trackingTag}</span>
-                        <h4 class="font-bold text-xs tracking-tight line-clamp-1 group-hover:text-purple-400 transition-colors text-white">${anime.title}</h4>
+                <div onclick="launchTheaterSession(${animeObject.id}, 1)" class="iphone-glass-card min-w-[160px] md:min-w-[190px] rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 group relative">
+                    <div class="h-56 bg-cover bg-center bg-no-repeat" style="background-image: url('${animeObject.img}')"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent flex flex-col justify-end p-3.5">
+                        <span class="text-[9px] bg-zinc-900/90 border border-white/5 px-2 py-0.5 rounded text-zinc-300 font-bold self-start mb-1.5 uppercase">${tagElementMarkup}</span>
+                        <h4 class="font-bold text-xs tracking-tight line-clamp-1 group-hover:text-white text-zinc-300 transition-colors">${animeObject.title}</h4>
                     </div>
                 </div>
             `;
         }
 
-        function renderHeroSpotlightModule() {
-            const targetHero = masterCatalog[heroIndex];
-            document.getElementById('hero-banner-image').style.backgroundImage = `url('${targetHero.banner}')`;
-            document.getElementById('hero-meta-title').innerText = targetHero.title;
-            document.getElementById('hero-meta-desc').innerText = targetHero.desc;
-            document.getElementById('hero-meta-score').innerHTML = `<i class="fa-solid fa-star"></i> ${targetHero.score}`;
-            document.getElementById('hero-cta-play').onclick = () => initiateCinemaStream(targetHero.id, 1);
+        // Cinema Mode Runtime Operational Event Pipeline Channels
+        function launchTheaterSession(id, episodeNum) {
+            activeTargetId = id;
+            activeTrackEpisode = parseInt(episodeNum);
+
+            navigateRoute('player');
+
+            // Extraction parameter evaluation routines
+            let matchedCoreObject = localMemoryCache.find(x => x.id === id);
             
-            const isSaved = getSavedStorageArray('watchlist').includes(targetHero.id);
-            const btnList = document.getElementById('hero-cta-list');
-            btnList.innerHTML = isSaved ? `<i class="fa-solid fa-check text-purple-400"></i>` : `<i class="fa-solid fa-plus"></i>`;
-            btnList.onclick = () => { toggleLocalStorageToken('watchlist', targetHero.id); renderHeroSpotlightModule(); };
-        }
-
-        function cycleHeroBanner(dir) {
-            heroIndex = (heroIndex + dir + masterCatalog.length) % masterCatalog.length;
-            renderHeroSpotlightModule();
-        }
-
-        // Live Dynamic Filtering Configuration Logic
-        function filterGenre(genre, element) {
-            // Update Active Tab State
-            Array.from(element.parentElement.children).forEach(b => b.className = "px-4 py-2 rounded-lg text-sm font-semibold text-neutral-400 hover:text-white transition-all cursor-pointer");
-            element.className = "px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ios-active-pill";
-
-            const container = document.getElementById('dashboard-rows-container');
-            if(genre !== 'All') {
-                // Flatten structural catalog arrays into single searchable row matrix
-                const singleFilterFiltered = masterCatalog.filter(m => m.genres.includes(genre));
-                container.innerHTML = `
-                    <div class="space-y-4">
-                        <h3 class="text-lg font-bold tracking-tight text-white flex items-center gap-2"><span class="w-1 h-4 bg-purple-500 rounded-full"></span>Records Matching Genre: ${genre}</h3>
-                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-                            ${singleFilterFiltered.map(m => createStreamCardMarkup(m, m.format)).join('')}
-                        </div>
-                    </div>
-                `;
-            } else {
-                // Revert completely to structural state layout
-                container.innerHTML = `
-                    <div class="space-y-4 hidden" id="wrapper-continue"><h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white"><span class="w-1 h-4 bg-purple-500 rounded-full"></span>Continue Watching</h3><div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-continue"></div></div>
-                    <div class="space-y-4"><h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white"><span class="w-1 h-4 bg-purple-500 rounded-full"></span>Trending Anime</h3><div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-trending"></div></div>
-                    <div class="space-y-4"><h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white"><span class="w-1 h-4 bg-purple-500 rounded-full"></span>Top 10 Masterpieces</h3><div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-top10"></div></div>
-                    <div class="space-y-4"><h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white"><span class="w-1 h-4 bg-purple-500 rounded-full"></span>New Episodes</h3><div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-new"></div></div>
-                    <div class="space-y-4"><h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white"><span class="w-1 h-4 bg-purple-500 rounded-full"></span>Popular Movies</h3><div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-movies"></div></div>
-                    <div class="space-y-4"><h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white"><span class="w-1 h-4 bg-purple-500 rounded-full"></span>Recommended For You</h3><div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-recommended"></div></div>
-                `;
-                initializeSystemDashboard();
+            // Structural protection check logic layer if target fallback record matches are unindexed
+            if(!matchedCoreObject) {
+                matchedCoreObject = {
+                    id: id,
+                    title: "Dynamic Network Record Syncing",
+                    img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400",
+                    banner: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1200",
+                    desc: "Extracting complete metadata stream structures dynamically from global system distribution nodes. Track configuration processing running live.",
+                    genres: ["Action", "Sci-Fi"],
+                    episodesCount: 12,
+                    status: "RELEASING",
+                    score: "8.2",
+                    relatedTracks: []
+                };
             }
+
+            // Populate UI Elements Parameter Assets
+            document.getElementById('player-meta-title').innerText = matchedCoreObject.title;
+            document.getElementById('player-meta-desc').innerText = matchedCoreObject.desc;
+            document.getElementById('player-meta-status').innerText = matchedCoreObject.status;
+            document.getElementById('player-meta-score').innerHTML = `<i class="fa-solid fa-star text-white mr-1"></i> ${matchedCoreObject.score}`;
+
+            // Synchronize control action flags
+            updateTheaterControlToggleStates(matchedCoreObject);
+            writePlaybackHistoryAnchor(id, activeTrackEpisode);
+            syncActiveContinueWatchingRail();
+            renderEpisodeDrawerMatrix(matchedCoreObject.episodesCount);
+            renderContextualRecommendationsMatrix(matchedCoreObject.relatedTracks);
+            executeIframeTransportStream();
         }
 
-        // Operational Schedule Data Switch Handling mapping
-        function toggleScheduleTab(type, element) {
-            Array.from(element.parentElement.children).forEach(b => {
-                b.className = "px-4 py-2 hover:text-white transition-colors whitespace-nowrap cursor-pointer";
-            });
-            element.className = "px-4 py-2 text-purple-400 border-b-2 border-purple-400 whitespace-nowrap cursor-pointer";
-            loadScheduleMatrixData(type);
-        }
-
-        function loadScheduleMatrixData(type) {
-            const outputBox = document.getElementById('schedule-tab-content');
-            outputBox.classList.remove('hidden');
-            outputBox.innerHTML = '';
-            
-            const scheduleMap = {
-                'airing': ['Jujutsu Kaisen — Ep 24', 'Kaiju No. 8 — Ep 12', 'Chainsaw Man — Ep 13'],
-                'today': ['Demon Slayer — Ep 4 [22:00]', 'One Piece — Ep 1112 [10:30]'],
-                'tomorrow': ['Wind Breaker — Ep 8 [18:00]', 'Kaiju No. 8 — Special Edition'],
-                'recent': ['Frieren Ep 28 [Subbed]', 'Solo Leveling Ep 12 [Dubbed]'],
-                'upcoming': ['Re:Zero Season 3 [Fall 2026]', 'Bleach Tybw Part 3 [2026]']
-            };
-
-            const targetArray = scheduleMap[type] || [];
-            targetArray.forEach(txt => {
-                outputBox.innerHTML += `
-                    <div class="p-3 bg-black/40 rounded-xl border border-white/5 font-semibold text-neutral-300 flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-ping"></span> ${txt}
-                    </div>
-                `;
-            });
-            if(targetArray.length === 0) outputBox.innerHTML = `<div class="p-2 text-neutral-600">No scheduled logs registered for this timestamp tracker.</div>`;
-        }
-
-        // ======================================================== -->
-        // CINEMA THEATER MEDIA STREAM TRACK CONSOLE MANAGEMENT      -->
-        // ======================================================== -->
-        function initiateCinemaStream(id, episodeNumber) {
-            runtimeActiveId = id;
-            runtimeActiveEpisode = parseInt(episodeNumber);
-
-            switchRoutingView('player');
-            
-            const dataItem = masterCatalog.find(m => m.id === id) || masterCatalog[0];
-            
-            // Hydrate text parameters
-            document.getElementById('meta-player-title').innerText = dataItem.title;
-            document.getElementById('meta-player-desc').innerText = dataItem.desc;
-            document.getElementById('meta-player-status').innerText = dataItem.status;
-            document.getElementById('meta-player-season').innerText = `${dataItem.format} | ${dataItem.seasonString}`;
-            document.getElementById('episode-drawer-counter').innerText = `${runtimeActiveEpisode} / ${dataItem.epCount}`;
-
-            // Map associated tags
-            const genreNode = document.getElementById('meta-player-genres');
-            genreNode.innerHTML = '';
-            dataItem.genres.forEach(g => {
-                genreNode.innerHTML += `<span class="px-2 py-0.5 bg-neutral-900 border border-white/5 text-neutral-400 font-semibold rounded">${g}</span>`;
-            });
-
-            // Reconstruct storage tracking states 
-            recordWatchHistoryEntry(id, runtimeActiveEpisode);
-            syncContinueWatchingSlider();
-            hydrateEpisodeControlDrawer(dataItem.epCount);
-            hydrateContextualRecommendations(dataItem.related);
-            evaluatePlayerControlButtonToggles();
-            fireVideoIframePipeline();
-        }
-
-        function hydrateEpisodeControlDrawer(totalEpisodes) {
-            const drawer = document.getElementById('player-episode-drawer');
-            drawer.innerHTML = '';
-            for(let i = 1; i <= totalEpisodes; i++) {
-                const checkActive = i === runtimeActiveEpisode;
-                drawer.innerHTML += `
-                    <button onclick="jumpToSpecificEpisode(${i})" class="p-2.5 rounded-xl font-bold text-xs tracking-wide transition-all border text-center cursor-pointer ${checkActive ? 'bg-purple-600 border-purple-400 text-white shadow-lg' : 'bg-black/20 border-white/5 text-neutral-400 hover:bg-white/5 hover:text-white'}">
+        function renderEpisodeDrawerMatrix(totalCount) {
+            const box = document.getElementById('player-episode-drawer');
+            box.innerHTML = '';
+            for(let i = 1; i <= totalCount; i++) {
+                const isActive = i === activeTrackEpisode;
+                box.innerHTML += `
+                    <button onclick="jumpTheaterEpisodeTarget(${i})" class="py-2 px-1 rounded-xl font-bold text-xs tracking-tight transition-all text-center border cursor-pointer ${isActive ? 'bg-white text-black border-white shadow-md' : 'bg-zinc-900/40 border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-800'}">
                         ${i}
                     </button>
                 `;
             }
         }
 
-        function hydrateContextualRecommendations(relatedArray) {
-            const container = document.getElementById('player-context-recommendations');
+        function renderContextualRecommendationsMatrix(recArray) {
+            const container = document.getElementById('player-recommendations-box');
             container.innerHTML = '';
-            if(!relatedArray || relatedArray.length === 0) {
-                container.innerHTML = `<p class="text-[11px] text-neutral-600 p-1">No metadata relationships returned for tracking network.</p>`;
+            
+            if(!recArray || recArray.length === 0) {
+                container.innerHTML = `<div class="p-4 border border-zinc-900 rounded-xl text-center text-xs text-zinc-600 font-semibold uppercase">No relational references indexed for current stream tracking target.</div>`;
                 return;
             }
-            relatedArray.slice(0,3).forEach(r => {
-                const titleStr = r.title.english || r.title.romaji;
+
+            recArray.forEach(rec => {
                 container.innerHTML += `
-                    <div onclick="executeDirectFallbackSearchOrPlay(${r.id})" class="p-2.5 rounded-xl bg-neutral-900/40 border border-white/5 flex gap-3 items-center cursor-pointer hover:bg-neutral-900 transition-all">
-                        <img src="${r.coverImage.large}" class="w-10 h-14 object-cover rounded-lg">
-                        <div class="space-y-0.5">
-                            <h5 class="text-xs font-bold text-white line-clamp-1">${titleStr}</h5>
-                            <span class="text-[10px] text-neutral-500 font-medium"><i class="fa-solid fa-star text-amber-500 text-[9px]"></i> Matrix Match</span>
+                    <div onclick="interceptOrFetchRecommendation(${rec.id})" class="p-2 rounded-xl bg-zinc-900/40 border border-zinc-800 flex gap-3 items-center cursor-pointer hover:bg-zinc-900 transition-all group">
+                        <img src="${rec.img}" class="w-9 h-12 object-cover rounded-lg flex-shrink-0">
+                        <div class="space-y-0.5 min-w-0 flex-1">
+                            <h5 class="text-xs font-bold text-zinc-300 group-hover:text-white transition-colors line-clamp-1">${rec.title}</h5>
+                            <span class="text-[10px] text-zinc-500 font-semibold uppercase tracking-wider"><i class="fa-solid fa-star text-zinc-400 text-[8px]"></i> Rating Matrix Match</span>
                         </div>
                     </div>
                 `;
             });
         }
 
-        function executeDirectFallbackSearchOrPlay(id) {
-            // If target match exists inside pre-pulled catalog matrices, initialize stream instantly
-            if(masterCatalog.some(m => m.id === id)) {
-                initiateCinemaStream(id, 1);
+        async function interceptOrFetchRecommendation(id) {
+            if(localMemoryCache.some(m => m.id === id)) {
+                launchTheaterSession(id, 1);
             } else {
-                // Initialize fallback runtime object container wrapper array to prevent app faults
-                initiateCinemaStream(runtimeActiveId, 1);
+                // Fetch dynamic metadata wrapper blocks live to support seamless jumps
+                const temporaryQueryArray = await fireGraphQLBulkExtract([id]);
+                if(temporaryQueryArray.length > 0) {
+                    localMemoryCache.push(temporaryQueryArray[0]);
+                    launchTheaterSession(id, 1);
+                } else {
+                    launchTheaterSession(id, 1);
+                }
             }
         }
 
-        function jumpToSpecificEpisode(ep) {
-            runtimeActiveEpisode = ep;
-            const contextItem = masterCatalog.find(m => m.id === runtimeActiveId);
-            document.getElementById('episode-drawer-counter').innerText = `${runtimeActiveEpisode} / ${contextItem.epCount}`;
-            hydrateEpisodeControlDrawer(contextItem.epCount);
-            recordWatchHistoryEntry(runtimeActiveId, runtimeActiveEpisode);
-            syncContinueWatchingSlider();
-            evaluatePlayerControlButtonToggles();
-            fireVideoIframePipeline();
+        function jumpTheaterEpisodeTarget(targetNumber) {
+            activeTrackEpisode = parseInt(targetNumber);
+            const matchedObj = localMemoryCache.find(x => x.id === activeTargetId);
+            renderEpisodeDrawerMatrix(matchedObj ? matchedObj.episodesCount : 12);
+            writePlaybackHistoryAnchor(activeTargetId, activeTrackEpisode);
+            syncActiveContinueWatchingRail();
+            updateTheaterControlToggleStates(matchedObj);
+            executeIframeTransportStream();
         }
 
-        function toggleServerMapping(mode) {
-            runtimeActiveServer = mode;
-            evaluatePlayerControlButtonToggles();
-            fireVideoIframePipeline();
+        function switchMediaServerMode(modeString) {
+            activeServerMode = modeString;
+            const matchedObj = localMemoryCache.find(x => x.id === activeTargetId);
+            updateTheaterControlToggleStates(matchedObj);
+            executeIframeTransportStream();
         }
 
-        function evaluatePlayerControlButtonToggles() {
-            const sub = document.getElementById('srv-sub-btn');
-            const dub = document.getElementById('srv-dub-btn');
+        function updateTheaterControlToggleStates(coreObject) {
+            const subBtn = document.getElementById('srv-sub');
+            const dubBtn = document.getElementById('srv-dub');
+
+            if(activeServerMode === 'sub') {
+                subBtn.className = "px-3 py-1 rounded-md font-bold text-[10px] uppercase transition-all cursor-pointer active-pill shadow";
+                dubBtn.className = "px-3 py-1 rounded-md font-bold text-[10px] uppercase transition-all cursor-pointer text-zinc-500 hover:text-white";
+            } else {
+                dubBtn.className = "px-3 py-1 rounded-md font-bold text-[10px] uppercase transition-all cursor-pointer active-pill shadow";
+                subBtn.className = "px-3 py-1 rounded-md font-bold text-[10px] uppercase transition-all cursor-pointer text-zinc-500 hover:text-white";
+            }
+
+            const prevBtn = document.getElementById('track-prev-btn');
+            const nextBtn = document.getElementById('track-next-btn');
+            const totalCount = coreObject ? coreObject.episodesCount : 12;
+
+            prevBtn.disabled = activeTrackEpisode <= 1;
+            nextBtn.disabled = activeTrackEpisode >= totalCount;
+
+            prevBtn.onclick = () => { if(activeTrackEpisode > 1) jumpTheaterEpisodeTarget(activeTrackEpisode - 1); };
+            nextBtn.onclick = () => { if(activeTrackEpisode < totalCount) jumpTheaterEpisodeTarget(activeTrackEpisode + 1); };
+
+            // Library watchlist action button configurations
+            const wlActionBtn = document.getElementById('player-watchlist-btn');
+            const isSaved = readStorageArrayKey('watchlist').includes(activeTargetId);
             
-            if(runtimeActiveServer === 'sub') {
-                sub.className = "px-3.5 py-1.5 rounded-lg font-bold text-[11px] uppercase transition-all cursor-pointer bg-white text-neutral-950 shadow";
-                dub.className = "px-3.5 py-1.5 rounded-lg font-bold text-[11px] uppercase transition-all cursor-pointer text-neutral-400 hover:text-white";
-            } else {
-                dub.className = "px-3.5 py-1.5 rounded-lg font-bold text-[11px] uppercase transition-all cursor-pointer bg-white text-neutral-950 shadow";
-                sub.className = "px-3.5 py-1.5 rounded-lg font-bold text-[11px] uppercase transition-all cursor-pointer text-neutral-400 hover:text-white";
+            wlActionBtn.innerHTML = isSaved ? `<i class="fa-solid fa-check text-zinc-400 mr-2"></i> In Library` : `<i class="fa-solid fa-plus mr-2"></i> Add To Library`;
+            wlActionBtn.onclick = () => { toggleStorageTokenKey('watchlist', activeTargetId); updateTheaterControlToggleStates(coreObject); };
+        }
+
+        function triggerStepNextSequence() {
+            const matchedObj = localMemoryCache.find(x => x.id === activeTargetId);
+            const max = matchedObj ? matchedObj.episodesCount : 12;
+            if(activeTrackEpisode < max) {
+                jumpTheaterEpisodeTarget(activeTrackEpisode + 1);
             }
-
-            const item = masterCatalog.find(m => m.id === runtimeActiveId);
-            const prevBtn = document.getElementById('control-prev-btn');
-            const nextBtn = document.getElementById('control-next-btn');
-
-            prevBtn.disabled = runtimeActiveEpisode <= 1;
-            nextBtn.disabled = runtimeActiveEpisode >= item.epCount;
-
-            prevBtn.onclick = () => { if(runtimeActiveEpisode > 1) jumpToSpecificEpisode(runtimeActiveEpisode - 1); };
-            nextBtn.onclick = () => { if(runtimeActiveEpisode < item.epCount) jumpToSpecificEpisode(runtimeActiveEpisode + 1); };
-
-            // Synchronize control panel toggles configuration options
-            const wlToggle = document.getElementById('player-watchlist-toggle');
-            const favToggle = document.getElementById('player-favorite-toggle');
-
-            const inWl = getSavedStorageArray('watchlist').includes(runtimeActiveId);
-            const inFav = getSavedStorageArray('favorites').includes(runtimeActiveId);
-
-            wlToggle.innerHTML = inWl ? `<i class="fa-solid fa-check text-purple-400 mr-1.5"></i> Added to Watchlist` : `<i class="fa-solid fa-bookmark mr-1.5"></i> Track List`;
-            favToggle.innerHTML = inFav ? `<i class="fa-solid fa-heart text-pink-500 mr-1.5"></i> Bookmarked` : `<i class="fa-solid fa-heart-open mr-1.5"></i> Set Favorite`;
-
-            wlToggle.onclick = () => { toggleLocalStorageToken('watchlist', runtimeActiveId); evaluatePlayerControlButtonToggles(); };
-            favToggle.onclick = () => { toggleLocalStorageToken('favorites', runtimeActiveId); evaluatePlayerControlButtonToggles(); };
         }
 
-        function fireVideoIframePipeline() {
-            const frame = document.getElementById('main-video-iframe');
-            document.getElementById('control-track-display').innerText = `Episode ${runtimeActiveEpisode}`;
-            // Map exact parameters constraint configuration as requested by architectural design specifications
-            frame.src = `https://vidnest.fun/animepahe/${runtimeActiveId}/${runtimeActiveEpisode}/${runtimeActiveServer}`;
+        function executeIframeTransportStream() {
+            document.getElementById('track-current-label').innerText = `Episode ${activeTrackEpisode < 10 ? '0' + activeTrackEpisode : activeTrackEpisode}`;
+            // Construct targeted transmission string as requested by stream infrastructure requirements
+            document.getElementById('cinema-iframe').src = `https://vidnest.fun/animepahe/${activeTargetId}/${activeTrackEpisode}/${activeServerMode}`;
         }
-
 
         // ======================================================== -->
-        // LOCALSTORAGE COMPILER PERSISTENCE LAYER DATA LOGS        -->
+        // LOCAL STORAGE USER PERSISTENCE SYSTEM DATA INTERFACE     -->
         // ======================================================== -->
-        function getSavedStorageArray(key) {
-            const dataLog = localStorage.getItem(`aethokai_${key}`);
-            return dataLog ? JSON.parse(dataLog) : [];
+        function readStorageArrayKey(storageKeyName) {
+            const rawLogString = localStorage.getItem(`aetho_ott_${storageKeyName}`);
+            return rawLogString ? JSON.parse(rawLogString) : [];
         }
 
-        function toggleLocalStorageToken(key, valueId) {
-            let log = getSavedStorageArray(key);
-            if(log.includes(valueId)) {
-                log = log.filter(x => x !== valueId);
+        function toggleStorageTokenKey(storageKeyName, identificationId) {
+            let activeArray = readStorageArrayKey(storageKeyName);
+            if(activeArray.includes(identificationId)) {
+                activeArray = activeArray.filter(i => i !== identificationId);
             } else {
-                log.push(valueId);
+                activeArray.push(identificationId);
             }
-            localStorage.setItem(`aethokai_${key}`, JSON.stringify(log));
+            localStorage.setItem(`aetho_ott_${storageKeyName}`, JSON.stringify(activeArray));
         }
 
-        function recordWatchHistoryEntry(id, currentEpisodeTrack) {
-            let historyLog = getSavedStorageArray('history');
-            // Check for preexisting record trackers
-            historyLog = historyLog.filter(item => item.id !== id);
-            historyLog.unshift({ id: id, lastEp: currentEpisodeTrack });
-            localStorage.setItem('aethokai_history', JSON.stringify(historyLog.slice(0, 12)));
+        function writePlaybackHistoryAnchor(id, lastEpisodeViewed) {
+            let historyArray = readStorageArrayKey('history');
+            historyArray = historyArray.filter(h => h.id !== id);
+            historyArray.unshift({ id: id, trackingEpisode: lastEpisodeViewed });
+            localStorage.setItem('aetho_ott_history', JSON.stringify(historyArray.slice(0, 15)));
         }
 
-        function syncContinueWatchingSlider() {
-            const history = getSavedStorageArray('history');
-            const targetWrapper = document.getElementById('wrapper-continue');
-            const targetSlider = document.getElementById('slider-continue');
+        function syncActiveContinueWatchingRail() {
+            const dataHistoryLog = readStorageArrayKey('history');
+            const boxContainer = document.getElementById('rail-continue-box');
+            const sliderTarget = document.getElementById('rail-continue-slider');
 
-            if(history.length === 0) {
-                targetWrapper.classList.add('hidden');
+            if(dataHistoryLog.length === 0) {
+                boxContainer.classList.add('hidden');
                 return;
             }
 
-            targetWrapper.classList.remove('hidden');
-            targetSlider.innerHTML = '';
+            boxContainer.classList.remove('hidden');
+            sliderTarget.innerHTML = '';
 
-            history.forEach(historyObject => {
-                const targetAnimeItem = masterCatalog.find(m => m.id === historyObject.id);
-                if(targetAnimeItem) {
-                    targetSlider.innerHTML += `
-                        <div onclick="initiateCinemaStream(${targetAnimeItem.id}, ${historyObject.lastEp})" class="premium-glass-card min-w-[220px] rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 group relative">
-                            <div class="h-36 bg-cover bg-center" style="background-image: url('${targetAnimeItem.banner}')"></div>
-                            <div class="p-3 bg-neutral-950/90 space-y-1">
-                                <h5 class="font-bold text-xs text-white line-clamp-1">${targetAnimeItem.title}</h5>
-                                <div class="flex items-center justify-between text-[10px] text-neutral-400 font-semibold">
-                                    <span>Resume Episode ${historyObject.lastEp}</span>
-                                    <span class="text-purple-400 uppercase tracking-widest text-[9px]">PLAY</span>
+            dataHistoryLog.forEach(logInstance => {
+                const animeObjMatch = localMemoryCache.find(m => m.id === logInstance.id);
+                if(animeObjMatch) {
+                    sliderTarget.innerHTML += `
+                        <div onclick="launchTheaterSession(${animeObjMatch.id}, ${logInstance.trackingEpisode})" class="iphone-glass-card min-w-[210px] rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 group relative">
+                            <div class="h-32 bg-cover bg-center" style="background-image: url('${animeObjMatch.banner}')"></div>
+                            <div class="p-3 bg-zinc-950/90 space-y-1">
+                                <h5 class="font-bold text-xs text-zinc-300 group-hover:text-white transition-colors line-clamp-1">${animeObjMatch.title}</h5>
+                                <div class="flex items-center justify-between text-[10px] font-semibold text-zinc-500">
+                                    <span>Resume Track: Ep ${logInstance.trackingEpisode}</span>
+                                    <span class="text-white text-[9px] font-extrabold uppercase tracking-wider">RESUME</span>
                                 </div>
-                                <div class="w-full h-1 bg-neutral-800 rounded-full overflow-hidden mt-1">
-                                    <div class="bg-purple-500 h-full" style="width: ${(historyObject.lastEp / targetAnimeItem.epCount) * 100}%"></div>
+                                <div class="w-full h-1 bg-zinc-800 rounded-full overflow-hidden mt-1">
+                                    <div class="bg-white h-full" style="width: ${(logInstance.trackingEpisode / animeObjMatch.episodesCount) * 100}%"></div>
                                 </div>
                             </div>
                         </div>
@@ -856,92 +633,82 @@
             });
         }
 
-        function syncProfileRepositoryGrids() {
-            const wl = getSavedStorageArray('watchlist');
-            const fav = getSavedStorageArray('favorites');
+        function renderWatchlistLibraryLayout() {
+            const watchlistIds = readStorageArrayKey('watchlist');
+            const outputGrid = document.getElementById('watchlist-records-grid');
+            outputGrid.innerHTML = '';
 
-            const wlGrid = document.getElementById('profile-watchlist-grid');
-            const favGrid = document.getElementById('profile-favorites-grid');
+            if(watchlistIds.length === 0) {
+                outputGrid.innerHTML = `<div class="col-span-full py-16 border border-dashed border-zinc-800 rounded-2xl text-center text-xs text-zinc-600 font-bold uppercase tracking-wider">No catalog items pinned to customized library registry dashboards yet.</div>`;
+                return;
+            }
 
-            wlGrid.innerHTML = '';
-            favGrid.innerHTML = '';
+            watchlistIds.forEach(id => {
+                const targetMatch = localMemoryCache.find(x => x.id === id);
+                if(targetMatch) {
+                    outputGrid.innerHTML += generateStandardOttCard(targetMatch, targetMatch.score);
+                }
+            });
+        }
 
-            const buildGridMarkup = (idArray, targetNode) => {
-                if(idArray.length === 0) {
-                    targetNode.innerHTML = `<div class="col-span-full py-8 premium-glass-panel rounded-2xl text-center text-xs text-neutral-500 font-medium uppercase tracking-wide border-white/5">No tracking parameters stored inside index logs.</div>`;
+        // Real-Time Discovery Engine Global Event Hooks
+        function setupSearchEventHandlers() {
+            const inputField = document.getElementById('global-search-input');
+            
+            inputField.addEventListener('input', debounceEventAction(async (e) => {
+                const searchCriteriaString = e.target.value.trim();
+                if(searchCriteriaString.length < 2) return;
+
+                navigateRoute('search');
+                document.getElementById('search-title-label').innerText = `Searching registry indexes matching: "${searchCriteriaString}"`;
+                const searchResultsGrid = document.getElementById('search-results-grid');
+                searchResultsGrid.innerHTML = `<div class="col-span-full py-16 text-center text-xs font-bold uppercase tracking-widest text-zinc-500 animate-pulse">Running live query communication channels...</div>`;
+
+                // Fire direct public GraphQL search matrix lookup mapping operations
+                const liveNetworkMatches = await fireGraphQLSearchQuery(searchCriteriaString);
+                
+                if(liveNetworkMatches.length === 0) {
+                    searchResultsGrid.innerHTML = `<div class="col-span-full py-16 text-center text-xs font-bold uppercase tracking-wide text-zinc-600">No explicit system distribution tracks located matching input parameters.</div>`;
                     return;
                 }
-                idArray.forEach(id => {
-                    const matchedItem = masterCatalog.find(m => m.id === id);
-                    if(matchedItem) {
-                        targetNode.innerHTML += `
-                            <div onclick="initiateCinemaStream(${matchedItem.id}, 1)" class="p-2.5 bg-neutral-900/40 border border-white/5 rounded-xl flex gap-3 items-center cursor-pointer hover:bg-neutral-900 transition-all">
-                                <img src="${matchedItem.img}" class="w-10 h-14 object-cover rounded-lg">
-                                <div class="space-y-0.5">
-                                    <h5 class="text-xs font-bold text-white line-clamp-1">${matchedItem.title}</h5>
-                                    <span class="text-[10px] text-purple-400 font-semibold uppercase tracking-wider">${matchedItem.format}</span>
-                                </div>
-                            </div>
-                        `;
+
+                searchResultsGrid.innerHTML = '';
+                liveNetworkMatches.forEach(item => {
+                    // Update cache to support direct stream loads for dynamic item lookups
+                    if(!localMemoryCache.some(c => c.id === item.id)) {
+                        localMemoryCache.push(item);
                     }
+                    searchResultsGrid.innerHTML += generateStandardOttCard(item, item.score);
                 });
-            };
 
-            buildGridMarkup(wl, wlGrid);
-            buildGridMarkup(fav, favGrid);
+            }, 500));
         }
 
-
-        // ======================================================== -->
-        // EXPLICIT LIVE SEARCH BINDING INTERACTION CONTROLLERS     -->
-        // ======================================================== -->
-        const dedicatedSearchInput = document.getElementById('dedicated-search-field');
-        const headerSearchInput = document.getElementById('header-search-input');
-
-        headerSearchInput.addEventListener('focus', () => {
-            switchRoutingView('search');
-            dedicatedSearchInput.focus();
-        });
-
-        dedicatedSearchInput.addEventListener('input', debouncePipeline(async (e) => {
-            const textTerm = e.target.value.trim();
-            const targetOutputGrid = document.getElementById('search-results-grid');
-
-            if(textTerm.length < 2) {
-                targetOutputGrid.innerHTML = `<div class="col-span-full py-12 text-center text-neutral-500 text-xs font-medium uppercase tracking-wider">Enter characters to populate records matrix</div>`;
-                return;
-            }
-
-            targetOutputGrid.innerHTML = `<div class="col-span-full py-12 text-center text-purple-400 text-xs font-bold uppercase tracking-widest animate-pulse">Querying cloud servers...</div>`;
-
-            // Live-Searching Directly from the internal database arrays
-            const localMatches = masterCatalog.filter(m => m.title.toLowerCase().includes(textTerm.toLowerCase()) || m.genres.some(g => g.toLowerCase().includes(textTerm.toLowerCase())));
+        async function triggerGenreExplorer(genreName) {
+            navigateRoute('search');
+            document.getElementById('search-title-label').innerText = `Exploring Index Genre Category Layer: ${genreName}`;
+            const targetGrid = document.getElementById('search-results-grid');
             
-            if(localMatches.length === 0) {
-                targetOutputGrid.innerHTML = `<div class="col-span-full py-12 text-center text-neutral-600 text-xs font-medium uppercase tracking-wide">No configuration matches found matching search signature.</div>`;
+            // Filter local structural storage tracking spaces directly
+            const matchedGenreTracks = localMemoryCache.filter(m => m.genres.includes(genreName));
+            targetGrid.innerHTML = '';
+            
+            if(matchedGenreTracks.length === 0) {
+                targetGrid.innerHTML = `<div class="col-span-full py-16 text-center text-xs font-bold text-zinc-600 uppercase">No cached records currently matching genre signature parameters.</div>`;
                 return;
             }
 
-            targetOutputGrid.innerHTML = '';
-            localMatches.forEach(item => {
-                targetOutputGrid.innerHTML += createStreamCardMarkup(item, item.score);
+            matchedGenreTracks.forEach(item => {
+                targetGrid.innerHTML += generateStandardOttCard(item, item.score);
             });
-        }, 400));
-
-        function debouncePipeline(func, delayTimeout) {
-            let currentTimerPointer;
-            return function(...args) {
-                clearTimeout(currentTimerPointer);
-                currentTimerPointer = setTimeout(() => func.apply(this, args), delayTimeout);
-            };
         }
 
-        // Emergency Fallback Dataset to keep application working if public services fail
-        function getEmergencyFallbackDatabase() {
-            return [
-                { id: 16498, title: "Jujutsu Kaisen Season 2", img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400", banner: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1200", desc: "Curses, sorcery, and high-fidelity battles within the contemporary shonen paradigm.", genres: ["Action", "Fantasy"], epCount: 23, status: "FINISHED", score: "8.8", seasonString: "SUMMER 2023", format: "TV", related: [] },
-                { id: 153518, title: "Kaiju No. 8", img: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=400", banner: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1200", desc: "A defense force sweep operator gains the biological capabilities of a high-grade monster.", genres: ["Action", "Sci-Fi"], epCount: 12, status: "FINISHED", score: "8.4", seasonString: "SPRING 2024", format: "TV", related: [] }
-            ];
+        function debounceEventAction(callbackFunction, durationDelay) {
+            let activeTimerInstance;
+            return function(...argumentsArray) {
+                clearTimeout(activeTimerInstance);
+                activeTimerInstance = setTimeout(() => callbackFunction.apply(this, argumentsArray), durationDelay);
+            };
         }
     </script>
 </body>
