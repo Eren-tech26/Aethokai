@@ -3,1073 +3,1681 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AethoKai — Premium Anime OTT Interface</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <title>AethoKai - Anime Streaming Platform</title>
     <style>
-        :root {
-            --ios-blur: blur(40px) saturate(220%);
-            --color-obsidian: #070709;
-            --color-charcoal: #0e0e11;
-            --color-slate-gray: #16161a;
-            --border-glass: rgba(255, 255, 255, 0.05);
-            --premium-ease: cubic-bezier(0.16, 1, 0.3, 1);
-            --anime-primary: #ff1744;
-            --anime-secondary: #00bcd4;
+        /* ==================== RESET & BASE ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--color-obsidian);
-            color: #f4f4f7;
-            overflow-x: hidden;
-            letter-spacing: -0.015em;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: #000000;
+            color: #FFFFFF;
+            line-height: 1.6;
         }
 
-        .iphone-blur-header {
-            background: rgba(7, 7, 9, 0.75);
-            backdrop-filter: var(--ios-blur);
-            -webkit-backdrop-filter: var(--ios-blur);
-            border-bottom: 1px solid var(--border-glass);
+        /* ==================== DESIGN TOKENS ==================== */
+        :root {
+            --black-0: #000000;
+            --black-1: #050505;
+            --black-2: #0D0D0D;
+            --black-3: #111111;
+            --black-4: #1A1A1A;
+            --black-5: #222222;
+            --grey-1: #333333;
+            --grey-2: #666666;
+            --grey-3: #AAAAAA;
+            --grey-4: #DDDDDD;
+            --white: #FFFFFF;
         }
 
-        .iphone-blur-dock {
-            background: rgba(14, 14, 17, 0.82);
-            backdrop-filter: var(--ios-blur);
-            -webkit-backdrop-filter: var(--ios-blur);
-            border: 1px solid rgba(255, 255, 255, 0.07);
+        /* ==================== TYPOGRAPHY ==================== */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
         }
 
-        .premium-glass-card {
-            background: linear-gradient(180deg, rgba(22, 22, 26, 0.8) 0%, rgba(9, 9, 11, 0.8) 100%);
-            border: 1px solid var(--border-glass);
-            transition: all 0.5s var(--premium-ease);
-        }
-        .premium-glass-card:hover {
-            transform: scale(1.04) translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.14);
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85);
-            background: linear-gradient(180deg, rgba(28, 28, 33, 0.9) 0%, rgba(12, 12, 15, 0.9) 100%);
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.5rem;
         }
 
-        .pill-highlight-active {
-            background: var(--anime-primary) !important;
-            color: #ffffff !important;
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
         }
 
-        .hide-scroll-bars::-webkit-scrollbar { display: none; }
-        .hide-scroll-bars { -ms-overflow-style: none; scrollbar-width: none; }
-        .fine-scroller::-webkit-scrollbar { width: 4px; height: 4px; }
-        .fine-scroller::-webkit-scrollbar-track { background: rgba(0,0,0,0.6); }
-        .fine-scroller::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 10px; }
-        .fine-scroller::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+        p {
+            font-size: 0.95rem;
+            color: #AAAAAA;
+            line-height: 1.7;
+        }
 
-        /* Modal Styles */
-        .modal-backdrop {
+        /* ==================== LAYOUT ==================== */
+        .container {
+            width: 100%;
+            max-width: 1920px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ==================== GLASSMORPHISM ==================== */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+        }
+
+        .glass-sm {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+        }
+
+        /* ==================== BUTTONS ==================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-primary {
+            background: #FFFFFF;
+            color: #000000;
+        }
+
+        .btn-primary:hover {
+            background: #DDDDDD;
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        /* ==================== HEADER ==================== */
+        header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            display: none;
+            height: 70px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-content {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #FFFFFF, #AAAAAA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 3rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #FFFFFF;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .search-input::placeholder {
+            color: #666666;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666666;
+            font-size: 1.1rem;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        /* ==================== HERO BANNER ==================== */
+        .hero-section {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 9999;
-        }
-        .modal-backdrop.active {
-            display: flex;
         }
 
-        .modal-content {
-            background: linear-gradient(135deg, rgba(14, 14, 17, 0.95) 0%, rgba(7, 7, 9, 0.95) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 32px;
-            max-width: 500px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9);
-        }
-
-        .close-modal-btn {
+        .hero-background {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #1A1A1A 0%, #0D0D0D 100%);
+            z-index: 1;
         }
 
-        .close-modal-btn:hover {
-            color: var(--anime-primary);
-            transform: rotate(90deg);
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%23111111" width="1920" height="1080"/><circle cx="960" cy="540" r="300" fill="%23222222" opacity="0.5"/></svg>');
+            background-size: cover;
+            background-position: center;
+            animation: zoomIn 20s ease-in-out infinite alternate;
+            z-index: 2;
         }
 
-        /* Quality Selection */
-        .quality-selector {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin: 15px 0;
+        @keyframes zoomIn {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
         }
 
-        .quality-btn {
-            padding: 8px 16px;
-            background: rgba(255, 23, 68, 0.1);
-            border: 2px solid rgba(255, 23, 68, 0.3);
-            color: #fff;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 12px;
-            transition: all 0.3s;
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, transparent 50%, rgba(0, 0, 0, 0.7) 100%);
+            z-index: 3;
         }
 
-        .quality-btn.active {
-            background: var(--anime-primary);
-            border-color: var(--anime-primary);
-            box-shadow: 0 0 15px rgba(255, 23, 68, 0.5);
+        .hero-content {
+            position: relative;
+            z-index: 4;
+            max-width: 600px;
+            text-align: left;
+            animation: fadeInUp 1s ease-out;
         }
 
-        .quality-btn:hover {
-            border-color: var(--anime-primary);
-        }
-
-        /* Settings Panel */
-        .settings-panel {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .setting-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .setting-item:hover {
-            background: rgba(255, 23, 68, 0.1);
-            border-color: rgba(255, 23, 68, 0.3);
-        }
-
-        .setting-item input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-            accent-color: var(--anime-primary);
-        }
-
-        .setting-item label {
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
-            flex: 1;
-        }
-
-        /* Anime Genre Tags */
-        .anime-tag {
-            display: inline-block;
-            padding: 4px 12px;
-            background: rgba(0, 188, 212, 0.2);
-            border: 1px solid rgba(0, 188, 212, 0.4);
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--anime-secondary);
-            margin: 4px 4px 4px 0;
-        }
-
-        /* Notification Toast */
-        .toast-notification {
-            position: fixed;
-            bottom: 100px;
-            right: 20px;
-            background: rgba(14, 14, 17, 0.95);
-            border: 1px solid var(--anime-primary);
-            color: #fff;
-            padding: 16px 24px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            box-shadow: 0 8px 24px rgba(255, 23, 68, 0.3);
-            animation: slideIn 0.3s ease-out;
-            z-index: 10000;
-        }
-
-        @keyframes slideIn {
+        @keyframes fadeInUp {
             from {
-                transform: translateX(400px);
                 opacity: 0;
+                transform: translateY(30px);
             }
             to {
-                transform: translateX(0);
                 opacity: 1;
+                transform: translateY(0);
             }
+        }
+
+        .hero-content h1 {
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #DDDDDD;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-buttons .btn {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+        }
+
+        .hero-progress {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: 4;
+        }
+
+        .hero-progress-bar {
+            height: 100%;
+            background: #FFFFFF;
+            animation: progress 10s linear infinite;
+        }
+
+        @keyframes progress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        /* ==================== ANIME SHELF ==================== */
+        .shelf-section {
+            margin-top: -100px;
+            position: relative;
+            z-index: 5;
+            padding: 4rem 0;
+        }
+
+        .shelf {
+            margin-bottom: 4rem;
+        }
+
+        .shelf-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #FFFFFF;
+        }
+
+        .shelf-container {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 1rem 0;
+            scrollbar-width: none;
+        }
+
+        .shelf-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .anime-card {
+            flex: 0 0 200px;
+            position: relative;
+            cursor: pointer;
+            group;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .anime-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .anime-card-image {
+            width: 100%;
+            aspect-ratio: 2/3;
+            background: #1A1A1A;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .anime-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .anime-card:hover .anime-card-image img {
+            transform: scale(1.05);
+        }
+
+        .anime-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .anime-card:hover .anime-card-overlay {
+            opacity: 1;
+        }
+
+        .anime-card-actions {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        .anime-card-actions .btn {
+            flex: 1;
+            padding: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .anime-card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 0.75rem;
+            color: #FFFFFF;
+            line-height: 1.3;
+        }
+
+        .anime-card-meta {
+            font-size: 0.8rem;
+            color: #AAAAAA;
+            margin-top: 0.25rem;
+        }
+
+        /* ==================== CONTINUE WATCHING ==================== */
+        .continue-watching {
+            background: rgba(17, 17, 17, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .continue-watching-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .continue-item {
+            position: relative;
+            cursor: pointer;
+            group;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .continue-item-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #1A1A1A;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .continue-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .continue-item:hover .continue-item-image img {
+            transform: scale(1.05);
+        }
+
+        .continue-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .continue-item-play {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .continue-item:hover .continue-item-play {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .continue-progress {
+            height: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .continue-progress-bar {
+            height: 100%;
+            background: #FFFFFF;
+        }
+
+        .continue-info {
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .continue-episode {
+            font-size: 0.85rem;
+            color: #AAAAAA;
+        }
+
+        .continue-remaining {
+            font-size: 0.8rem;
+            color: #666666;
+            margin-top: 0.25rem;
+        }
+
+        /* ==================== BOTTOM NAVIGATION ==================== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            z-index: 999;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: #AAAAAA;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.3rem;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            transform: scale(1.1);
+        }
+
+        /* ==================== SEARCH PAGE ==================== */
+        .search-page {
+            padding-top: 150px;
+            min-height: 100vh;
+        }
+
+        .search-input-large {
+            width: 100%;
+            padding: 1.25rem 2rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: #FFFFFF;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input-large:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+        }
+
+        .search-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .filter-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            color: #AAAAAA;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: #FFFFFF;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ==================== ANIME DETAILS PAGE ==================== */
+        .anime-details {
+            padding-top: 70px;
+        }
+
+        .details-banner {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+        }
+
+        .details-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .details-banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
+        }
+
+        .details-header {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            align-items: start;
+        }
+
+        .details-poster {
+            width: 200px;
+            aspect-ratio: 2/3;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .details-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .details-info h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        .details-info-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0 2rem 0;
+            font-size: 0.95rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .meta-label {
+            color: #AAAAAA;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .meta-value {
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+
+        .details-description {
+            line-height: 1.8;
+            color: #DDDDDD;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+
+        .details-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .details-sections {
+            margin-top: 4rem;
+        }
+
+        .details-section {
+            margin-bottom: 3rem;
+        }
+
+        .details-section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .genres-list {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .genre-badge {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #AAAAAA;
+        }
+
+        /* ==================== VIDEO PLAYER ==================== */
+        .player-container {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000000;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .player-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .player-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+            padding: 2rem 1.5rem 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .player-container:hover .player-controls {
+            opacity: 1;
+        }
+
+        .player-control-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .player-control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .player-control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .episode-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .episode-item {
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .episode-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .episode-item.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ==================== RESPONSIVENESS ==================== */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .search-bar {
+                max-width: 250px;
+                margin: 0 1.5rem;
+            }
+
+            .details-header {
+                grid-template-columns: 1fr;
+            }
+
+            .details-poster {
+                width: 150px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                height: 60px;
+            }
+
+            .search-bar {
+                display: none;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .hero-section {
+                height: 500px;
+                margin-top: 60px;
+            }
+
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-content p {
+                font-size: 0.95rem;
+            }
+
+            .hero-buttons {
+                gap: 0.5rem;
+            }
+
+            .hero-buttons .btn {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.9rem;
+            }
+
+            .shelf-section {
+                margin-top: -50px;
+            }
+
+            .anime-card {
+                flex: 0 0 150px;
+            }
+
+            .bottom-nav {
+                bottom: 10px;
+                gap: 0.25rem;
+                padding: 0.75rem;
+            }
+
+            .nav-item {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+
+            .search-page {
+                padding-top: 120px;
+            }
+
+            .search-results {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 1rem;
+            }
+
+            .details-banner {
+                height: 250px;
+                margin-bottom: 2rem;
+            }
+
+            .details-info-meta {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .player-container {
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+
+            header {
+                height: 55px;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .header-right {
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            .hero-section {
+                height: 400px;
+                margin-top: 55px;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                padding: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.3rem;
+            }
+
+            .hero-content p {
+                font-size: 0.85rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-buttons {
+                gap: 0.5rem;
+            }
+
+            .hero-buttons .btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .shelf-title {
+                font-size: 1.1rem;
+            }
+
+            .anime-card {
+                flex: 0 0 120px;
+            }
+
+            .bottom-nav {
+                width: calc(100% - 20px);
+                bottom: 10px;
+                left: 10px;
+                transform: none;
+            }
+
+            .nav-item {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+
+            .continue-watching {
+                padding: 1rem;
+            }
+
+            .continue-watching-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .continue-item-image {
+                aspect-ratio: 16/9;
+            }
+
+            .search-results {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 0.75rem;
+            }
+
+            .details-banner {
+                height: 200px;
+                margin-bottom: 1.5rem;
+            }
+
+            .details-buttons {
+                gap: 0.5rem;
+            }
+
+            .details-buttons .btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .loading {
+            animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* ==================== SCROLLBAR ==================== */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0D0D0D;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #666666;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-white selection:text-black">
+<body>
 
-    <div class="min-h-screen flex flex-col pb-36">
-        
-        <header class="iphone-blur-header w-full sticky top-0 z-40 px-4 md:px-10 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-10">
-                <div class="flex items-center gap-3 cursor-pointer" onclick="dispatchViewRoute('home')">
-                    <div class="w-9 h-9 rounded-xl bg-gradient-to-b from-red-500 to-red-600 text-black font-black flex items-center justify-center text-lg tracking-tighter shadow-md shadow-black/40">Æ</div>
-                    <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-red-500 to-pink-400 bg-clip-text text-transparent uppercase">AethoKai</span>
-                </div>
-                
-                <nav class="hidden lg:flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-400">
-                    <button onclick="dispatchViewRoute('home')" class="px-4 py-2 rounded-xl hover:text-white transition-colors cursor-pointer">Browse</button>
-                    <button onclick="dispatchViewRoute('watchlist')" class="px-4 py-2 rounded-xl hover:text-white transition-colors cursor-pointer">My List</button>
-                    <button onclick="executeGenreFilterPipeline('Action')" class="px-4 py-2 rounded-xl hover:text-white transition-colors cursor-pointer">Action</button>
-                    <button onclick="executeGenreFilterPipeline('Romance')" class="px-4 py-2 rounded-xl hover:text-white transition-colors cursor-pointer">Romance</button>
-                    <button onclick="executeGenreFilterPipeline('Fantasy')" class="px-4 py-2 rounded-xl hover:text-white transition-colors cursor-pointer">Fantasy</button>
-                    <button onclick="showModalSettings()" class="px-4 py-2 rounded-xl hover:text-white transition-colors cursor-pointer">⚙️ Settings</button>
-                </nav>
-            </div>
-
-            <div class="flex items-center gap-4 w-full max-w-xs md:max-w-sm">
-                <div class="relative w-full">
-                    <input type="text" id="global-live-search-input" placeholder="Search anime..." class="w-full bg-zinc-900/50 border border-zinc-800/80 focus:border-red-500 rounded-xl py-2.5 pl-10 pr-4 text-xs font-medium focus:outline-none transition-all text-zinc-100 placeholder-zinc-500 shadow-inner">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-zinc-500 text-xs"></i>
-                </div>
-            </div>
-        </header>
-
-        <main class="flex-1 w-full max-w-[1650px] mx-auto px-4 md:px-8 pt-6">
+<!-- ==================== HEADER ==================== -->
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">⟡ AETHO</div>
             
-            <div id="view-home" class="space-y-14 app-route-layer-block">
-                
-                <section class="relative w-full h-[450px] md:h-[550px] rounded-3xl overflow-hidden group shadow-2xl bg-[#09090b] border border-white/5">
-                    
-                    <div class="absolute inset-0 w-full h-full">
-                        <img id="hero-spotlight-image-canvas" src="" alt="Spotlight Presentation Feed" class="w-full h-full object-cover object-top opacity-85 transition-transform duration-1000 ease-out group-hover:scale-102">
-                    </div>
-                    
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#070709] via-[#070709]/40 to-transparent"></div>
-                    <div class="absolute inset-0 bg-gradient-to-r from-[#070709] via-transparent to-transparent"></div>
-                    <div class="absolute inset-0 bg-black/15"></div>
-                    
-                    <div class="absolute bottom-0 left-0 p-6 md:p-14 max-w-3xl space-y-4 z-10">
-                        <div class="flex items-center gap-2.5">
-                            <span class="px-3 py-1 bg-red-600/20 backdrop-blur-md border border-red-500/30 text-[9px] font-extrabold rounded-lg tracking-widest text-red-300 uppercase shadow-sm">Now Streaming</span>
-                            <span id="hero-spotlight-score-badge" class="text-xs text-zinc-300 font-bold bg-zinc-900/90 px-2 py-0.5 rounded-md border border-white/5"><i class="fa-solid fa-star text-amber-400 mr-1"></i>--</span>
-                        </div>
-                        <h1 id="hero-spotlight-title-lbl" class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-none line-clamp-2 drop-shadow-xl">Loading Anime...</h1>
-                        <p id="hero-spotlight-description-para" class="text-zinc-400 text-xs md:text-sm leading-relaxed line-clamp-3 font-medium text-justify max-w-2xl"></p>
-                        
-                        <div class="flex items-center gap-3.5 pt-3 flex-wrap">
-                            <button id="hero-spotlight-play-action-btn" class="px-7 py-3.5 bg-red-600 text-white font-extrabold text-xs rounded-xl flex items-center gap-2.5 hover:bg-red-700 transition-all cursor-pointer shadow-xl transform active:scale-95">
-                                <i class="fa-solid fa-play text-[11px]"></i> Watch Now
-                            </button>
-                            <button id="hero-spotlight-watchlist-action-btn" class="p-3.5 bg-zinc-900/90 border border-zinc-800/80 hover:border-red-500 text-white rounded-xl transition-all cursor-pointer text-xs transform active:scale-95 shadow-lg">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                            <button onclick="showModalInfo()" class="p-3.5 bg-zinc-900/90 border border-zinc-800/80 hover:border-red-500 text-white rounded-xl transition-all cursor-pointer text-xs transform active:scale-95 shadow-lg">
-                                <i class="fa-solid fa-info"></i>
-                            </button>
-                            
-                            <div class="flex items-center gap-1 ml-3 bg-zinc-950/60 p-1.5 rounded-xl border border-white/5">
-                                <button onclick="stepSpotlightItemIndexSequence(-1)" class="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-white transition-all cursor-pointer"><i class="fa-solid fa-chevron-left text-[10px]"></i></button>
-                                <button onclick="stepSpotlightItemIndexSequence(1)" class="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-white transition-all cursor-pointer"><i class="fa-solid fa-chevron-right text-[10px]"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <div class="space-y-12" id="netflix-vertical-shelves-matrix-shell">
-                    
-                    <div class="space-y-4 hidden" id="shelf-row-history-block">
-                        <div class="flex items-center justify-between px-1">
-                            <h3 class="text-xs font-bold uppercase tracking-widest text-zinc-400 flex items-center gap-2"><span class="w-1.5 h-3.5 bg-red-600 rounded-full"></span>Continue Watching</h3>
-                        </div>
-                        <div class="flex gap-5 overflow-x-auto hide-scroll-bars pb-3 px-1" id="shelf-slider-history-row-target"></div>
-                    </div>
-
-                    <div id="dynamic-endless-shelves-injection-well" class="space-y-12">
-                    </div>
-                </div>
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    placeholder="Search anime, episodes..."
+                    id="headerSearch"
+                >
             </div>
 
-            <div id="view-player" class="hidden space-y-6 app-route-layer-block">
-                
-                <div class="flex items-center justify-between border-b border-zinc-900 pb-5">
-                    <button onclick="dispatchViewRoute('home')" class="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white transition-colors cursor-pointer">
-                        <i class="fa-solid fa-arrow-left-long text-xs"></i> Back to Catalog
-                    </button>
-                    <div class="flex items-center gap-2">
-                        <button onclick="showModalQuality()" class="px-5 py-2.5 bg-zinc-900 border border-zinc-800/80 hover:border-red-500 text-xs font-bold rounded-xl transition-all cursor-pointer shadow-md">📺 Quality</button>
-                        <button id="player-view-vault-action-toggle" class="px-5 py-2.5 bg-zinc-900 border border-zinc-800/80 hover:border-red-500 text-xs font-bold rounded-xl transition-all cursor-pointer shadow-md"></button>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 items-start">
-                    
-                    <div class="xl:col-span-2 space-y-5">
-                        <div class="w-full aspect-video rounded-2xl overflow-hidden relative shadow-2xl bg-black border border-zinc-900/80 shadow-black/90">
-                            <iframe id="iframe-embedded-media-portal" src="" class="w-full h-full" frameborder="0" scrolling="no" allowfullscreen></iframe>
-                        </div>
-
-                        <div class="iphone-blur-dock p-4.5 rounded-2xl flex flex-wrap items-center justify-between gap-5 text-xs border-white/5 shadow-xl">
-                            <div class="flex items-center gap-3">
-                                <span class="text-zinc-500 font-extrabold uppercase text-[10px] tracking-wider">Audio:</span>
-                                <div class="flex bg-zinc-950 p-1 rounded-xl border border-zinc-800/60" id="player-audio-modulation-hub">
-                                    <button onclick="switchPlayerAudioTrackLanguage('sub')" id="feed-sub-pill" class="px-4 py-1.5 rounded-lg font-extrabold text-[10px] uppercase transition-all cursor-pointer pill-highlight-active">Subbed</button>
-                                    <button onclick="switchPlayerAudioTrackLanguage('dub')" id="feed-dub-pill" class="px-4 py-1.5 rounded-lg font-extrabold text-[10px] uppercase transition-all cursor-pointer text-zinc-500">Dubbed</button>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center gap-3.5 bg-zinc-950 p-1 rounded-xl border border-zinc-800/60">
-                                <button id="player-stepping-back-btn" class="w-8 h-8 flex items-center justify-center rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white transition-colors cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed"><i class="fa-solid fa-backward text-[10px]"></i></button>
-                                <span id="player-stepping-current-lbl" class="font-bold text-zinc-300 tracking-widest text-[11px] px-2 uppercase min-w-[95px] text-center">EPISODE 01</span>
-                                <button id="player-stepping-next-btn" class="w-8 h-8 flex items-center justify-center rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white transition-colors cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed"><i class="fa-solid fa-forward text-[10px]"></i></button>
-                            </div>
-
-                            <div class="flex items-center gap-5 text-zinc-400 font-bold text-[11px]">
-                                <button onclick="triggerAutomatedNextTrackAdvance()" class="hover:text-white font-extrabold cursor-pointer flex items-center gap-2 transition-colors uppercase tracking-wider"><i class="fa-solid fa-forward-step text-[11px]"></i> Next</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-6">
-                        <div class="iphone-blur-dock p-6 rounded-2xl space-y-4 border-white/5 shadow-xl bg-zinc-900/10">
-                            <div class="space-y-2">
-                                <div class="flex items-center gap-2">
-                                    <span id="player-meta-status-tag" class="px-2.5 py-0.5 bg-red-600/20 border border-red-500/30 text-[9px] font-extrabold rounded text-red-300 tracking-widest uppercase">--</span>
-                                    <span id="player-meta-score-tag" class="text-[11px] text-zinc-300 font-bold bg-zinc-950/60 px-2 py-0.5 rounded border border-white/5"><i class="fa-solid fa-star text-amber-400 mr-1"></i>--</span>
-                                </div>
-                                <h2 id="player-meta-title-lbl" class="text-xl font-bold text-white tracking-tight line-clamp-2">--</h2>
-                            </div>
-                            <p id="player-meta-description-para" class="text-xs text-zinc-400 leading-relaxed line-clamp-4 font-medium text-justify"></p>
-                            
-                            <div id="player-genres-container" class="space-y-2">
-                                <span class="text-[9px] text-zinc-500 font-bold">GENRES:</span>
-                                <div id="player-genres-tags"></div>
-                            </div>
-                            
-                            <hr class="border-zinc-900/60">
-                            
-                            <div class="space-y-3">
-                                <h4 class="text-[10px] font-extrabold tracking-widest uppercase text-zinc-500 flex items-center justify-between">
-                                    <span>Episodes</span>
-                                    <span id="player-drawer-count-indicator" class="text-zinc-600 text-[9px]">-- Parts</span>
-                                </h4>
-                                <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 xl:grid-cols-4 gap-2 max-h-48 overflow-y-auto pr-1.5 fine-scroller" id="player-drawer-grid-well">
-                                    </div>
-                            </div>
-                        </div>
-
-                        <div class="space-y-3">
-                            <h4 class="text-[10px] font-extrabold tracking-widest uppercase text-zinc-400 px-1">Similar Anime</h4>
-                            <div class="grid grid-cols-1 gap-2" id="player-relational-recommendation-stack">
-                                </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="header-right">
+                <button class="btn btn-secondary btn-sm">⬇️ Downloads</button>
+                <button class="btn btn-secondary btn-sm">👤 Profile</button>
             </div>
-
-            <div id="view-search" class="hidden space-y-6 app-route-layer-block">
-                <div class="space-y-1.5 px-1">
-                    <h2 class="text-xl font-bold tracking-tight text-white" id="search-view-query-lbl">Search Results</h2>
-                    <p class="text-xs text-zinc-500">Browse anime from our comprehensive database.</p>
-                </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 px-1" id="search-view-injection-grid-target">
-                    </div>
-            </div>
-
-            <div id="view-watchlist" class="hidden space-y-6 app-route-layer-block">
-                <div class="space-y-1.5 px-1">
-                    <h2 class="text-xl font-bold tracking-tight text-white">My List</h2>
-                    <p class="text-xs text-zinc-500">Your saved anime collection.</p>
-                </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 px-1" id="watchlist-view-injection-grid-target">
-                    </div>
-            </div>
-
-            <div id="view-profile" class="hidden space-y-6 app-route-layer-block">
-                <div class="max-w-md mx-auto iphone-blur-dock p-8 rounded-3xl text-center space-y-6 border-white/5 mt-10 shadow-2xl">
-                    <div class="w-24 h-24 bg-gradient-to-tr from-red-600 to-pink-500 rounded-full mx-auto flex items-center justify-center border-2 border-white/10 shadow-lg">
-                        <i class="fa-solid fa-user text-3xl text-white"></i>
-                    </div>
-                    <div class="space-y-1">
-                        <h2 class="text-xl font-extrabold tracking-tight text-white">Anime Enthusiast</h2>
-                        <p class="text-xs text-zinc-500">AethoKai Premium Member</p>
-                    </div>
-                    <div class="bg-zinc-950/60 border border-zinc-800/80 rounded-2xl p-4 text-left space-y-2 text-xs font-semibold text-zinc-400">
-                        <div class="flex justify-between"><span>Library:</span><span class="text-zinc-200" id="profile-vault-count-lbl">0 Anime</span></div>
-                        <div class="flex justify-between"><span>Watching:</span><span class="text-zinc-200" id="profile-watching-count">0 Series</span></div>
-                        <div class="flex justify-between"><span>Hours Watched:</span><span class="text-zinc-200">Calculating...</span></div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <!-- Modals -->
-    <div class="modal-backdrop" id="modal-quality">
-        <div class="modal-content relative">
-            <button class="close-modal-btn" onclick="closeModal('modal-quality')">×</button>
-            <h3 class="text-lg font-bold text-white mb-4">Select Video Quality</h3>
-            <div class="quality-selector">
-                <button class="quality-btn active" onclick="selectQuality('1080p', this)">1080p HD</button>
-                <button class="quality-btn" onclick="selectQuality('720p', this)">720p</button>
-                <button class="quality-btn" onclick="selectQuality('480p', this)">480p</button>
-                <button class="quality-btn" onclick="selectQuality('360p', this)">360p</button>
-            </div>
-            <p class="text-xs text-zinc-400 mt-4">Current: <span id="current-quality-display">1080p HD</span></p>
         </div>
     </div>
+</header>
 
-    <div class="modal-backdrop" id="modal-settings">
-        <div class="modal-content relative">
-            <button class="close-modal-btn" onclick="closeModal('modal-settings')">×</button>
-            <h3 class="text-lg font-bold text-white mb-4">Player Settings</h3>
-            <div class="settings-panel">
-                <div class="setting-item">
-                    <input type="checkbox" id="auto-next-ep" checked>
-                    <label for="auto-next-ep">Auto Next Episode</label>
-                </div>
-                <div class="setting-item">
-                    <input type="checkbox" id="subtitle-toggle" checked>
-                    <label for="subtitle-toggle">Show Subtitles</label>
-                </div>
-                <div class="setting-item">
-                    <input type="checkbox" id="dark-mode" checked>
-                    <label for="dark-mode">Dark Mode</label>
-                </div>
-                <div class="setting-item">
-                    <input type="checkbox" id="notifications" checked>
-                    <label for="notifications">Notifications</label>
+<!-- ==================== HOME PAGE ==================== -->
+<div id="homePage" class="page-content">
+    <!-- HERO BANNER -->
+    <section class="hero-section">
+        <div class="hero-background"></div>
+        <div class="hero-image"></div>
+        <div class="hero-overlay"></div>
+
+        <div class="container">
+            <div class="hero-content">
+                <h1 id="heroTitle">Jujutsu Kaisen</h1>
+                <p id="heroDesc">A high school boy is invited to join a secret organization of sorcerers. His path to becoming the world's strongest sorcerer begins.</p>
+                
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="navigatePage('player')">▶️ Play Now</button>
+                    <button class="btn btn-secondary" onclick="toggleList(1)">➕ Add to List</button>
+                    <button class="btn btn-secondary btn-sm">ℹ️ Details</button>
                 </div>
             </div>
-            <button onclick="closeModal('modal-settings')" class="w-full mt-6 px-4 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-all">Done</button>
+        </div>
+
+        <div class="hero-progress">
+            <div class="hero-progress-bar"></div>
+        </div>
+    </section>
+
+    <!-- CONTINUE WATCHING -->
+    <section class="shelf-section">
+        <div class="container">
+            <div id="continueWatching" class="continue-watching" style="display: none;">
+                <h2 class="shelf-title">Continue Watching</h2>
+                <div class="continue-watching-grid" id="continueGrid"></div>
+            </div>
+
+            <!-- ANIME SHELVES -->
+            <div id="shelvesContainer"></div>
+        </div>
+    </section>
+</div>
+
+<!-- ==================== SEARCH PAGE ==================== -->
+<div id="searchPage" class="page-content" style="display: none;">
+    <div class="search-page">
+        <div class="container">
+            <input 
+                type="text" 
+                class="search-input-large" 
+                placeholder="Search anime, characters, creators..." 
+                id="searchInput"
+            >
+
+            <div class="filter-section">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="airing">Airing</button>
+                <button class="filter-btn" data-filter="movie">Movie</button>
+                <button class="filter-btn" data-filter="ova">OVA</button>
+                <button class="filter-btn" data-filter="popular">Popular</button>
+                <button class="filter-btn" data-filter="trending">Trending</button>
+            </div>
+
+            <h2>Search Results</h2>
+            <div class="search-results" id="searchResults"></div>
+
+            <h2 style="margin-top: 3rem;">Trending Now</h2>
+            <div class="search-results" id="trendingResults"></div>
         </div>
     </div>
+</div>
 
-    <div class="modal-backdrop" id="modal-info">
-        <div class="modal-content relative max-w-2xl">
-            <button class="close-modal-btn" onclick="closeModal('modal-info')">×</button>
-            <div class="space-y-4">
-                <div class="flex gap-4">
-                    <img id="modal-info-poster" src="" alt="Anime" class="w-24 h-36 object-cover rounded-xl">
-                    <div class="flex-1">
-                        <h2 id="modal-info-title" class="text-2xl font-bold text-white mb-2">--</h2>
-                        <div class="space-y-2 text-sm">
-                            <p><span class="text-zinc-400">Status:</span> <span id="modal-info-status" class="text-white font-semibold">--</span></p>
-                            <p><span class="text-zinc-400">Episodes:</span> <span id="modal-info-episodes" class="text-white font-semibold">--</span></p>
-                            <p><span class="text-zinc-400">Rating:</span> <span id="modal-info-rating" class="text-amber-400 font-semibold">--</span></p>
-                        </div>
-                    </div>
-                </div>
-                <hr class="border-zinc-800">
+<!-- ==================== ANIME DETAILS PAGE ==================== -->
+<div id="detailsPage" class="page-content" style="display: none;">
+    <div class="anime-details">
+        <div class="container">
+            <div class="details-banner">
+                <img id="detailsBanner" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 400'><rect fill='%23111111' width='1920' height='400'/></svg>" alt="Banner">
+                <div class="details-banner-overlay"></div>
+            </div>
+
+            <div class="details-header">
                 <div>
-                    <h4 class="text-sm font-bold text-white mb-2">Description</h4>
-                    <p id="modal-info-description" class="text-xs text-zinc-400 leading-relaxed">--</p>
+                    <img id="detailsPoster" class="details-poster" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 450'><rect fill='%23222222' width='300' height='450'/></svg>" alt="Poster">
+                </div>
+
+                <div class="details-info">
+                    <h1 id="detailsTitle">Anime Title</h1>
+                    <p id="detailsNativeTitle" style="color: #666666; margin-bottom: 1rem;">Japanese Title</p>
+
+                    <div class="details-info-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Score</span>
+                            <span class="meta-value" id="detailsScore">8.5/10</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Episodes</span>
+                            <span class="meta-value" id="detailsEpisodes">24</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Status</span>
+                            <span class="meta-value" id="detailsStatus">Airing</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Studio</span>
+                            <span class="meta-value" id="detailsStudio">Studio</span>
+                        </div>
+                    </div>
+
+                    <p class="details-description" id="detailsDesc">Description goes here</p>
+
+                    <div class="details-buttons">
+                        <button class="btn btn-primary" onclick="navigatePage('player')">▶️ Watch Now</button>
+                        <button class="btn btn-secondary" onclick="toggleList(activeAnimeId)">➕ Add to List</button>
+                        <button class="btn btn-secondary">❤️ Favorite</button>
+                        <button class="btn btn-secondary">📤 Share</button>
+                    </div>
+
+                    <div class="details-section">
+                        <h2>Genres</h2>
+                        <div class="genres-list" id="genresList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="details-sections">
+                <div class="details-section">
+                    <h2>Recommendations</h2>
+                    <div class="shelf-container" id="recommendationsShelf"></div>
+                </div>
+
+                <div class="details-section">
+                    <h2>Similar Anime</h2>
+                    <div class="shelf-container" id="similarShelf"></div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Bottom Navigation -->
-    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 iphone-blur-dock px-8 py-3.5 rounded-2xl flex items-center justify-between gap-8 md:gap-10 shadow-3xl max-w-lg w-[92%] shadow-black/95">
-        <button onclick="dispatchViewRoute('home')" id="dock-btn-home" class="flex flex-col items-center gap-1 text-white cursor-pointer transition-all hover:scale-105 active:scale-95">
-            <i class="fa-solid fa-compass text-base"></i><span class="text-[8px] font-extrabold tracking-widest uppercase">Home</span>
-        </button>
-        <button onclick="executeGenreFilterPipeline('Trending')" id="dock-btn-trending" class="flex flex-col items-center gap-1 text-zinc-500 hover:text-white cursor-pointer transition-all hover:scale-105 active:scale-95">
-            <i class="fa-solid fa-fire text-base"></i><span class="text-[8px] font-extrabold tracking-widest uppercase">Trending</span>
-        </button>
-        <button onclick="executeGenreFilterPipeline('Airing')" id="dock-btn-airing" class="flex flex-col items-center gap-1 text-zinc-500 hover:text-white cursor-pointer transition-all hover:scale-105 active:scale-95">
-            <i class="fa-solid fa-tv text-base"></i><span class="text-[8px] font-extrabold tracking-widest uppercase">Airing</span>
-        </button>
-        <button onclick="dispatchViewRoute('watchlist')" id="dock-btn-watchlist" class="flex flex-col items-center gap-1 text-zinc-500 hover:text-white cursor-pointer transition-all hover:scale-105 active:scale-95">
-            <i class="fa-solid fa-bookmark text-base"></i><span class="text-[8px] font-extrabold tracking-widest uppercase">List</span>
-        </button>
-        <button onclick="dispatchViewRoute('profile')" id="dock-btn-profile" class="flex flex-col items-center gap-1 text-zinc-500 hover:text-white cursor-pointer transition-all hover:scale-105 active:scale-95">
-            <i class="fa-solid fa-user text-base"></i><span class="text-[8px] font-extrabold tracking-widest uppercase">Profile</span>
-        </button>
-    </nav>
+<!-- ==================== VIDEO PLAYER PAGE ==================== -->
+<div id="playerPage" class="page-content" style="display: none;">
+    <div style="padding-top: 70px;">
+        <div class="container">
+            <div class="player-container">
+                <iframe 
+                    class="player-iframe"
+                    src="about:blank"
+                    id="videoPlayer"
+                    allowfullscreen
+                    allow="autoplay"
+                ></iframe>
+                <div class="player-controls">
+                    <div class="player-control-row">
+                        <button class="player-control-btn">⏮</button>
+                        <button class="player-control-btn">⏯</button>
+                        <button class="player-control-btn">⏭</button>
+                        <button class="player-control-btn">🔊</button>
+                        <button class="player-control-btn">⛶</button>
+                    </div>
+                </div>
+            </div>
 
-    <script>
-        const initializationQuerySourceIds = [16498, 153518, 101922, 154587, 21, 140960, 166873, 113415, 142838, 171018, 154512, 11061, 104578, 143270, 11757, 101759, 131518, 114562, 5114, 127230, 163132, 145064, 151801];
-        const systemicCategorizationGenresList = ["Action", "Adventure", "Fantasy", "Sci-Fi", "Romance", "Drama", "Comedy", "Supernatural", "Slice of Life", "Thriller"];
+            <div style="margin-top: 3rem;">
+                <h2 id="playerAnimeTitle">Anime Title</h2>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h3>Episode <span id="currentEpisode">1</span></h3>
+                    <p id="playerEpisodeDesc">Episode description</p>
+                </div>
+
+                <div>
+                    <h3>Select Episode</h3>
+                    <div class="episode-grid" id="episodeGrid"></div>
+                </div>
+
+                <div style="margin-top: 4rem;">
+                    <h2>More Like This</h2>
+                    <div class="shelf-container" id="moreShelf"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== BOTTOM NAVIGATION ==================== -->
+<nav class="bottom-nav">
+    <div class="nav-item active" onclick="navigatePage('home')" title="Home">🏠</div>
+    <div class="nav-item" onclick="navigatePage('search')" title="Search">🔍</div>
+    <div class="nav-item" onclick="navigatePage('trending')" title="Trending">🔥</div>
+    <div class="nav-item" onclick="navigatePage('airing')" title="Airing">📺</div>
+    <div class="nav-item" onclick="navigatePage('list')" title="My List">📋</div>
+    <div class="nav-item" onclick="navigatePage('profile')" title="Profile">👤</div>
+</nav>
+
+<script>
+    // ==================== STATE MANAGEMENT ====================
+    const APP_STATE = {
+        currentPage: 'home',
+        searchQuery: '',
+        activeAnimeId: 1,
+        watchHistory: JSON.parse(localStorage.getItem('watchHistory')) || [],
+        myList: JSON.parse(localStorage.getItem('myList')) || [],
+        continueWatching: JSON.parse(localStorage.getItem('continueWatching')) || {},
+    };
+
+    // Mock anime data
+    const MOCK_ANIME = [
+        {
+            id: 1,
+            title: 'Jujutsu Kaisen',
+            nativeTitle: '呪術廻戦',
+            description: 'A high school boy is invited to join a secret organization of sorcerers. His path to becoming the world\'s strongest sorcerer begins.',
+            poster: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450"><rect fill="%23222222" width="300" height="450"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="%23666" font-size="20">Jujutsu</text><text x="50%" y="60%" text-anchor="middle" dy=".3em" fill="%23666" font-size="20">Kaisen</text></svg>',
+            banner: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 400"><rect fill="%23111111" width="1920" height="400"/><circle cx="960" cy="200" r="150" fill="%23222222"/></svg>',
+            genres: ['Action', 'Supernatural', 'School'],
+            status: 'AIRING',
+            season: 'Fall 2023',
+            year: 2023,
+            episodes: 48,
+            score: 8.5,
+            studio: 'MAPPA',
+            trailer: 'https://www.youtube.com/embed/K_aLb-3nIJ4'
+        },
+        {
+            id: 2,
+            title: 'Attack on Titan',
+            nativeTitle: '進撃の巨人',
+            description: 'In a world where giant humanoid creatures called Titans hunt and consume humans, the last vestiges of mankind live in walled cities.',
+            poster: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450"><rect fill="%23333" width="300" height="450"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="%23666" font-size="18">Attack on</text><text x="50%" y="60%" text-anchor="middle" dy=".3em" fill="%23666" font-size="18">Titan</text></svg>',
+            banner: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 400"><rect fill="%230D0D0D" width="1920" height="400"/><rect x="500" y="100" width="400" height="200" fill="%23222"/></svg>',
+            genres: ['Action', 'Drama', 'Dark'],
+            status: 'FINISHED',
+            season: 'Spring 2013',
+            year: 2013,
+            episodes: 139,
+            score: 8.9,
+            studio: 'Wit Studio'
+        },
+        {
+            id: 3,
+            title: 'Demon Slayer',
+            nativeTitle: '鬼滅の刃',
+            description: 'After his family is killed by demons, Tanjiro becomes a demon slayer to save his sister from a demon curse.',
+            poster: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450"><rect fill="%23444" width="300" height="450"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="%23777" font-size="18">Demon</text><text x="50%" y="60%" text-anchor="middle" dy=".3em" fill="%23777" font-size="18">Slayer</text></svg>',
+            banner: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 400"><rect fill="%231A1A1A" width="1920" height="400"/><circle cx="960" cy="200" r="180" fill="%23333"/></svg>',
+            genres: ['Action', 'Shounen', 'Adventure'],
+            status: 'AIRING',
+            season: 'Spring 2019',
+            year: 2019,
+            episodes: 55,
+            score: 8.7,
+            studio: 'ufotable'
+        },
+        {
+            id: 4,
+            title: 'Steins;Gate',
+            nativeTitle: 'シュタインズ・ゲート',
+            description: 'A group of students discover they have built a device that sends messages to the past, altering the course of history.',
+            poster: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450"><rect fill="%23222" width="300" height="450"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="%23555" font-size="16">Steins</text><text x="50%" y="60%" text-anchor="middle" dy=".3em" fill="%23555" font-size="16">Gate</text></svg>',
+            banner: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 400"><rect fill="%23111" width="1920" height="400"/><rect x="400" y="80" width="600" height="240" fill="%23333" rx="20"/></svg>',
+            genres: ['Sci-Fi', 'Thriller', 'Drama'],
+            status: 'FINISHED',
+            season: 'Spring 2011',
+            year: 2011,
+            episodes: 24,
+            score: 8.8,
+            studio: 'White Fox'
+        },
+        {
+            id: 5,
+            title: 'Chainsaw Man',
+            nativeTitle: 'チェンソーマン',
+            description: 'A poor young man dreams of a better life, working as a devil hunter. When he becomes a devil himself, his life changes forever.',
+            poster: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450"><rect fill="%23555" width="300" height="450"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="%23888" font-size="18">Chainsaw</text><text x="50%" y="60%" text-anchor="middle" dy=".3em" fill="%23888" font-size="18">Man</text></svg>',
+            banner: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 400"><rect fill="%231A1A1A" width="1920" height="400"/><polygon points="960,100 1200,300 720,300" fill="%23333"/></svg>',
+            genres: ['Action', 'Dark', 'Supernatural'],
+            status: 'AIRING',
+            season: 'Fall 2022',
+            year: 2022,
+            episodes: 24,
+            score: 8.3,
+            studio: 'MAPPA'
+        },
+        {
+            id: 6,
+            title: 'My Hero Academia',
+            nativeTitle: '僕のヒーローアカデミア',
+            description: 'In a world where most humans have developed superpowers, a boy without powers dreams of becoming a hero.',
+            poster: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450"><rect fill="%23666" width="300" height="450"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="%23999" font-size="16">My Hero</text><text x="50%" y="60%" text-anchor="middle" dy=".3em" fill="%23999" font-size="16">Academia</text></svg>',
+            banner: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 400"><rect fill="%230D0D0D" width="1920" height="400"/><circle cx="400" cy="200" r="120" fill="%23333"/><circle cx="1520" cy="200" r="100" fill="%23333"/></svg>',
+            genres: ['Action', 'School', 'Superhero'],
+            status: 'AIRING',
+            season: 'Spring 2016',
+            year: 2016,
+            episodes: 160,
+            score: 7.9,
+            studio: 'Bones'
+        }
+    ];
+
+    const SHELF_CONFIG = [
+        { title: 'Trending Today', key: 'trending' },
+        { title: 'Newly Aired', key: 'aired' },
+        { title: 'Most Popular', key: 'popular' },
+        { title: 'Top Rated', key: 'toprated' },
+        { title: 'Action Anime', key: 'action' },
+        { title: 'Supernatural', key: 'supernatural' },
+        { title: 'School & Comedy', key: 'school' }
+    ];
+
+    // ==================== UTILITY FUNCTIONS ====================
+    function navigatePage(page) {
+        // Hide all pages
+        document.querySelectorAll('.page-content').forEach(el => el.style.display = 'none');
         
-        let globalSystemCacheMatrix = [];
-        let indexSpotlightCarouselTracker = 0;
-        let runningCarouselLoopTimerInstance = null;
-        let activeIdentityTargetId = 16498;
-        let activeEpisodeTrackingIndex = 1;
-        let activeAudioFeedLanguageMode = 'sub';
-        let currentQuality = '1080p';
+        // Remove active class from nav items
+        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+        
+        // Show selected page and mark nav item active
+        const pageMap = {
+            'home': 'homePage',
+            'search': 'searchPage',
+            'details': 'detailsPage',
+            'player': 'playerPage',
+            'trending': 'searchPage',
+            'airing': 'searchPage',
+            'list': 'searchPage',
+            'profile': 'searchPage'
+        };
 
-        window.addEventListener('DOMContentLoaded', async () => {
-            globalSystemCacheMatrix = await executeGraphQLMultiBatchQuery(initializationQuerySourceIds);
-            initializeLayoutRenderPipelines();
-            synchronizeTrackingHistoryShelfRail();
-            setupLiveFilteringEngineEvents();
-            commenceAutomatedSpotlightSlideshowLoop();
-            document.getElementById('profile-vault-count-lbl').innerText = `${accessPersistentStorageKey('vault').length} Anime`;
-        });
+        const pageId = pageMap[page] || pageMap['home'];
+        document.getElementById(pageId).style.display = 'block';
 
-        // Modal Functions
-        function showModalQuality() {
-            document.getElementById('modal-quality').classList.add('active');
+        // Set active nav
+        if (page !== 'details' && page !== 'player') {
+            document.querySelector(`[onclick="navigatePage('${page}')"]`)?.classList.add('active');
         }
 
-        function showModalSettings() {
-            document.getElementById('modal-settings').classList.add('active');
-        }
+        APP_STATE.currentPage = page;
+        window.scrollTo(0, 0);
+    }
 
-        function showModalInfo() {
-            document.getElementById('modal-info').classList.add('active');
-            const anime = globalSystemCacheMatrix[indexSpotlightCarouselTracker];
-            if (anime) {
-                document.getElementById('modal-info-poster').src = anime.img;
-                document.getElementById('modal-info-title').innerText = anime.title;
-                document.getElementById('modal-info-status').innerText = anime.status;
-                document.getElementById('modal-info-episodes').innerText = anime.episodesCount;
-                document.getElementById('modal-info-rating').innerText = `${anime.score}/10`;
-                document.getElementById('modal-info-description').innerText = anime.desc;
-            }
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-        }
-
-        function selectQuality(quality, btn) {
-            currentQuality = quality;
-            document.querySelectorAll('.quality-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            document.getElementById('current-quality-display').innerText = quality;
-            showToast(`Quality changed to ${quality}`);
-        }
-
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.className = 'toast-notification';
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
-        }
-
-        async function executeGraphQLMultiBatchQuery(idsArray) {
-            const compiledGraphQuery = `
-                query ($ids: [Int]) {
-                    Page(page: 1, perPage: 50) {
-                        media(id_in: $ids, type: ANIME) {
-                            id
-                            title { english romaji }
-                            coverImage { extraLarge large }
-                            bannerImage
-                            description
-                            genres
-                            episodes
-                            status
-                            averageScore
-                            recommendations(perPage: 6) {
-                                nodes {
-                                    mediaRecommendation {
-                                        id
-                                        title { english romaji }
-                                        coverImage { large }
-                                        averageScore
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            `;
-            return transmitNetworkPayloadQueryRequest(compiledGraphQuery, { ids: idsArray });
-        }
-
-        async function executeGraphQLSearchLiveQuery(queryStringPattern) {
-            const searchableGqlString = `
-                query ($search: String) {
-                    Page(page: 1, perPage: 32) {
-                        media(search: $search, type: ANIME) {
-                            id
-                            title { english romaji }
-                            coverImage { extraLarge large }
-                            bannerImage
-                            description
-                            genres
-                            episodes
-                            status
-                            averageScore
-                        }
-                    }
-                }
-            `;
-            return transmitNetworkPayloadQueryRequest(searchableGqlString, { search: queryStringPattern });
-        }
-
-        async function transmitNetworkPayloadQueryRequest(queryPayload, variableParameterObjects) {
-            try {
-                const response = await fetch('https://graphql.anilist.co', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify({ query: queryPayload, variables: variableParameterObjects })
-                });
-                const responseParsedJson = await response.json();
-                if (!responseParsedJson.data || !responseParsedJson.data.Page.media) return [];
-                return structuralSanitizationDataAdapter(responseParsedJson.data.Page.media);
-            } catch (networkTransportFaultContext) {
-                console.error("Network Error: ", networkTransportFaultContext);
-                return [];
-            }
-        }
-
-        function structuralSanitizationDataAdapter(rawNetworkNodeArray) {
-            return rawNetworkNodeArray.map(node => ({
-                id: node.id,
-                title: node.title.english || node.title.romaji,
-                img: node.coverImage.extraLarge || node.coverImage.large,
-                banner: node.bannerImage || node.coverImage.extraLarge || node.coverImage.large,
-                desc: node.description ? node.description.replace(/<\/?[^>]+(>|$)/g, "") : "No description available.",
-                genres: node.genres || ["General"],
-                episodesCount: node.episodes || 12,
-                status: node.status || "COMPLETED",
-                score: node.averageScore ? (node.averageScore / 10).toFixed(1) : "7.9",
-                relatedRecommendations: node.recommendations?.nodes?.map(n => n.mediaRecommendation).filter(Boolean).map(r => ({
-                    id: r.id,
-                    title: r.title.english || r.title.romaji,
-                    img: r.coverImage.large,
-                    score: r.averageScore ? (r.averageScore / 10).toFixed(1) : "7.6"
-                })) || []
-            }));
-        }
-
-        function dispatchViewRoute(targetRouteIdentifier) {
-            const blockViewLayers = document.querySelectorAll('.app-route-layer-block');
-            blockViewLayers.forEach(layer => layer.classList.add('hidden'));
-            document.getElementById(`view-${targetRouteIdentifier}`).classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            const structuralDockIds = { 'home': 'dock-btn-home', 'watchlist': 'dock-btn-watchlist', 'profile': 'dock-btn-profile' };
-            Object.entries(structuralDockIds).forEach(([routeKey, elementId]) => {
-                const targetedDockButton = document.getElementById(elementId);
-                if (!targetedDockButton) return;
-                if (routeKey === targetRouteIdentifier) {
-                    targetedDockButton.classList.remove('text-zinc-500');
-                    targetedDockButton.classList.add('text-white');
-                } else {
-                    targetedDockButton.classList.remove('text-white');
-                    targetedDockButton.classList.add('text-zinc-500');
-                }
-            });
-
-            if (targetRouteIdentifier === 'watchlist') compilePersonalVaultLibraryGrid();
-            if (targetRouteIdentifier === 'profile') {
-                document.getElementById('profile-vault-count-lbl').innerText = `${accessPersistentStorageKey('vault').length} Anime`;
-            }
-        }
-
-        function initializeLayoutRenderPipelines() {
-            if (globalSystemCacheMatrix.length === 0) return;
-            renderSpotlightFeatureBillboard(globalSystemCacheMatrix[indexSpotlightCarouselTracker]);
-
-            const endlessShelfInjectionWell = document.getElementById('dynamic-endless-shelves-injection-well');
-            endlessShelfInjectionWell.innerHTML = '';
-
-            systemicCategorizationGenresList.forEach(genreName => {
-                const filteredGenreCollectionMatches = globalSystemCacheMatrix.filter(anime => anime.genres.includes(genreName));
-                if (filteredGenreCollectionMatches.length > 0) {
-                    let continuousRowItemsSliderHTML = '';
-                    filteredGenreCollectionMatches.forEach(anime => {
-                        continuousRowItemsSliderHTML += constructNetflixStandardCardTemplate(anime, `<i class="fa-solid fa-star text-amber-400 mr-1 text-[9px]"></i> ${anime.score}`);
-                    });
-
-                    const shelfShellMarkupTemplate = `
-                        <div class="space-y-4 shelf-group-box">
-                            <div class="flex items-center justify-between px-1">
-                                <h3 class="text-xs font-bold uppercase tracking-widest text-zinc-400 flex items-center gap-2">
-                                    <span class="w-1.5 h-3.5 bg-red-600 rounded-full"></span>${genreName} Anime
-                                </h3>
-                            </div>
-                            <div class="flex gap-5 overflow-x-auto hide-scroll-bars pb-3 px-1">
-                                ${continuousRowItemsSliderHTML}
+    function createAnimeCard(anime, includeActions = true) {
+        return `
+            <div class="anime-card" onclick="viewAnimeDetails(${anime.id})">
+                <div class="anime-card-image">
+                    <img src="${anime.poster}" alt="${anime.title}" loading="lazy">
+                    ${includeActions ? `
+                        <div class="anime-card-overlay">
+                            <div class="anime-card-actions">
+                                <button class="btn btn-primary" onclick="event.stopPropagation(); navigatePage('player')">▶️</button>
+                                <button class="btn btn-secondary" onclick="event.stopPropagation(); toggleList(${anime.id})">➕</button>
                             </div>
                         </div>
-                    `;
-                    endlessShelfInjectionWell.innerHTML += shelfShellMarkupTemplate;
-                }
-            });
+                    ` : ''}
+                </div>
+                <h3 class="anime-card-title">${anime.title}</h3>
+                <p class="anime-card-meta">${anime.score}/10 • ${anime.episodes} eps</p>
+            </div>
+        `;
+    }
+
+    function renderShelves() {
+        const container = document.getElementById('shelvesContainer');
+        container.innerHTML = SHELF_CONFIG.map(shelf => `
+            <div class="shelf">
+                <h2 class="shelf-title">${shelf.title}</h2>
+                <div class="shelf-container">
+                    ${MOCK_ANIME.map(anime => createAnimeCard(anime)).join('')}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderContinueWatching() {
+        const section = document.getElementById('continueWatching');
+        const grid = document.getElementById('continueGrid');
+        
+        if (Object.keys(APP_STATE.continueWatching).length === 0) {
+            section.style.display = 'none';
+            return;
         }
 
-        function renderSpotlightFeatureBillboard(targetMediaObject) {
-            if (!targetMediaObject) return;
-            const displayImageCanvas = document.getElementById('hero-spotlight-image-canvas');
-            displayImageCanvas.src = targetMediaObject.banner;
-            document.getElementById('hero-spotlight-title-lbl').innerText = targetMediaObject.title;
-            document.getElementById('hero-spotlight-description-para').innerText = targetMediaObject.desc;
-            document.getElementById('hero-spotlight-score-badge').innerHTML = `<i class="fa-solid fa-star text-amber-400 mr-1"></i> ${targetMediaObject.score} / 10`;
-
-            document.getElementById('hero-spotlight-play-action-btn').onclick = () => activateCinemaTheaterSession(targetMediaObject.id, 1);
-
-            const activeVaultTrackingArray = accessPersistentStorageKey('vault');
-            const isItemSavedInLibrary = activeVaultTrackingArray.includes(targetMediaObject.id);
-            const vaultTriggerButton = document.getElementById('hero-spotlight-watchlist-action-btn');
+        section.style.display = 'block';
+        grid.innerHTML = Object.entries(APP_STATE.continueWatching).map(([animeId, data]) => {
+            const anime = MOCK_ANIME.find(a => a.id === parseInt(animeId));
+            if (!anime) return '';
             
-            vaultTriggerButton.innerHTML = isItemSavedInLibrary ? `<i class="fa-solid fa-check text-red-500"></i>` : `<i class="fa-solid fa-plus"></i>`;
-            vaultTriggerButton.onclick = () => { 
-                invertPersistentStorageTokenKey('vault', targetMediaObject.id); 
-                renderSpotlightFeatureBillboard(targetMediaObject);
-                showToast(isItemSavedInLibrary ? 'Removed from My List' : 'Added to My List');
-            };
-        }
-
-        function stepSpotlightItemIndexSequence(directionalStepFactor) {
-            clearInterval(runningCarouselLoopTimerInstance);
-            indexSpotlightCarouselTracker += directionalStepFactor;
-            if (indexSpotlightCarouselTracker >= globalSystemCacheMatrix.length) indexSpotlightCarouselTracker = 0;
-            if (indexSpotlightCarouselTracker < 0) indexSpotlightCarouselTracker = globalSystemCacheMatrix.length - 1;
-            renderSpotlightFeatureBillboard(globalSystemCacheMatrix[indexSpotlightCarouselTracker]);
-            commenceAutomatedSpotlightSlideshowLoop();
-        }
-
-        function commenceAutomatedSpotlightSlideshowLoop() {
-            runningCarouselLoopTimerInstance = setInterval(() => {
-                indexSpotlightCarouselTracker++;
-                if (indexSpotlightCarouselTracker >= globalSystemCacheMatrix.length) indexSpotlightCarouselTracker = 0;
-                renderSpotlightFeatureBillboard(globalSystemCacheMatrix[indexSpotlightCarouselTracker]);
-            }, 9000);
-        }
-
-        function constructNetflixStandardCardTemplate(animeDataStructure, internalTagBadgeContent) {
             return `
-                <div onclick="activateCinemaTheaterSession(${animeDataStructure.id}, 1)" class="premium-glass-card min-w-[165px] md:min-w-[195px] rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 group relative shadow-lg">
-                    <div class="h-60 bg-cover bg-center bg-no-repeat transition-all duration-700 ease-out" style="background-image: url('${animeDataStructure.img}')"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent flex flex-col justify-end p-4">
-                        <span class="text-[9px] bg-zinc-950/90 border border-white/10 px-2 py-0.5 rounded-md text-zinc-300 font-extrabold self-start mb-2 uppercase tracking-wider backdrop-blur-sm shadow">${internalTagBadgeContent}</span>
-                        <h4 class="font-bold text-xs tracking-tight line-clamp-1 group-hover:text-white text-zinc-200 transition-colors">${animeDataStructure.title}</h4>
+                <div class="continue-item" onclick="navigatePage('player')">
+                    <div class="continue-item-image">
+                        <img src="${anime.poster}" alt="${anime.title}">
+                        <div class="continue-item-overlay">
+                            <div class="continue-item-play">▶️</div>
+                        </div>
+                        <div class="continue-progress">
+                            <div class="continue-progress-bar" style="width: ${data.progress}%"></div>
+                        </div>
+                    </div>
+                    <div class="continue-info">
+                        <div class="continue-episode">Ep ${data.currentEpisode}</div>
+                        <div class="continue-remaining">${anime.episodes - data.currentEpisode} episodes left</div>
                     </div>
                 </div>
             `;
+        }).join('');
+    }
+
+    function viewAnimeDetails(animeId) {
+        const anime = MOCK_ANIME.find(a => a.id === animeId);
+        if (!anime) return;
+
+        APP_STATE.activeAnimeId = animeId;
+
+        document.getElementById('detailsTitle').textContent = anime.title;
+        document.getElementById('detailsNativeTitle').textContent = anime.nativeTitle;
+        document.getElementById('detailsDesc').textContent = anime.description;
+        document.getElementById('detailsScore').textContent = `${anime.score}/10`;
+        document.getElementById('detailsEpisodes').textContent = anime.episodes;
+        document.getElementById('detailsStatus').textContent = anime.status;
+        document.getElementById('detailsStudio').textContent = anime.studio;
+        
+        document.getElementById('detailsBanner').src = anime.banner;
+        document.getElementById('detailsPoster').src = anime.poster;
+
+        document.getElementById('genresList').innerHTML = anime.genres.map(g => 
+            `<div class="genre-badge">${g}</div>`
+        ).join('');
+
+        document.getElementById('recommendationsShelf').innerHTML = MOCK_ANIME
+            .filter(a => a.id !== animeId)
+            .slice(0, 6)
+            .map(a => createAnimeCard(a))
+            .join('');
+
+        document.getElementById('similarShelf').innerHTML = MOCK_ANIME
+            .filter(a => a.genres.some(g => anime.genres.includes(g)) && a.id !== animeId)
+            .slice(0, 6)
+            .map(a => createAnimeCard(a))
+            .join('');
+
+        navigatePage('details');
+    }
+
+    function toggleList(animeId) {
+        const index = APP_STATE.myList.indexOf(animeId);
+        if (index > -1) {
+            APP_STATE.myList.splice(index, 1);
+        } else {
+            APP_STATE.myList.push(animeId);
+        }
+        localStorage.setItem('myList', JSON.stringify(APP_STATE.myList));
+        updateContinueWatching(animeId, 1, 50);
+    }
+
+    function updateContinueWatching(animeId, episode, progress) {
+        APP_STATE.continueWatching[animeId] = {
+            currentEpisode: episode,
+            progress: progress,
+            lastWatched: new Date().toISOString()
+        };
+        localStorage.setItem('continueWatching', JSON.stringify(APP_STATE.continueWatching));
+        renderContinueWatching();
+    }
+
+    function searchAnime(query) {
+        if (!query.trim()) {
+            document.getElementById('searchResults').innerHTML = '';
+            return;
         }
 
-        function activateCinemaTheaterSession(targetTrackingId, directEpisodeSelectionIndex) {
-            activeIdentityTargetId = targetTrackingId;
-            activeEpisodeTrackingIndex = parseInt(directEpisodeSelectionIndex);
-            dispatchViewRoute('player');
+        const results = MOCK_ANIME.filter(a => 
+            a.title.toLowerCase().includes(query.toLowerCase()) ||
+            a.nativeTitle.includes(query) ||
+            a.genres.some(g => g.toLowerCase().includes(query.toLowerCase()))
+        );
 
-            let runtimeMatchingMediaInstance = globalSystemCacheMatrix.find(item => item.id === targetTrackingId);
-            
-            if (!runtimeMatchingMediaInstance) {
-                runtimeMatchingMediaInstance = {
-                    id: targetTrackingId,
-                    title: "Dynamic Anime Loading",
-                    img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400",
-                    banner: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1200",
-                    desc: "Loading anime data...",
-                    genres: ["Action"],
-                    episodesCount: 24,
-                    status: "RELEASING",
-                    score: "8.1",
-                    relatedRecommendations: []
-                };
-            }
+        document.getElementById('searchResults').innerHTML = results
+            .map(anime => createAnimeCard(anime))
+            .join('');
+    }
 
-            document.getElementById('player-meta-title-lbl').innerText = runtimeMatchingMediaInstance.title;
-            document.getElementById('player-meta-description-para').innerText = runtimeMatchingMediaInstance.desc;
-            document.getElementById('player-meta-status-tag').innerText = runtimeMatchingMediaInstance.status;
-            document.getElementById('player-meta-score-tag').innerHTML = `<i class="fa-solid fa-star text-amber-400 mr-1"></i> ${runtimeMatchingMediaInstance.score}`;
-            document.getElementById('player-drawer-count-indicator').innerText = `${runtimeMatchingMediaInstance.episodesCount} Parts`;
+    function renderPlayer(animeId) {
+        const anime = MOCK_ANIME.find(a => a.id === animeId);
+        if (!anime) return;
 
-            // Display genres
-            const genresContainer = document.getElementById('player-genres-tags');
-            genresContainer.innerHTML = runtimeMatchingMediaInstance.genres.map(g => `<span class="anime-tag">${g}</span>`).join('');
+        document.getElementById('playerAnimeTitle').textContent = anime.title;
+        document.getElementById('playerEpisodeDesc').textContent = anime.description;
+        
+        // Embed video player
+        const videoUrl = `https://vidnest.fun/animepahe/${animeId}/1/sub`;
+        document.getElementById('videoPlayer').src = videoUrl;
 
-            synchronizeCinemaInteractiveControlInterfaces(runtimeMatchingMediaInstance);
-            commitPlaybackHistorySequenceTracking(targetTrackingId, activeEpisodeTrackingIndex);
-            synchronizeTrackingHistoryShelfRail();
-            compileDynamicInteractiveEpisodeDrawerGrid(runtimeMatchingMediaInstance.episodesCount);
-            compileDynamicContextualRecommendationsStack(runtimeMatchingMediaInstance.relatedRecommendations);
-            executeIframeTransportPortalLinkage();
+        // Render episodes
+        const grid = document.getElementById('episodeGrid');
+        grid.innerHTML = Array.from({ length: anime.episodes }, (_, i) => `
+            <div class="episode-item ${i === 0 ? 'active' : ''}" onclick="playEpisode(${i + 1})">
+                EP ${i + 1}
+            </div>
+        `).join('');
+
+        document.getElementById('moreShelf').innerHTML = MOCK_ANIME
+            .filter(a => a.id !== animeId)
+            .slice(0, 8)
+            .map(a => createAnimeCard(a))
+            .join('');
+    }
+
+    function playEpisode(episode) {
+        document.getElementById('currentEpisode').textContent = episode;
+        document.querySelectorAll('.episode-item').forEach((el, i) => {
+            el.classList.toggle('active', i === episode - 1);
+        });
+        
+        const videoUrl = `https://vidnest.fun/animepahe/${APP_STATE.activeAnimeId}/${episode}/sub`;
+        document.getElementById('videoPlayer').src = videoUrl;
+    }
+
+    // ==================== EVENT LISTENERS ====================
+    document.getElementById('headerSearch').addEventListener('input', (e) => {
+        if (APP_STATE.currentPage !== 'search') {
+            navigatePage('search');
         }
+        document.getElementById('searchInput').value = e.target.value;
+        searchAnime(e.target.value);
+    });
 
-        function compileDynamicInteractiveEpisodeDrawerGrid(totalEpisodesCount) {
-            const episodeDrawerContainerGrid = document.getElementById('player-drawer-grid-well');
-            episodeDrawerContainerGrid.innerHTML = '';
-            for (let targetIdx = 1; targetIdx <= totalEpisodesCount; targetIdx++) {
-                const isTargetIndexCurrentlySelected = targetIdx === activeEpisodeTrackingIndex;
-                episodeDrawerContainerGrid.innerHTML += `
-                    <button onclick="shiftCinemaEpisodeSpecificTarget(${targetIdx})" class="py-2.5 px-1 rounded-xl font-extrabold text-xs tracking-tight transition-all text-center border cursor-pointer ${isTargetIndexCurrentlySelected ? 'bg-red-600 text-white border-red-600 shadow-xl' : 'bg-zinc-900/50 border-zinc-800/80 text-zinc-400 hover:text-white hover:bg-zinc-800'}">
-                        ${targetIdx < 10 ? '0' + targetIdx : targetIdx}
-                    </button>
-                `;
-            }
-        }
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        searchAnime(e.target.value);
+    });
 
-        function compileDynamicContextualRecommendationsStack(recommendationsDataArray) {
-            const recommendationStackContainer = document.getElementById('player-relational-recommendation-stack');
-            recommendationStackContainer.innerHTML = '';
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            // Filter logic here
+        });
+    });
 
-            if (!recommendationsDataArray || recommendationsDataArray.length === 0) {
-                recommendationStackContainer.innerHTML = `<div class="p-5 border border-zinc-900/80 rounded-2xl text-center text-xs text-zinc-600 font-bold uppercase tracking-widest bg-zinc-950/20">No recommendations</div>`;
-                return;
-            }
+    // ==================== INITIALIZATION ====================
+    function init() {
+        renderShelves();
+        renderContinueWatching();
+        
+        // Set up trending
+        document.getElementById('trendingResults').innerHTML = MOCK_ANIME
+            .slice(0, 8)
+            .map(anime => createAnimeCard(anime))
+            .join('');
 
-            recommendationsDataArray.forEach(recItem => {
-                recommendationStackContainer.innerHTML += `
-                    <div onclick="interceptOrFetchRecommendationTarget(${recItem.id})" class="p-2.5 rounded-xl bg-zinc-900/30 border border-zinc-800/60 flex gap-4 items-center cursor-pointer hover:bg-zinc-900/80 transition-all group shadow-sm">
-                        <img src="${recItem.img}" class="w-10 h-14 object-cover rounded-lg flex-shrink-0 shadow shadow-black">
-                        <div class="space-y-1 min-w-0 flex-1">
-                            <h5 class="text-xs font-bold text-zinc-300 group-hover:text-white transition-colors line-clamp-1">${recItem.title}</h5>
-                            <span class="text-[10px] text-zinc-500 font-extrabold uppercase tracking-wider block"><i class="fa-solid fa-star text-amber-400 text-[8px] mr-0.5"></i>${recItem.score}</span>
-                        </div>
-                    </div>
-                `;
-            });
-        }
+        // Add hero rotation
+        let heroIndex = 0;
+        setInterval(() => {
+            const anime = MOCK_ANIME[heroIndex % MOCK_ANIME.length];
+            document.getElementById('heroTitle').textContent = anime.title;
+            document.getElementById('heroDesc').textContent = anime.description;
+            heroIndex++;
+        }, 10000);
+    }
 
-        async function interceptOrFetchRecommendationTarget(targetRecommendationId) {
-            if (globalSystemCacheMatrix.some(cachedItem => cachedItem.id === targetRecommendationId)) {
-                activateCinemaTheaterSession(targetRecommendationId, 1);
-            } else {
-                const dynamicExtractionBatch = await executeGraphQLMultiBatchQuery([targetRecommendationId]);
-                if (dynamicExtractionBatch.length > 0) {
-                    globalSystemCacheMatrix.push(dynamicExtractionBatch[0]);
-                    activateCinemaTheaterSession(targetRecommendationId, 1);
-                }
-            }
-        }
+    init();
+</script>
 
-        function shiftCinemaEpisodeSpecificTarget(targetEpisodeIndexNumber) {
-            activeEpisodeTrackingIndex = parseInt(targetEpisodeIndexNumber);
-            const currentSelectedMediaObj = globalSystemCacheMatrix.find(item => item.id === activeIdentityTargetId);
-            compileDynamicInteractiveEpisodeDrawerGrid(currentSelectedMediaObj ? currentSelectedMediaObj.episodesCount : 12);
-            commitPlaybackHistorySequenceTracking(activeIdentityTargetId, activeEpisodeTrackingIndex);
-            synchronizeTrackingHistoryShelfRail();
-            synchronizeCinemaInteractiveControlInterfaces(currentSelectedMediaObj);
-            executeIframeTransportPortalLinkage();
-        }
-
-        function switchPlayerAudioTrackLanguage(targetSelectedLanguageMode) {
-            activeAudioFeedLanguageMode = targetSelectedLanguageMode;
-            const currentSelectedMediaObj = globalSystemCacheMatrix.find(item => item.id === activeIdentityTargetId);
-            synchronizeCinemaInteractiveControlInterfaces(currentSelectedMediaObj);
-            executeIframeTransportPortalLinkage();
-        }
-
-        function synchronizeCinemaInteractiveControlInterfaces(associatedMediaInstance) {
-            const feedSubButton = document.getElementById('feed-sub-pill');
-            const feedDubButton = document.getElementById('feed-dub-pill');
-
-            if (activeAudioFeedLanguageMode === 'sub') {
-                feedSubButton.className = "px-4 py-1.5 rounded-lg font-extrabold text-[10px] uppercase transition-all cursor-pointer pill-highlight-active shadow-md";
-                feedDubButton.className = "px-4 py-1.5 rounded-lg font-extrabold text-[10px] uppercase transition-all cursor-pointer text-zinc-500 hover:text-white";
-            } else {
-                feedDubButton.className = "px-4 py-1.5 rounded-lg font-extrabold text-[10px] uppercase transition-all cursor-pointer pill-highlight-active shadow-md";
-                feedSubButton.className = "px-4 py-1.5 rounded-lg font-extrabold text-[10px] uppercase transition-all cursor-pointer text-zinc-500 hover:text-white";
-            }
-
-            const stepBackwardButton = document.getElementById('player-stepping-back-btn');
-            const stepForwardButton = document.getElementById('player-stepping-next-btn');
-            const calculatedTotalMaxEpisodes = associatedMediaInstance ? associatedMediaInstance.episodesCount : 12;
-
-            stepBackwardButton.disabled = activeEpisodeTrackingIndex <= 1;
-            stepForwardButton.disabled = activeEpisodeTrackingIndex >= calculatedTotalMaxEpisodes;
-
-            stepBackwardButton.onclick = () => { if (activeEpisodeTrackingIndex > 1) shiftCinemaEpisodeSpecificTarget(activeEpisodeTrackingIndex - 1); };
-            stepForwardButton.onclick = () => { if (activeEpisodeTrackingIndex < calculatedTotalMaxEpisodes) shiftCinemaEpisodeSpecificTarget(activeEpisodeTrackingIndex + 1); };
-
-            const theaterVaultActionToggleBtn = document.getElementById('player-view-vault-action-toggle');
-            const isSavedInVaultManifest = accessPersistentStorageKey('vault').includes(activeIdentityTargetId);
-            
-            theaterVaultActionToggleBtn.innerHTML = isSavedInVaultManifest ? `<i class="fa-solid fa-check text-green-400 mr-2"></i> In List` : `<i class="fa-solid fa-plus mr-2"></i> Add to List`;
-            theaterVaultActionToggleBtn.onclick = () => { 
-                invertPersistentStorageTokenKey('vault', activeIdentityTargetId); 
-                synchronizeCinemaInteractiveControlInterfaces(associatedMediaInstance);
-                showToast(isSavedInVaultManifest ? 'Removed from My List' : 'Added to My List');
-            };
-        }
-
-        function triggerAutomatedNextTrackAdvance() {
-            const associatedMediaInstance = globalSystemCacheMatrix.find(item => item.id === activeIdentityTargetId);
-            const absoluteMaxCountLimit = associatedMediaInstance ? associatedMediaInstance.episodesCount : 12;
-            if (activeEpisodeTrackingIndex < absoluteMaxCountLimit) {
-                shiftCinemaEpisodeSpecificTarget(activeEpisodeTrackingIndex + 1);
-            }
-        }
-
-        function executeIframeTransportPortalLinkage() {
-            document.getElementById('player-stepping-current-lbl').innerText = `EPISODE ${activeEpisodeTrackingIndex < 10 ? '0' + activeEpisodeTrackingIndex : activeEpisodeTrackingIndex}`;
-            document.getElementById('iframe-embedded-media-portal').src = `https://vidnest.fun/animepahe/${activeIdentityTargetId}/${activeEpisodeTrackingIndex}/${activeAudioFeedLanguageMode}`;
-        }
-
-        function accessPersistentStorageKey(storageEngineTargetKey) {
-            const targetedRawJSONString = localStorage.getItem(`aethokai_ott_${storageEngineTargetKey}`);
-            return targetedRawJSONString ? JSON.parse(targetedRawJSONString) : [];
-        }
-
-        function invertPersistentStorageTokenKey(storageEngineTargetKey, uniqueIdentityToken) {
-            let compiledExtractionArray = accessPersistentStorageKey(storageEngineTargetKey);
-            if (compiledExtractionArray.includes(uniqueIdentityToken)) {
-                compiledExtractionArray = compiledExtractionArray.filter(token => token !== uniqueIdentityToken);
-            } else {
-                compiledExtractionArray.push(uniqueIdentityToken);
-            }
-            localStorage.setItem(`aethokai_ott_${storageEngineTargetKey}`, JSON.stringify(compiledExtractionArray));
-        }
-
-        function commitPlaybackHistorySequenceTracking(mediaId, trackingProgressIndexValue) {
-            let completeTrackingHistoryLogs = accessPersistentStorageKey('history');
-            completeTrackingHistoryLogs = completeTrackingHistoryLogs.filter(record => record.id !== mediaId);
-            completeTrackingHistoryLogs.unshift({ id: mediaId, lastWatchedEpisode: trackingProgressIndexValue });
-            localStorage.setItem('aethokai_ott_history', JSON.stringify(completeTrackingHistoryLogs.slice(0, 15)));
-        }
-
-        function synchronizeTrackingHistoryShelfRail() {
-            const completeTrackingHistoryLogs = accessPersistentStorageKey('history');
-            const structuralHistoryBlockShell = document.getElementById('shelf-row-history-block');
-            const historySliderTargetRow = document.getElementById('shelf-slider-history-row-target');
-
-            if (completeTrackingHistoryLogs.length === 0) {
-                structuralHistoryBlockShell.classList.add('hidden');
-                return;
-            }
-
-            structuralHistoryBlockShell.classList.remove('hidden');
-            historySliderTargetRow.innerHTML = '';
-
-            completeTrackingHistoryLogs.forEach(historyLogNode => {
-                const lookupMediaInstanceMatch = globalSystemCacheMatrix.find(item => item.id === historyLogNode.id);
-                if (lookupMediaInstanceMatch) {
-                    const percentageCalculatedCompletionWidth = (historyLogNode.lastWatchedEpisode / lookupMediaInstanceMatch.episodesCount) * 100;
-                    historySliderTargetRow.innerHTML += `
-                        <div onclick="activateCinemaTheaterSession(${lookupMediaInstanceMatch.id}, ${historyLogNode.lastWatchedEpisode})" class="premium-glass-card min-w-[215px] rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 group relative border border-white/5">
-                            <div class="h-32 bg-cover bg-center" style="background-image: url('${lookupMediaInstanceMatch.banner}')"></div>
-                            <div class="p-3.5 space-y-2 bg-zinc-900/40">
-                                <h5 class="font-bold text-xs text-zinc-300 group-hover:text-white transition-colors line-clamp-1">${lookupMediaInstanceMatch.title}</h5>
-                                <div class="flex items-center justify-between text-[10px] font-extrabold text-zinc-500 uppercase tracking-wider">
-                                    <span>Ep ${historyLogNode.lastWatchedEpisode}/${lookupMediaInstanceMatch.episodesCount}</span>
-                                </div>
-                                <div class="w-full h-1 bg-zinc-800 rounded-full overflow-hidden">
-                                    <div class="bg-red-600 h-full rounded-full" style="width: ${percentageCalculatedCompletionWidth}%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                }
-            });
-        }
-
-        function compilePersonalVaultLibraryGrid() {
-            const verifiedVaultCollectionTokens = accessPersistentStorageKey('vault');
-            const targetVaultGridDestination = document.getElementById('watchlist-view-injection-grid-target');
-            targetVaultGridDestination.innerHTML = '';
-
-            if (verifiedVaultCollectionTokens.length === 0) {
-                targetVaultGridDestination.innerHTML = `
-                    <div class="col-span-full py-20 border border-dashed border-zinc-800 rounded-3xl text-center text-xs text-zinc-600 font-extrabold uppercase tracking-widest bg-zinc-900/5">
-                        Your list is empty. Add anime to get started!
-                    </div>`;
-                return;
-            }
-
-            verifiedVaultCollectionTokens.forEach(tokenId => {
-                const correspondingMediaObjectMatch = globalSystemCacheMatrix.find(item => item.id === tokenId);
-                if (correspondingMediaObjectMatch) {
-                    targetVaultGridDestination.innerHTML += constructNetflixStandardCardTemplate(correspondingMediaObjectMatch, correspondingMediaObjectMatch.score);
-                }
-            });
-        }
-
-        function setupLiveFilteringEngineEvents() {
-            const inputFieldEventAnchor = document.getElementById('global-live-search-input');
-            
-            inputFieldEventAnchor.addEventListener('input', deployDebouncedActionThrottler(async (event) => {
-                const calculatedSearchStringPattern = event.target.value.trim();
-                if (calculatedSearchStringPattern.length < 2) return;
-
-                dispatchViewRoute('search');
-                document.getElementById('search-view-query-lbl').innerText = `Search Results for "${calculatedSearchStringPattern}"`;
-                
-                const searchResultsInjectionGrid = document.getElementById('search-view-injection-grid-target');
-                searchResultsInjectionGrid.innerHTML = `
-                    <div class="col-span-full py-20 text-center text-xs font-bold uppercase tracking-widest text-zinc-500 animate-pulse">
-                        Searching...
-                    </div>`;
-
-                const processedNetworkDataMatches = await executeGraphQLSearchLiveQuery(calculatedSearchStringPattern);
-                
-                if (processedNetworkDataMatches.length === 0) {
-                    searchResultsInjectionGrid.innerHTML = `
-                        <div class="col-span-full py-20 text-center text-xs font-bold uppercase tracking-widest text-zinc-600">
-                            No anime found.
-                        </div>`;
-                    return;
-                }
-
-                searchResultsInjectionGrid.innerHTML = '';
-                processedNetworkDataMatches.forEach(searchResultItem => {
-                    if (!globalSystemCacheMatrix.some(cachedNode => cachedNode.id === searchResultItem.id)) {
-                        globalSystemCacheMatrix.push(searchResultItem);
-                    }
-                    searchResultsInjectionGrid.innerHTML += constructNetflixStandardCardTemplate(searchResultItem, searchResultItem.score);
-                });
-
-            }, 600));
-        }
-
-        function executeGenreFilterPipeline(selectedGenreIdentifierToken) {
-            dispatchViewRoute('search');
-            
-            const targetResultsGrid = document.getElementById('search-view-injection-grid-target');
-            targetResultsGrid.innerHTML = '';
-            
-            let isolatedCategorizedGenreMatches = [];
-            
-            if (selectedGenreIdentifierToken === 'Trending') {
-                document.getElementById('search-view-query-lbl').innerText = "Trending Anime";
-                isolatedCategorizedGenreMatches = [...globalSystemCacheMatrix].slice(0, 12);
-            } else if (selectedGenreIdentifierToken === 'Airing') {
-                document.getElementById('search-view-query-lbl').innerText = "Currently Airing";
-                isolatedCategorizedGenreMatches = globalSystemCacheMatrix.filter(anime => anime.status === 'RELEASING');
-                if (isolatedCategorizedGenreMatches.length === 0) isolatedCategorizedGenreMatches = [...globalSystemCacheMatrix].slice(6, 14);
-            } else {
-                document.getElementById('search-view-query-lbl').innerText = `${selectedGenreIdentifierToken} Anime`;
-                isolatedCategorizedGenreMatches = globalSystemCacheMatrix.filter(anime => anime.genres.includes(selectedGenreIdentifierToken));
-            }
-
-            if (isolatedCategorizedGenreMatches.length === 0) {
-                targetResultsGrid.innerHTML = `
-                    <div class="col-span-full py-20 text-center text-xs font-bold text-zinc-600 uppercase tracking-widest">
-                        No anime in this category.
-                    </div>`;
-                return;
-            }
-
-            isolatedCategorizedGenreMatches.forEach(matchingTrackItem => {
-                targetResultsGrid.innerHTML += constructNetflixStandardCardTemplate(matchingTrackItem, matchingTrackItem.score);
-            });
-        }
-
-        function deployDebouncedActionThrottler(executionCallbackRoutine, structuralDelayDuration) {
-            let systemicTimerReferenceInstance;
-            return function(...passedFunctionalArguments) {
-                clearTimeout(systemicTimerReferenceInstance);
-                systemicTimerReferenceInstance = setTimeout(() => executionCallbackRoutine.apply(this, passedFunctionalArguments), structuralDelayDuration);
-            };
-        }
-    </script>
 </body>
 </html>
