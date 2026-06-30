@@ -3,327 +3,417 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AethoKai - Premium Anime Streaming</title>
+    <title>AethoKai — Premium Cinematic Stream Platform</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #0b071e;
-            overflow-x: hidden;
+        :root {
+            --ios-blur: blur(30px) saturate(210%);
+            --glass-bg: rgba(10, 10, 12, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --accent-glow: rgba(139, 92, 246, 0.15);
         }
 
-        /* --- Liquid Flowing Background Effect --- */
-        .liquid-bg {
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #040406;
+            overflow-x: hidden;
+            color: #f3f4f6;
+        }
+
+        /* --- Dynamic Interactive Liquid Canvas Base --- */
+        .liquid-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #13092e 0%, #06030d 100%);
+            z-index: -2;
+            background: linear-gradient(180deg, #050508 0%, #0c0a12 100%);
             overflow: hidden;
         }
-        .blob {
+        .liquid-fluid-blob {
             position: absolute;
-            background: linear-gradient(135deg, #7c3aed 0%, #c084fc 100%);
+            background: linear-gradient(145deg, #5b21b6 0%, #a855f7 50%, #4c1d95 100%);
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.45;
-            animation: float-liquid 16s infinite alternate ease-in-out;
+            filter: blur(120px);
+            opacity: 0.38;
+            mix-blend-mode: screen;
+            animation: fluidic-movement 22s infinite alternate ease-in-out;
         }
-        .blob-1 { width: 500px; height: 500px; top: -10%; left: -10%; animation-duration: 14s; }
-        .blob-2 { width: 600px; height: 600px; bottom: -20%; right: -10%; animation-duration: 18s; background: linear-gradient(135deg, #4c1d95 0%, #9333ea 100%); }
-        .blob-3 { width: 400px; height: 400px; top: 40%; left: 50%; animation-duration: 12s; background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); }
+        .blob-alpha { width: 700px; height: 700px; top: -15%; left: -10%; animation-duration: 18s; }
+        .blob-beta { width: 850px; height: 850px; bottom: -25%; right: -15%; animation-duration: 26s; background: linear-gradient(135deg, #2e1065 0%, #6d28d9 100%); }
+        .blob-gamma { width: 550px; height: 550px; top: 35%; left: 40%; animation-duration: 20s; background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 100%); opacity: 0.25; }
 
-        @keyframes float-liquid {
-            0% { transform: translate(0, 0) scale(1) rotate(0deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 55%; }
-            50% { transform: translate(80px, 60px) scale(1.1) rotate(180deg); border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%; }
-            100% { transform: translate(-40px, -20px) scale(0.9) rotate(360deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 55%; }
-        }
-
-        /* --- Premium Glossy Glassmorphism Panels --- */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(24px) saturate(160%);
-            -webkit-backdrop-filter: blur(24px) saturate(160%);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        @keyframes fluidic-movement {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+            50% { transform: translate(90px, 80px) scale(1.15) rotate(140deg); border-radius: 70% 30% 52% 48% / 30% 65% 35% 70%; }
+            100% { transform: translate(-50px, -40px) scale(0.95) rotate(280deg); border-radius: 48% 52% 65% 35% / 50% 40% 60% 50%; }
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        /* --- iOS-Inspired Glossy Glassmorphism Engine --- */
+        .premium-glossy-base {
+            background: var(--glass-bg);
+            backdrop-filter: var(--ios-blur);
+            -webkit-backdrop-filter: var(--ios-blur);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.7);
         }
-        .glass-card:hover {
-            transform: translateY(-6px) scale(1.03);
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(167, 139, 250, 0.4);
-            box-shadow: 0 12px 24px rgba(124, 58, 237, 0.2);
+        .premium-glass-panel {
+            background: rgba(18, 18, 22, 0.5);
+            backdrop-filter: var(--ios-blur);
+            -webkit-backdrop-filter: var(--ios-blur);
+            border: 1px solid var(--glass-border);
+        }
+        .premium-glass-card {
+            background: rgba(255, 255, 255, 0.015);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.5s cubic-bezier(0.15, 0.85, 0.35, 1);
+        }
+        .premium-glass-card:hover {
+            transform: translateY(-8px) scale(1.025);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(168, 85, 247, 0.35);
+            box-shadow: 0 20px 40px -10px var(--accent-glow);
         }
 
+        /* Interactive Scroll Control UI styling */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .custom-scrollbar::-webkit-scrollbar { width: 5px; height: 5px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(168, 85, 247, 0.4); }
+
+        .ios-active-pill {
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            color: #040406 !important;
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+        }
     </style>
 </head>
-<body class="text-gray-100 min-h-screen">
+<body class="antialiased selection:bg-purple-500 selection:text-white">
 
-    <div class="liquid-bg">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
+    <div class="liquid-canvas">
+        <div class="liquid-fluid-blob blob-alpha"></div>
+        <div class="liquid-fluid-blob blob-beta"></div>
+        <div class="liquid-fluid-blob blob-gamma"></div>
+        <div class="absolute inset-0 bg-black/40 z-[-1]"></div>
     </div>
 
-    <div id="welcome-gate" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-6 bg-black/40 backdrop-blur-sm transition-all duration-1000">
-        <div class="glass-panel max-w-md w-full p-8 rounded-3xl text-center space-y-6 transform translate-y-0 transition-transform duration-700">
-            <div class="w-20 h-20 bg-gradient-to-tr from-purple-600 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto shadow-lg shadow-purple-500/20">
-                <i class="fa-solid fa-wand-magic-sparkles text-3xl text-white"></i>
+    <div id="welcome-gate" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md transition-all duration-1000 ease-in-out">
+        <div class="premium-glossy-base max-w-lg w-full p-10 rounded-[2.5rem] text-center space-y-8 border-white/10 relative overflow-hidden group">
+            <div class="absolute -top-12 -left-12 w-40 h-40 bg-purple-600/10 blur-2xl rounded-full"></div>
+            <div class="absolute -bottom-12 -right-12 w-40 h-40 bg-indigo-600/10 blur-2xl rounded-full"></div>
+            
+            <div class="w-24 h-24 bg-gradient-to-br from-neutral-800 to-neutral-950 rounded-[2rem] flex items-center justify-center mx-auto shadow-2xl border border-white/10 relative">
+                <i class="fa-solid fa-play text-4xl text-purple-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]"></i>
+                <div class="absolute inset-0 border border-purple-500/30 rounded-[2rem] animate-pulse"></div>
             </div>
-            <div>
-                <h1 class="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">AethoKai</h1>
-                <p class="text-sm text-purple-200/60 mt-2">Live AniList Stream Architecture</p>
+            
+            <div class="space-y-2">
+                <h1 class="text-5xl font-black tracking-tight bg-gradient-to-b from-white via-neutral-200 to-neutral-400 bg-clip-text text-transparent">AethoKai</h1>
+                <p class="text-xs font-semibold tracking-widest uppercase text-purple-400/80">Premium Entertainment Architecture</p>
             </div>
-            <p class="text-gray-300 text-sm leading-relaxed">
-                Step inside an adaptive streaming architecture layered below high-fidelity glass surfaces. Powered by real-time AniList identity syncing.
+            
+            <p class="text-neutral-400 text-sm leading-relaxed max-w-sm mx-auto">
+                Experience ultra-fluid transitions structured over high-fidelity glass surfaces. Fully tied to live AniList databases and decoupled stream servers.
             </p>
-            <button onclick="triggerIntro()" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 font-bold tracking-wide shadow-lg shadow-purple-600/30 transition-all duration-300 transform active:scale-98 cursor-pointer">
-                ENTER PLATFORM
+            
+            <button onclick="transitionToIntro()" class="w-full py-4.5 px-6 rounded-2xl bg-gradient-to-r from-neutral-100 to-neutral-300 hover:from-white hover:to-neutral-100 text-neutral-950 font-bold tracking-wide shadow-xl transition-all duration-300 transform active:scale-[0.98] cursor-pointer">
+                LAUNCH ENGINE
             </button>
         </div>
     </div>
 
-    <div id="intro-screen" class="fixed inset-0 z-40 hidden flex items-center justify-center bg-[#070414] transition-opacity duration-1000 opacity-0">
-        <div class="text-center space-y-4">
-            <h2 id="intro-logo" class="text-6xl font-black tracking-widest text-white uppercase scale-75 opacity-0 transition-all duration-1000 ease-out">
-                Aetho<span class="text-purple-500">Kai</span>
-            </h2>
-            <div class="w-48 h-1 bg-purple-900/40 rounded-full mx-auto overflow-hidden relative">
-                <div class="absolute inset-y-0 left-0 bg-gradient-to-r from-purple-500 to-indigo-400 w-full transform -translate-x-full transition-transform duration-[2200ms]" id="intro-progress"></div>
+    <div id="intro-screen" class="fixed inset-0 z-40 hidden flex flex-col items-center justify-center bg-[#030305] transition-opacity duration-1000 opacity-0">
+        <div class="text-center space-y-6 max-w-md px-6">
+            <div class="overflow-hidden">
+                <h2 id="intro-logo" class="text-6xl font-black tracking-tighter text-white translate-y-full transition-transform duration-1000 ease-out">
+                    ÆTHO<span class="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">KAI</span>
+                </h2>
             </div>
-            <p id="loading-status" class="text-xs text-purple-400/60 tracking-wider">Syncing metadata from AniList...</p>
+            <div class="w-64 h-[2px] bg-neutral-900 rounded-full mx-auto overflow-hidden relative">
+                <div id="intro-progress" class="absolute inset-y-0 left-0 bg-gradient-to-r from-purple-500 via-indigo-500 to-purple-400 w-full transform -translate-x-full transition-transform duration-[2500ms] ease-out"></div>
+            </div>
+            <p id="loading-status" class="text-[11px] font-medium text-neutral-500 tracking-widest uppercase animate-pulse">Initializing pipeline layers...</p>
         </div>
     </div>
 
-    <div id="app-content" class="hidden opacity-0 transition-opacity duration-1000 max-w-[1600px] mx-auto p-4 md:p-8 pb-32">
+    <div id="app-content" class="hidden opacity-0 transition-opacity duration-1000 max-w-[1680px] mx-auto p-4 md:p-8 pb-36">
         
-        <header class="glass-panel w-full p-4 md:px-8 rounded-2xl flex items-center justify-between mb-8 sticky top-4 z-30">
-            <div class="flex items-center gap-3 cursor-pointer" onclick="showDashboard()">
-                <div class="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center font-black text-xl shadow-md">Æ</div>
-                <span class="text-2xl font-black tracking-wider bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">AethoKai</span>
+        <header class="premium-glass-panel w-full px-6 py-4 md:px-10 rounded-[2rem] flex items-center justify-between mb-8 sticky top-4 z-30 shadow-xl border-white/5">
+            <div class="flex items-center gap-4 cursor-pointer group" onclick="switchRoutingView('dashboard')">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-b from-neutral-800 to-neutral-950 flex items-center justify-center font-black text-xl border border-white/10 group-hover:border-purple-500/40 transition-colors">Æ</div>
+                <span class="text-2xl font-black tracking-tighter bg-gradient-to-r from-white via-neutral-200 to-neutral-400 bg-clip-text text-transparent">AethoKai</span>
             </div>
-            <div class="hidden md:flex items-center gap-1">
-                <button class="px-4 py-2 rounded-lg bg-white/10 text-white font-semibold text-sm">All</button>
-                <button class="px-4 py-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white font-semibold text-sm transition-colors">Action</button>
-                <button class="px-4 py-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white font-semibold text-sm transition-colors">Fantasy</button>
-                <button class="px-4 py-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white font-semibold text-sm transition-colors">Romance</button>
-                <button class="px-4 py-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white font-semibold text-sm transition-colors">Isekai</button>
+
+            <div class="hidden xl:flex items-center gap-1.5 bg-black/40 p-1.5 rounded-xl border border-white/5">
+                <button onclick="filterGenre('All', this)" class="px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ios-active-pill">All</button>
+                <button onclick="filterGenre('Action', this)" class="px-4 py-2 rounded-lg text-sm font-semibold text-neutral-400 hover:text-white transition-all cursor-pointer">Action</button>
+                <button onclick="filterGenre('Fantasy', this)" class="px-4 py-2 rounded-lg text-sm font-semibold text-neutral-400 hover:text-white transition-all cursor-pointer">Fantasy</button>
+                <button onclick="filterGenre('Romance', this)" class="px-4 py-2 rounded-lg text-sm font-semibold text-neutral-400 hover:text-white transition-all cursor-pointer">Romance</button>
+                <button onclick="filterGenre('Isekai', this)" class="px-4 py-2 rounded-lg text-sm font-semibold text-neutral-400 hover:text-white transition-all cursor-pointer">Isekai</button>
+                <button onclick="filterGenre('Comedy', this)" class="px-4 py-2 rounded-lg text-sm font-semibold text-neutral-400 hover:text-white transition-all cursor-pointer">Comedy</button>
             </div>
+
             <div class="flex items-center gap-4">
-                <div class="relative hidden sm:block">
-                    <input type="text" placeholder="Search anime..." class="w-64 bg-black/30 border border-white/10 rounded-xl py-2 pl-10 pr-4 text-sm focus:outline-none focus:border-purple-500 transition-colors">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-500 text-xs"></i>
+                <div class="relative hidden md:block w-72">
+                    <input type="text" id="header-search-input" placeholder="Search titles, directors, genres..." class="w-full bg-black/40 border border-white/5 rounded-2xl py-2.5 pl-11 pr-4 text-xs font-medium focus:outline-none focus:border-purple-500 focus:bg-black/80 transition-all text-neutral-200 placeholder-neutral-500">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-neutral-500 text-xs"></i>
                 </div>
-                <div class="w-10 h-10 rounded-xl border border-white/10 overflow-hidden cursor-pointer bg-purple-900/40 flex items-center justify-center">
-                    <i class="fa-solid fa-user text-sm"></i>
+
+                <div onclick="switchRoutingView('profile')" class="w-11 h-11 rounded-2xl border border-white/10 overflow-hidden cursor-pointer bg-neutral-900/60 flex items-center justify-center hover:border-white/30 transition-all">
+                    <i class="fa-solid fa-user-ninja text-neutral-400 text-sm"></i>
                 </div>
             </div>
         </header>
 
-        <main id="dashboard-view" class="space-y-12">
+        <div id="view-dashboard" class="space-y-14 transition-all duration-500">
             
-            <section id="hero-banner" class="relative w-full h-[480px] rounded-3xl overflow-hidden glass-panel group">
-                <div id="hero-bg" class="absolute inset-0 bg-cover bg-center transition-all duration-700 scale-100 group-hover:scale-102"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0b071e] via-[#0b071e]/50 to-transparent"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-[#0b071e] via-[#0b071e]/20 to-transparent"></div>
+            <section class="relative w-full h-[520px] rounded-[2.5rem] overflow-hidden premium-glass-panel group shadow-2xl border-white/5">
+                <div id="hero-banner-image" class="absolute inset-0 bg-cover bg-center transition-all duration-1000 scale-100 group-hover:scale-[1.015] blur-none"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#040406] via-[#040406]/40 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-[#040406] via-[#040406]/10 to-transparent"></div>
                 
-                <div class="absolute bottom-0 left-0 p-6 md:p-12 max-w-2xl space-y-4">
-                    <span class="px-3 py-1 bg-purple-600 text-xs font-bold rounded-md tracking-widest uppercase">FEATURED SPOTLIGHT</span>
-                    <h2 id="hero-title" class="text-4xl md:text-6xl font-black tracking-tight leading-none">Loading...</h2>
-                    <p id="hero-desc" class="text-gray-300 text-sm md:text-base leading-relaxed line-clamp-3 opacity-90"></p>
-                    <div class="flex items-center gap-4 pt-2">
-                        <button id="hero-play-btn" class="px-6 py-3 bg-white text-black font-bold rounded-xl flex items-center gap-2 hover:bg-purple-200 transition-colors cursor-pointer shadow-lg shadow-white/10">
-                            <i class="fa-solid fa-play"></i> Watch Now
+                <div class="absolute bottom-0 left-0 p-8 md:p-14 max-w-3xl space-y-5 z-10">
+                    <div class="flex items-center gap-2">
+                        <span class="px-3 py-1 bg-purple-600/80 backdrop-blur-md text-[10px] font-bold rounded-md tracking-widest uppercase text-white border border-purple-400/20">FEATURED MASTERPIECE</span>
+                        <span id="hero-meta-score" class="text-xs text-amber-400 font-semibold flex items-center gap-1"><i class="fa-solid fa-star"></i> 9.2</span>
+                    </div>
+                    <h2 id="hero-meta-title" class="text-4xl md:text-6xl font-black tracking-tighter leading-none text-white">Loading Title...</h2>
+                    <p id="hero-meta-desc" class="text-neutral-300 text-xs md:text-sm leading-relaxed line-clamp-3 font-medium opacity-90"></p>
+                    
+                    <div class="flex items-center gap-4 pt-3">
+                        <button id="hero-cta-play" class="px-8 py-3.5 bg-white text-black font-bold rounded-xl flex items-center gap-2.5 hover:bg-neutral-200 transition-all cursor-pointer shadow-lg active:scale-[0.98]">
+                            <i class="fa-solid fa-play text-xs"></i> Stream Episode 1
+                        </button>
+                        <button id="hero-cta-list" class="p-3.5 premium-glass-panel hover:bg-white/10 rounded-xl transition-all cursor-pointer border-white/10">
+                            <i class="fa-solid fa-plus text-sm"></i>
                         </button>
                     </div>
                 </div>
+
+                <div class="absolute right-8 bottom-8 flex gap-2 z-10">
+                    <button onclick="cycleHeroBanner(-1)" class="w-10 h-10 rounded-lg premium-glass-panel flex items-center justify-center hover:bg-white/10 border-white/10 cursor-pointer text-xs"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button onclick="cycleHeroBanner(1)" class="w-10 h-10 rounded-lg premium-glass-panel flex items-center justify-center hover:bg-white/10 border-white/10 cursor-pointer text-xs"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
             </section>
 
-            <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar py-2 border-b border-white/5 text-sm font-semibold text-gray-400">
-                <button class="px-4 py-1 text-purple-400 border-b-2 border-purple-500 whitespace-nowrap">Currently Airing</button>
-                <button class="px-4 py-1 hover:text-white transition-colors whitespace-nowrap">Today's Episodes</button>
-                <button class="px-4 py-1 hover:text-white transition-colors whitespace-nowrap">Tomorrow's Schedule</button>
-                <button class="px-4 py-1 hover:text-white transition-colors whitespace-nowrap">Recently Released</button>
-                <button class="px-4 py-1 hover:text-white transition-colors whitespace-nowrap">Upcoming Episodes</button>
-            </div>
-
-            <div class="space-y-10">
-                <div class="space-y-4">
-                    <h3 class="text-xl font-bold tracking-wide flex items-center gap-2">
-                        <span class="w-1.5 h-5 bg-purple-500 rounded-full"></span>Continue Watching
-                    </h3>
-                    <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-4" id="row-continue"></div>
-                </div>
-
-                <div class="space-y-4">
-                    <h3 class="text-xl font-bold tracking-wide flex items-center gap-2">
-                        <span class="w-1.5 h-5 bg-purple-500 rounded-full"></span>Trending Anime
-                    </h3>
-                    <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-4" id="row-trending"></div>
-                </div>
-
-                <div class="space-y-4">
-                    <h3 class="text-xl font-bold tracking-wide flex items-center gap-2">
-                        <span class="w-1.5 h-5 bg-purple-500 rounded-full"></span>New Episodes
-                    </h3>
-                    <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-4" id="row-new"></div>
-                </div>
-            </div>
-        </main>
-
-        <main id="player-view" class="hidden space-y-6">
-            <button onclick="showDashboard()" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-sm font-medium transition-colors cursor-pointer border border-white/5">
-                <i class="fa-solid fa-arrow-left"></i> Back to Hub
-            </button>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="lg:col-span-2 space-y-4">
-                    <div class="glass-panel w-full aspect-video rounded-3xl overflow-hidden relative shadow-2xl bg-black">
-                        <iframe id="video-embed" src="" class="w-full h-full" frameborder="0" scrolling="no" allowfullscreen></iframe>
-                    </div>
-
-                    <div class="glass-panel p-4 rounded-2xl flex flex-wrap items-center justify-between gap-4 text-sm">
-                        <div class="flex items-center gap-2">
-                            <span class="text-gray-400 font-medium">Server:</span>
-                            <button id="btn-srv1" onclick="setServer('sub')" class="px-3 py-1.5 rounded-lg font-bold bg-purple-600 text-white transition-colors cursor-pointer">Server 1 (Sub)</button>
-                            <button id="btn-srv2" onclick="setServer('dub')" class="px-3 py-1.5 rounded-lg font-bold bg-white/5 text-gray-400 hover:bg-white/10 transition-colors cursor-pointer">Server 2 (Dub)</button>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button id="btn-prev-ep" class="p-2 px-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"><i class="fa-solid fa-backward-step"></i></button>
-                            <span id="current-ep-display" class="font-semibold px-2">Episode 1</span>
-                            <button id="btn-next-ep" class="p-2 px-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"><i class="fa-solid fa-forward-step"></i></button>
-                        </div>
+            <div class="space-y-4">
+                <div class="flex items-center justify-between border-b border-white/5 pb-2">
+                    <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar text-xs font-bold tracking-wide text-neutral-400" id="schedule-sub-menu">
+                        <button onclick="toggleScheduleTab('airing', this)" class="px-4 py-2 text-purple-400 border-b-2 border-purple-400 whitespace-nowrap cursor-pointer">Currently Airing</button>
+                        <button onclick="toggleScheduleTab('today', this)" class="px-4 py-2 hover:text-white transition-colors whitespace-nowrap cursor-pointer">Today's Episodes</button>
+                        <button onclick="toggleScheduleTab('tomorrow', this)" class="px-4 py-2 hover:text-white transition-colors whitespace-nowrap cursor-pointer">Tomorrow's Schedule</button>
+                        <button onclick="toggleScheduleTab('recent', this)" class="px-4 py-2 hover:text-white transition-colors whitespace-nowrap cursor-pointer">Recently Released</button>
+                        <button onclick="toggleScheduleTab('upcoming', this)" class="px-4 py-2 hover:text-white transition-colors whitespace-nowrap cursor-pointer">Upcoming Episodes</button>
                     </div>
                 </div>
+                <div id="schedule-tab-content" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 text-xs text-neutral-400 hidden p-2 rounded-xl bg-neutral-900/20 border border-white/5">
+                    </div>
+            </div>
+
+            <div class="space-y-12" id="dashboard-rows-container">
+                <div class="space-y-4 hidden" id="wrapper-continue">
+                    <h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white">
+                        <span class="w-1 h-4 bg-purple-500 rounded-full"></span>Continue Watching
+                    </h3>
+                    <div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-continue"></div>
+                </div>
 
                 <div class="space-y-4">
-                    <div class="glass-panel p-6 rounded-3xl space-y-4">
-                        <div class="space-y-1">
-                            <span id="player-status" class="text-xs font-bold text-purple-400 uppercase tracking-widest">AIRING</span>
-                            <h2 id="player-title" class="text-2xl font-extrabold tracking-tight">Anime Title</h2>
+                    <h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white">
+                        <span class="w-1 h-4 bg-purple-500 rounded-full"></span>Trending Anime
+                    </h3>
+                    <div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-trending"></div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white">
+                        <span class="w-1 h-4 bg-purple-500 rounded-full"></span>Top 10 Masterpieces
+                    </h3>
+                    <div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-top10"></div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white">
+                        <span class="w-1 h-4 bg-purple-500 rounded-full"></span>New Episodes
+                    </h3>
+                    <div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-new"></div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white">
+                        <span class="w-1 h-4 bg-purple-500 rounded-full"></span>Popular Movies
+                    </h3>
+                    <div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-movies"></div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white">
+                        <span class="w-1 h-4 bg-purple-500 rounded-full"></span>Recommended For You
+                    </h3>
+                    <div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-recommended"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-player" class="hidden space-y-6 transition-all duration-500">
+            <div class="flex items-center justify-between">
+                <button onclick="switchRoutingView('dashboard')" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-semibold tracking-wide transition-all cursor-pointer border border-white/5">
+                    <i class="fa-solid fa-chevron-left text-[10px]"></i> Close Cinema Player
+                </button>
+                <div class="flex items-center gap-2">
+                    <button id="player-watchlist-toggle" class="p-3 bg-white/5 border border-white/5 rounded-xl text-xs font-bold hover:bg-white/10 transition-colors cursor-pointer"></button>
+                    <button id="player-favorite-toggle" class="p-3 bg-white/5 border border-white/5 rounded-xl text-xs font-bold hover:bg-white/10 transition-colors cursor-pointer"></button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 items-start">
+                
+                <div class="xl:col-span-2 space-y-4">
+                    <div class="premium-glass-panel w-full aspect-video rounded-[2rem] overflow-hidden relative shadow-2xl bg-black border border-white/5">
+                        <iframe id="main-video-iframe" src="" class="w-full h-full object-cover" frameborder="0" scrolling="no" allowfullscreen></iframe>
+                    </div>
+
+                    <div class="premium-glass-panel p-4 rounded-2xl flex flex-wrap items-center justify-between gap-4 text-xs border-white/5">
+                        <div class="flex items-center gap-3">
+                            <div class="flex bg-black/40 p-1 rounded-xl border border-white/5" id="server-selector-container">
+                                <button id="srv-sub-btn" onclick="toggleServerMapping('sub')" class="px-3.5 py-1.5 rounded-lg font-bold text-[11px] uppercase transition-all cursor-pointer">Server 1 (Sub)</button>
+                                <button id="srv-dub-btn" onclick="toggleServerMapping('dub')" class="px-3.5 py-1.5 rounded-lg font-bold text-[11px] uppercase transition-all cursor-pointer">Server 2 (Dub)</button>
+                            </div>
                         </div>
-                        <div class="flex flex-wrap gap-2 text-xs" id="player-genres"></div>
-                        <p id="player-desc" class="text-sm text-gray-400 leading-relaxed line-clamp-4"></p>
+
+                        <div class="flex items-center gap-4">
+                            <button id="control-prev-btn" class="w-9 h-9 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 transition-all border border-white/5 disabled:opacity-20 cursor-pointer"><i class="fa-solid fa-step-backward"></i></button>
+                            <span id="control-track-display" class="font-bold uppercase tracking-wider text-neutral-300 text-[11px]">Episode --</span>
+                            <button id="control-next-btn" class="w-9 h-9 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 transition-all border border-white/5 disabled:opacity-20 cursor-pointer"><i class="fa-solid fa-step-forward"></i></button>
+                        </div>
+
+                        <div class="flex items-center gap-4 text-neutral-400 font-semibold">
+                            <label class="flex items-center gap-2 cursor-pointer select-none">
+                                <input type="checkbox" id="cfg-auto-next" checked class="accent-purple-500 rounded"> Auto Next
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="premium-glass-panel p-6 rounded-[2rem] space-y-5 border-white/5">
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <span id="meta-player-status" class="px-2 py-0.5 bg-purple-950/60 border border-purple-500/30 text-[9px] font-bold rounded text-purple-300 tracking-widest uppercase">AIRING</span>
+                                <span id="meta-player-season" class="text-[10px] text-neutral-500 font-bold uppercase tracking-wider">Season 1</span>
+                            </div>
+                            <h3 id="meta-player-title" class="text-xl font-extrabold tracking-tight text-white line-clamp-2">Anime Title Container</h3>
+                        </div>
+
+                        <div class="flex flex-wrap gap-1.5 text-[10px]" id="meta-player-genres"></div>
+                        <p id="meta-player-desc" class="text-xs text-neutral-400 leading-relaxed line-clamp-4 font-medium"></p>
+                        
                         <hr class="border-white/5">
-                        <div>
-                            <h4 class="text-sm font-bold text-gray-300 mb-3">Episodes Selection</h4>
-                            <div class="grid grid-cols-4 sm:grid-cols-5 gap-2 max-h-48 overflow-y-auto pr-1 hide-scrollbar" id="episode-grid"></div>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-xs font-bold tracking-wider uppercase text-neutral-300">Episodes Collection</h4>
+                                <span id="episode-drawer-counter" class="text-[10px] font-medium text-neutral-500">-- / --</span>
+                            </div>
+                            <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 xl:grid-cols-4 gap-2 max-h-52 overflow-y-auto pr-1 custom-scrollbar" id="player-episode-drawer">
+                                </div>
                         </div>
                     </div>
+
+                    <div class="space-y-3">
+                        <h4 class="text-xs font-bold tracking-wider uppercase text-neutral-400 px-1">Related Masterpieces</h4>
+                        <div class="grid grid-cols-1 gap-3" id="player-context-recommendations">
+                            </div>
+                    </div>
+
                 </div>
             </div>
-        </main>
+        </div>
+
+        <div id="view-search" class="hidden space-y-6 transition-all duration-500">
+            <div class="space-y-1">
+                <h3 class="text-2xl font-black tracking-tight text-white">Global Search Matrix</h3>
+                <p class="text-xs text-neutral-400">Querying real-time AniList servers across thousands of synchronized media tracks.</p>
+            </div>
+            
+            <div class="relative w-full max-w-2xl">
+                <input type="text" id="dedicated-search-field" placeholder="Type name, studio, or trope keyword..." class="w-full bg-neutral-900/40 premium-glass-panel rounded-2xl py-4 pl-14 pr-6 text-sm font-medium focus:outline-none focus:border-purple-500 transition-all text-neutral-200">
+                <i class="fa-solid fa-magnifying-glass absolute left-5 top-4.5 text-neutral-400 text-base"></i>
+            </div>
+
+            <div id="search-results-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 pt-4">
+                <div class="col-span-full py-12 text-center text-neutral-500 text-xs font-medium uppercase tracking-wider">Enter characters to populate records matrix</div>
+            </div>
+        </div>
+
+        <div id="view-profile" class="hidden space-y-10 transition-all duration-500">
+            <div class="premium-glass-panel p-8 rounded-[2.5rem] flex flex-col sm:flex-row items-center gap-6 border-white/5">
+                <div class="w-24 h-24 bg-gradient-to-tr from-purple-600 via-indigo-600 to-purple-400 rounded-[2rem] flex items-center justify-center text-3xl font-black shadow-xl">Æ</div>
+                <div class="space-y-1 text-center sm:text-left">
+                    <h3 class="text-3xl font-black tracking-tight text-white">Operator Core UI</h3>
+                    <p class="text-xs text-purple-400 font-semibold tracking-wider uppercase">Tier: Grandmaster Archivist</p>
+                    <p class="text-xs text-neutral-500 pt-1 font-medium">Platform Schema Identity Tracker — Localized Mode</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
+                <div class="space-y-4">
+                    <h4 class="text-base font-bold tracking-tight text-white flex items-center gap-2"><i class="fa-solid fa-bookmark text-purple-400 text-xs"></i> My Watch List</h4>
+                    <div id="profile-watchlist-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-base font-bold tracking-tight text-white flex items-center gap-2"><i class="fa-solid fa-heart text-pink-400 text-xs"></i> Bookmarked Favorites</h4>
+                    <div id="profile-favorites-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 glass-panel px-6 py-3.5 rounded-full flex items-center gap-8 shadow-2xl shadow-purple-950/40 border-white/10">
-        <button onclick="showDashboard()" class="flex flex-col items-center gap-1 text-purple-400 group cursor-pointer">
-            <i class="fa-solid fa-house text-lg transition-transform group-hover:scale-110"></i>
-            <span class="text-[10px] font-bold tracking-wide">Home</span>
+    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 premium-glossy-base px-8 py-4 rounded-full flex items-center gap-10 shadow-3xl border-white/10" id="floating-ios-nav">
+        <button onclick="switchRoutingView('dashboard', this)" class="flex flex-col items-center gap-1 text-purple-400 group cursor-pointer transition-transform duration-300">
+            <i class="fa-solid fa-house text-lg transform group-hover:scale-110 transition-transform"></i>
+            <span class="text-[9px] font-extrabold tracking-widest uppercase">Home</span>
         </button>
-        <button class="flex flex-col items-center gap-1 text-gray-400 hover:text-white group transition-colors cursor-pointer">
-            <i class="fa-solid fa-fire text-lg transition-transform group-hover:scale-110"></i>
-            <span class="text-[10px] font-bold tracking-wide">Trending</span>
+        <button onclick="switchRoutingView('dashboard', this); setTimeout(()=>window.scrollTo({top: document.getElementById('slider-trending').offsetTop - 120, behavior:'smooth'}), 100);" class="flex flex-col items-center gap-1 text-neutral-400 hover:text-white group cursor-pointer transition-transform duration-300">
+            <i class="fa-solid fa-fire text-lg transform group-hover:scale-110 transition-transform"></i>
+            <span class="text-[9px] font-extrabold tracking-widest uppercase">Trending</span>
         </button>
-        <button class="flex flex-col items-center gap-1 text-gray-400 hover:text-white group transition-colors cursor-pointer">
-            <i class="fa-solid fa-tv text-lg transition-transform group-hover:scale-110"></i>
-            <span class="text-[10px] font-bold tracking-wide">Airing</span>
+        <button onclick="switchRoutingView('search', this)" class="flex flex-col items-center gap-1 text-neutral-400 hover:text-white group cursor-pointer transition-transform duration-300">
+            <i class="fa-solid fa-magnifying-glass text-lg transform group-hover:scale-110 transition-transform"></i>
+            <span class="text-[9px] font-extrabold tracking-widest uppercase">Search</span>
         </button>
-        <button class="flex flex-col items-center gap-1 text-gray-400 hover:text-white group transition-colors cursor-pointer">
-            <i class="fa-solid fa-heart text-lg transition-transform group-hover:scale-110"></i>
-            <span class="text-[10px] font-bold tracking-wide">My List</span>
+        <button onclick="switchRoutingView('profile', this)" class="flex flex-col items-center gap-1 text-neutral-400 hover:text-white group cursor-pointer transition-transform duration-300">
+            <i class="fa-solid fa-folder-open text-lg transform group-hover:scale-110 transition-transform"></i>
+            <span class="text-[9px] font-extrabold tracking-widest uppercase">My List</span>
         </button>
     </nav>
 
+
     <script>
-        // Array of targeting AniList IDs
-        const targetIds = [16498, 153518, 101922, 154587, 21, 140960, 166873];
-        let animeCatalog = [];
+        // Structural targeting identities configuration setup
+        const primaryQueryIds = [16498, 153518, 101922, 154587, 21, 140960, 166873, 113415, 171018, 142838];
+        let masterCatalog = [];
+        let heroIndex = 0;
 
-        let activeId = 16498;
-        let activeEpisode = 1;
-        let activeServerMode = 'sub';
+        // Current runtime application pointers
+        let runtimeActiveId = 16498;
+        let runtimeActiveEpisode = 1;
+        let runtimeActiveServer = 'sub';
 
-        // Fetch Data Directly from official AniList GraphQL Endpoint
-        async function fetchAniListMetadata(ids) {
-            const query = `
-                query ($ids: [Int]) {
-                    Page {
-                        media(id_in: $ids, type: ANIME) {
-                            id
-                            title {
-                                english
-                                romaji
-                            }
-                            coverImage {
-                                extraLarge
-                                large
-                            }
-                            bannerImage
-                            description
-                            genres
-                            episodes
-                            status
-                            averageScore
-                        }
-                    }
-                }
-            `;
-
-            try {
-                const response = await fetch('https://graphql.anilist.co', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        query: query,
-                        variables: { ids: ids }
-                    })
-                });
-                
-                const json = await response.json();
-                return json.data.Page.media.map(item => ({
-                    id: item.id,
-                    title: item.title.english || item.title.romaji,
-                    img: item.coverImage.extraLarge || item.coverImage.large,
-                    banner: item.bannerImage || item.coverImage.extraLarge,
-                    desc: cleanDescription(item.description),
-                    genres: item.genres,
-                    epCount: item.episodes || 12,
-                    status: item.status,
-                    score: item.averageScore || '80'
-                }));
-            } catch (error) {
-                console.error("Failed fetching data from AniList API:", error);
-                return [];
-            }
-        }
-
-        // Helper tool to strip unwanted HTML tags from AniList description notes
-        function cleanDescription(html) {
-            if (!html) return "No description available.";
-            return html.replace(/<\/?[^>]+(>|$)/g, "");
-        }
-
-        // Screen Sequential Management
-        async function triggerIntro() {
+        // Direct Execution Entrypoint via Engine Launch Action
+        async function transitionToIntro() {
             const gate = document.getElementById('welcome-gate');
             const intro = document.getElementById('intro-screen');
-            const introLogo = document.getElementById('intro-logo');
+            const logo = document.getElementById('intro-logo');
             const progress = document.getElementById('intro-progress');
 
             gate.classList.add('opacity-0', 'pointer-events-none');
@@ -335,155 +425,523 @@
                 
                 setTimeout(() => {
                     intro.classList.remove('opacity-0');
-                    introLogo.classList.remove('opacity-0', 'scale-75');
+                    logo.classList.remove('translate-y-full');
                     progress.style.transform = 'translateX(0)';
                 }, 100);
 
-                // Start pulling precise API data during loading intro screen
-                animeCatalog = await fetchAniListMetadata(targetIds);
-                document.getElementById('loading-status').innerText = "Sync Complete. Injecting UI Panels...";
-
+                // Fetch database objects asynchronously via GraphQL
+                document.getElementById('loading-status').innerText = "Syncing network channels via AniList...";
+                masterCatalog = await executeAniListBulkFetch(primaryQueryIds);
+                
+                document.getElementById('loading-status').innerText = "Compiling display pipelines...";
+                
                 setTimeout(() => {
                     intro.classList.add('opacity-0');
                     setTimeout(() => {
                         intro.classList.add('hidden');
-                        hydrateDashboard();
-                        const app = document.getElementById('app-content');
-                        app.classList.remove('hidden');
-                        setTimeout(() => app.classList.remove('opacity-0'), 50);
+                        initializeSystemDashboard();
+                        const mainApp = document.getElementById('app-content');
+                        mainApp.classList.remove('hidden');
+                        setTimeout(() => mainApp.classList.remove('opacity-0'), 50);
                     }, 1000);
-                }, 1200);
+                }, 1500);
 
             }, 600);
         }
 
-        // Build UI Components with exact synchronized images
-        function hydrateDashboard() {
-            if(animeCatalog.length === 0) return;
+        // GraphQL Query Dispatcher Engine Execution
+        async function executeAniListBulkFetch(ids) {
+            const graphqlQueryStr = `
+                query ($ids: [Int]) {
+                    Page(page: 1, perPage: 15) {
+                        media(id_in: $ids, type: ANIME) {
+                            id
+                            title { english romaji }
+                            coverImage { extraLarge large }
+                            bannerImage
+                            description
+                            genres
+                            episodes
+                            status
+                            averageScore
+                            season
+                            seasonYear
+                            format
+                            recommendations(perPage: 6) {
+                                nodes {
+                                    mediaRecommendation {
+                                        id
+                                        title { english romaji }
+                                        coverImage { large }
+                                        averageScore
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            `;
 
-            // 1. Populate the Main Spotlight Hero (Using first element fetched)
-            const hero = animeCatalog[0];
-            document.getElementById('hero-bg').style.backgroundImage = `url('${hero.banner}')`;
-            document.getElementById('hero-title').innerText = hero.title;
-            document.getElementById('hero-desc').innerText = hero.desc;
-            document.getElementById('hero-play-btn').onclick = () => launchPlayer(hero.id, 1);
-
-            // 2. Build slider layout containers
-            const rowContinue = document.getElementById('row-continue');
-            const rowTrending = document.getElementById('row-trending');
-            const rowNew = document.getElementById('row-new');
-
-            rowContinue.innerHTML = '';
-            rowTrending.innerHTML = '';
-            rowNew.innerHTML = '';
-
-            animeCatalog.forEach((anime, index) => {
-                // Continue watching simulation rows
-                const currentMockProgress = Math.floor(anime.epCount / 2) || 1;
-                rowContinue.innerHTML += createCardMarkup(anime, `Ep ${currentMockProgress} / ${anime.epCount}`);
-                
-                // Trending rows
-                rowTrending.innerHTML += createCardMarkup(anime, `<i class="fa-solid fa-star text-amber-400 mr-1"></i> Score: ${anime.score}%`);
-                
-                // Recently added rows
-                rowNew.innerHTML += createCardMarkup(anime, `${anime.status}`);
-            });
+            try {
+                const response = await fetch('https://graphql.anilist.co', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({ query: graphqlQueryStr, variables: { ids: ids } })
+                });
+                const responseJson = await response.json();
+                return transformPayloadStructure(responseJson.data.Page.media);
+            } catch(e) {
+                console.error("Critical Failure targeting AniList Pipeline API down.", e);
+                return getEmergencyFallbackDatabase();
+            }
         }
 
-        function createCardMarkup(anime, tagString) {
+        function transformPayloadStructure(mediaArray) {
+            return mediaArray.map(item => ({
+                id: item.id,
+                title: item.title.english || item.title.romaji,
+                img: item.coverImage.extraLarge || item.coverImage.large,
+                banner: item.bannerImage || item.coverImage.extraLarge,
+                desc: item.description ? item.description.replace(/<\/?[^>]+(>|$)/g, "") : "No description metadata available.",
+                genres: item.genres || ["Action"],
+                epCount: item.episodes || 24,
+                status: item.status || "AIRING",
+                score: item.averageScore ? (item.averageScore / 10).toFixed(1) : "8.4",
+                seasonString: `${item.season || 'ANY'} ${item.seasonYear || '2026'}`,
+                format: item.format || "TV",
+                related: item.recommendations?.nodes?.map(n => n.mediaRecommendation).filter(Boolean) || []
+            }));
+        }
+
+        // Framework View Router Orchestrator
+        function switchRoutingView(targetViewId, elementNode = null) {
+            const views = ['view-dashboard', 'view-player', 'view-search', 'view-profile'];
+            views.forEach(v => document.getElementById(v).classList.add('hidden'));
+            
+            document.getElementById(`view-${targetViewId}`).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Handle bottom pill button indicator state shifts
+            if(elementNode && elementNode.parentElement) {
+                Array.from(elementNode.parentElement.children).forEach(btn => {
+                    btn.classList.remove('text-purple-400');
+                    btn.classList.add('text-neutral-400');
+                });
+                elementNode.classList.remove('text-neutral-400');
+                elementNode.classList.add('text-purple-400');
+            }
+
+            if(targetViewId === 'profile') syncProfileRepositoryGrids();
+        }
+
+        // Dashboard Data Allocation Builder
+        function initializeSystemDashboard() {
+            if(masterCatalog.length === 0) return;
+            renderHeroSpotlightModule();
+
+            const rows = {
+                'slider-trending': [...masterCatalog].sort((a,b) => b.score - a.score),
+                'slider-top10': [...masterCatalog].slice(0, 10),
+                'slider-new': masterCatalog.filter(m => m.status === 'RELEASING' || m.epCount > 12),
+                'slider-movies': masterCatalog.filter(m => m.format === 'MOVIE' || m.epCount === 1),
+                'slider-recommended': [...masterCatalog].reverse()
+            };
+
+            Object.entries(rows).forEach(([domId, dataset]) => {
+                const targetNode = document.getElementById(domId);
+                if(!targetNode) return;
+                targetNode.innerHTML = '';
+                dataset.forEach(anime => {
+                    targetNode.innerHTML += createStreamCardMarkup(anime, `<i class="fa-solid fa-star text-amber-500 mr-1 text-[9px]"></i> ${anime.score}`);
+                });
+            });
+
+            syncContinueWatchingSlider();
+            loadScheduleMatrixData('airing');
+        }
+
+        function createStreamCardMarkup(anime, trackingTag) {
             return `
-                <div onclick="launchPlayer(${anime.id}, 1)" class="glass-card min-w-[180px] md:min-w-[220px] rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 group relative">
-                    <div class="h-64 bg-cover bg-center bg-no-repeat" style="background-image: url('${anime.img}')"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent flex flex-col justify-end p-4">
-                        <span class="text-[10px] bg-purple-950/90 backdrop-blur-md px-2 py-0.5 rounded-md text-purple-300 font-bold self-start mb-1.5 border border-purple-500/20">${tagString}</span>
-                        <h4 class="font-bold text-sm tracking-wide line-clamp-1 group-hover:text-purple-400 transition-colors">${anime.title}</h4>
+                <div onclick="initiateCinemaStream(${anime.id}, 1)" class="premium-glass-card min-w-[170px] md:min-w-[210px] rounded-[1.5rem] overflow-hidden cursor-pointer flex-shrink-0 group relative">
+                    <div class="h-64 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-105" style="background-image: url('${anime.img}')"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex flex-col justify-end p-4">
+                        <span class="text-[9px] bg-neutral-900/90 backdrop-blur-md px-2 py-0.5 rounded text-purple-300 font-bold self-start mb-1.5 uppercase border border-white/5">${trackingTag}</span>
+                        <h4 class="font-bold text-xs tracking-tight line-clamp-1 group-hover:text-purple-400 transition-colors text-white">${anime.title}</h4>
                     </div>
                 </div>
             `;
         }
 
-        function showDashboard() {
-            document.getElementById('player-view').classList.add('hidden');
-            document.getElementById('dashboard-view').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        function renderHeroSpotlightModule() {
+            const targetHero = masterCatalog[heroIndex];
+            document.getElementById('hero-banner-image').style.backgroundImage = `url('${targetHero.banner}')`;
+            document.getElementById('hero-meta-title').innerText = targetHero.title;
+            document.getElementById('hero-meta-desc').innerText = targetHero.desc;
+            document.getElementById('hero-meta-score').innerHTML = `<i class="fa-solid fa-star"></i> ${targetHero.score}`;
+            document.getElementById('hero-cta-play').onclick = () => initiateCinemaStream(targetHero.id, 1);
+            
+            const isSaved = getSavedStorageArray('watchlist').includes(targetHero.id);
+            const btnList = document.getElementById('hero-cta-list');
+            btnList.innerHTML = isSaved ? `<i class="fa-solid fa-check text-purple-400"></i>` : `<i class="fa-solid fa-plus"></i>`;
+            btnList.onclick = () => { toggleLocalStorageToken('watchlist', targetHero.id); renderHeroSpotlightModule(); };
         }
 
-        function launchPlayer(id, targetEp) {
-            activeId = id;
-            activeEpisode = targetEp;
-            
-            document.getElementById('dashboard-view').classList.add('hidden');
-            document.getElementById('player-view').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        function cycleHeroBanner(dir) {
+            heroIndex = (heroIndex + dir + masterCatalog.length) % masterCatalog.length;
+            renderHeroSpotlightModule();
+        }
 
-            const targetAnime = animeCatalog.find(a => a.id === id);
-            if(!targetAnime) return;
+        // Live Dynamic Filtering Configuration Logic
+        function filterGenre(genre, element) {
+            // Update Active Tab State
+            Array.from(element.parentElement.children).forEach(b => b.className = "px-4 py-2 rounded-lg text-sm font-semibold text-neutral-400 hover:text-white transition-all cursor-pointer");
+            element.className = "px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ios-active-pill";
 
-            document.getElementById('player-title').innerText = targetAnime.title;
-            document.getElementById('player-desc').innerText = targetAnime.desc;
-            document.getElementById('player-status').innerText = targetAnime.status;
+            const container = document.getElementById('dashboard-rows-container');
+            if(genre !== 'All') {
+                // Flatten structural catalog arrays into single searchable row matrix
+                const singleFilterFiltered = masterCatalog.filter(m => m.genres.includes(genre));
+                container.innerHTML = `
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold tracking-tight text-white flex items-center gap-2"><span class="w-1 h-4 bg-purple-500 rounded-full"></span>Records Matching Genre: ${genre}</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+                            ${singleFilterFiltered.map(m => createStreamCardMarkup(m, m.format)).join('')}
+                        </div>
+                    </div>
+                `;
+            } else {
+                // Revert completely to structural state layout
+                container.innerHTML = `
+                    <div class="space-y-4 hidden" id="wrapper-continue"><h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white"><span class="w-1 h-4 bg-purple-500 rounded-full"></span>Continue Watching</h3><div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-continue"></div></div>
+                    <div class="space-y-4"><h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white"><span class="w-1 h-4 bg-purple-500 rounded-full"></span>Trending Anime</h3><div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-trending"></div></div>
+                    <div class="space-y-4"><h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white"><span class="w-1 h-4 bg-purple-500 rounded-full"></span>Top 10 Masterpieces</h3><div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-top10"></div></div>
+                    <div class="space-y-4"><h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white"><span class="w-1 h-4 bg-purple-500 rounded-full"></span>New Episodes</h3><div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-new"></div></div>
+                    <div class="space-y-4"><h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white"><span class="w-1 h-4 bg-purple-500 rounded-full"></span>Popular Movies</h3><div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-movies"></div></div>
+                    <div class="space-y-4"><h3 class="text-lg font-bold tracking-tight flex items-center gap-2.5 text-white"><span class="w-1 h-4 bg-purple-500 rounded-full"></span>Recommended For You</h3><div class="flex gap-5 overflow-x-auto hide-scrollbar pb-4" id="slider-recommended"></div></div>
+                `;
+                initializeSystemDashboard();
+            }
+        }
+
+        // Operational Schedule Data Switch Handling mapping
+        function toggleScheduleTab(type, element) {
+            Array.from(element.parentElement.children).forEach(b => {
+                b.className = "px-4 py-2 hover:text-white transition-colors whitespace-nowrap cursor-pointer";
+            });
+            element.className = "px-4 py-2 text-purple-400 border-b-2 border-purple-400 whitespace-nowrap cursor-pointer";
+            loadScheduleMatrixData(type);
+        }
+
+        function loadScheduleMatrixData(type) {
+            const outputBox = document.getElementById('schedule-tab-content');
+            outputBox.classList.remove('hidden');
+            outputBox.innerHTML = '';
             
-            const genresBox = document.getElementById('player-genres');
-            genresBox.innerHTML = '';
-            targetAnime.genres.forEach(genre => {
-                genresBox.innerHTML += `<span class="px-2.5 py-1 bg-white/5 rounded-md border border-white/5 text-gray-300 font-medium">${genre}</span>`;
+            const scheduleMap = {
+                'airing': ['Jujutsu Kaisen — Ep 24', 'Kaiju No. 8 — Ep 12', 'Chainsaw Man — Ep 13'],
+                'today': ['Demon Slayer — Ep 4 [22:00]', 'One Piece — Ep 1112 [10:30]'],
+                'tomorrow': ['Wind Breaker — Ep 8 [18:00]', 'Kaiju No. 8 — Special Edition'],
+                'recent': ['Frieren Ep 28 [Subbed]', 'Solo Leveling Ep 12 [Dubbed]'],
+                'upcoming': ['Re:Zero Season 3 [Fall 2026]', 'Bleach Tybw Part 3 [2026]']
+            };
+
+            const targetArray = scheduleMap[type] || [];
+            targetArray.forEach(txt => {
+                outputBox.innerHTML += `
+                    <div class="p-3 bg-black/40 rounded-xl border border-white/5 font-semibold text-neutral-300 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-ping"></span> ${txt}
+                    </div>
+                `;
+            });
+            if(targetArray.length === 0) outputBox.innerHTML = `<div class="p-2 text-neutral-600">No scheduled logs registered for this timestamp tracker.</div>`;
+        }
+
+        // ======================================================== -->
+        // CINEMA THEATER MEDIA STREAM TRACK CONSOLE MANAGEMENT      -->
+        // ======================================================== -->
+        function initiateCinemaStream(id, episodeNumber) {
+            runtimeActiveId = id;
+            runtimeActiveEpisode = parseInt(episodeNumber);
+
+            switchRoutingView('player');
+            
+            const dataItem = masterCatalog.find(m => m.id === id) || masterCatalog[0];
+            
+            // Hydrate text parameters
+            document.getElementById('meta-player-title').innerText = dataItem.title;
+            document.getElementById('meta-player-desc').innerText = dataItem.desc;
+            document.getElementById('meta-player-status').innerText = dataItem.status;
+            document.getElementById('meta-player-season').innerText = `${dataItem.format} | ${dataItem.seasonString}`;
+            document.getElementById('episode-drawer-counter').innerText = `${runtimeActiveEpisode} / ${dataItem.epCount}`;
+
+            // Map associated tags
+            const genreNode = document.getElementById('meta-player-genres');
+            genreNode.innerHTML = '';
+            dataItem.genres.forEach(g => {
+                genreNode.innerHTML += `<span class="px-2 py-0.5 bg-neutral-900 border border-white/5 text-neutral-400 font-semibold rounded">${g}</span>`;
             });
 
-            buildEpisodeGrid(targetAnime.epCount);
-            updateVideoIframe();
+            // Reconstruct storage tracking states 
+            recordWatchHistoryEntry(id, runtimeActiveEpisode);
+            syncContinueWatchingSlider();
+            hydrateEpisodeControlDrawer(dataItem.epCount);
+            hydrateContextualRecommendations(dataItem.related);
+            evaluatePlayerControlButtonToggles();
+            fireVideoIframePipeline();
         }
 
-        function buildEpisodeGrid(total) {
-            const grid = document.getElementById('episode-grid');
-            grid.innerHTML = '';
-            for(let i = 1; i <= total; i++) {
-                const isActive = i === activeEpisode;
-                grid.innerHTML += `
-                    <button onclick="changeEpisode(${i})" class="p-2 text-center text-xs font-bold rounded-lg transition-all border cursor-pointer ${isActive ? 'bg-purple-600 border-purple-400 text-white' : 'bg-white/5 border-white/5 text-gray-400 hover:bg-white/10'}">
+        function hydrateEpisodeControlDrawer(totalEpisodes) {
+            const drawer = document.getElementById('player-episode-drawer');
+            drawer.innerHTML = '';
+            for(let i = 1; i <= totalEpisodes; i++) {
+                const checkActive = i === runtimeActiveEpisode;
+                drawer.innerHTML += `
+                    <button onclick="jumpToSpecificEpisode(${i})" class="p-2.5 rounded-xl font-bold text-xs tracking-wide transition-all border text-center cursor-pointer ${checkActive ? 'bg-purple-600 border-purple-400 text-white shadow-lg' : 'bg-black/20 border-white/5 text-neutral-400 hover:bg-white/5 hover:text-white'}">
                         ${i}
                     </button>
                 `;
             }
         }
 
-        function changeEpisode(ep) {
-            activeEpisode = ep;
-            const item = animeCatalog.find(a => a.id === activeId);
-            buildEpisodeGrid(item.epCount);
-            updateVideoIframe();
-        }
-
-        function setServer(mode) {
-            activeServerMode = mode;
-            const s1 = document.getElementById('btn-srv1');
-            const s2 = document.getElementById('btn-srv2');
-
-            if (mode === 'sub') {
-                s1.className = "px-3 py-1.5 rounded-lg font-bold bg-purple-600 text-white cursor-pointer";
-                s2.className = "px-3 py-1.5 rounded-lg font-bold bg-white/5 text-gray-400 hover:bg-white/10 cursor-pointer";
-            } else {
-                s2.className = "px-3 py-1.5 rounded-lg font-bold bg-purple-600 text-white cursor-pointer";
-                s1.className = "px-3 py-1.5 rounded-lg font-bold bg-white/5 text-gray-400 hover:bg-white/10 cursor-pointer";
+        function hydrateContextualRecommendations(relatedArray) {
+            const container = document.getElementById('player-context-recommendations');
+            container.innerHTML = '';
+            if(!relatedArray || relatedArray.length === 0) {
+                container.innerHTML = `<p class="text-[11px] text-neutral-600 p-1">No metadata relationships returned for tracking network.</p>`;
+                return;
             }
-            updateVideoIframe();
+            relatedArray.slice(0,3).forEach(r => {
+                const titleStr = r.title.english || r.title.romaji;
+                container.innerHTML += `
+                    <div onclick="executeDirectFallbackSearchOrPlay(${r.id})" class="p-2.5 rounded-xl bg-neutral-900/40 border border-white/5 flex gap-3 items-center cursor-pointer hover:bg-neutral-900 transition-all">
+                        <img src="${r.coverImage.large}" class="w-10 h-14 object-cover rounded-lg">
+                        <div class="space-y-0.5">
+                            <h5 class="text-xs font-bold text-white line-clamp-1">${titleStr}</h5>
+                            <span class="text-[10px] text-neutral-500 font-medium"><i class="fa-solid fa-star text-amber-500 text-[9px]"></i> Matrix Match</span>
+                        </div>
+                    </div>
+                `;
+            });
         }
 
-        function updateVideoIframe() {
-            const iframe = document.getElementById('video-embed');
-            const display = document.getElementById('current-ep-display');
-            const btnPrev = document.getElementById('btn-prev-ep');
-            const btnNext = document.getElementById('btn-next-ep');
-            const item = animeCatalog.find(a => a.id === activeId);
+        function executeDirectFallbackSearchOrPlay(id) {
+            // If target match exists inside pre-pulled catalog matrices, initialize stream instantly
+            if(masterCatalog.some(m => m.id === id)) {
+                initiateCinemaStream(id, 1);
+            } else {
+                // Initialize fallback runtime object container wrapper array to prevent app faults
+                initiateCinemaStream(runtimeActiveId, 1);
+            }
+        }
 
-            // Construct exact embed structure required by streaming architecture
-            iframe.src = `https://vidnest.fun/animepahe/${activeId}/${activeEpisode}/${activeServerMode}`;
-            display.innerText = `Episode ${activeEpisode}`;
+        function jumpToSpecificEpisode(ep) {
+            runtimeActiveEpisode = ep;
+            const contextItem = masterCatalog.find(m => m.id === runtimeActiveId);
+            document.getElementById('episode-drawer-counter').innerText = `${runtimeActiveEpisode} / ${contextItem.epCount}`;
+            hydrateEpisodeControlDrawer(contextItem.epCount);
+            recordWatchHistoryEntry(runtimeActiveId, runtimeActiveEpisode);
+            syncContinueWatchingSlider();
+            evaluatePlayerControlButtonToggles();
+            fireVideoIframePipeline();
+        }
 
-            btnPrev.disabled = activeEpisode <= 1;
-            btnNext.disabled = activeEpisode >= item.epCount;
+        function toggleServerMapping(mode) {
+            runtimeActiveServer = mode;
+            evaluatePlayerControlButtonToggles();
+            fireVideoIframePipeline();
+        }
 
-            btnPrev.onclick = () => { if(activeEpisode > 1) changeEpisode(activeEpisode - 1); };
-            btnNext.onclick = () => { if(activeEpisode < item.epCount) changeEpisode(activeEpisode + 1); };
+        function evaluatePlayerControlButtonToggles() {
+            const sub = document.getElementById('srv-sub-btn');
+            const dub = document.getElementById('srv-dub-btn');
+            
+            if(runtimeActiveServer === 'sub') {
+                sub.className = "px-3.5 py-1.5 rounded-lg font-bold text-[11px] uppercase transition-all cursor-pointer bg-white text-neutral-950 shadow";
+                dub.className = "px-3.5 py-1.5 rounded-lg font-bold text-[11px] uppercase transition-all cursor-pointer text-neutral-400 hover:text-white";
+            } else {
+                dub.className = "px-3.5 py-1.5 rounded-lg font-bold text-[11px] uppercase transition-all cursor-pointer bg-white text-neutral-950 shadow";
+                sub.className = "px-3.5 py-1.5 rounded-lg font-bold text-[11px] uppercase transition-all cursor-pointer text-neutral-400 hover:text-white";
+            }
+
+            const item = masterCatalog.find(m => m.id === runtimeActiveId);
+            const prevBtn = document.getElementById('control-prev-btn');
+            const nextBtn = document.getElementById('control-next-btn');
+
+            prevBtn.disabled = runtimeActiveEpisode <= 1;
+            nextBtn.disabled = runtimeActiveEpisode >= item.epCount;
+
+            prevBtn.onclick = () => { if(runtimeActiveEpisode > 1) jumpToSpecificEpisode(runtimeActiveEpisode - 1); };
+            nextBtn.onclick = () => { if(runtimeActiveEpisode < item.epCount) jumpToSpecificEpisode(runtimeActiveEpisode + 1); };
+
+            // Synchronize control panel toggles configuration options
+            const wlToggle = document.getElementById('player-watchlist-toggle');
+            const favToggle = document.getElementById('player-favorite-toggle');
+
+            const inWl = getSavedStorageArray('watchlist').includes(runtimeActiveId);
+            const inFav = getSavedStorageArray('favorites').includes(runtimeActiveId);
+
+            wlToggle.innerHTML = inWl ? `<i class="fa-solid fa-check text-purple-400 mr-1.5"></i> Added to Watchlist` : `<i class="fa-solid fa-bookmark mr-1.5"></i> Track List`;
+            favToggle.innerHTML = inFav ? `<i class="fa-solid fa-heart text-pink-500 mr-1.5"></i> Bookmarked` : `<i class="fa-solid fa-heart-open mr-1.5"></i> Set Favorite`;
+
+            wlToggle.onclick = () => { toggleLocalStorageToken('watchlist', runtimeActiveId); evaluatePlayerControlButtonToggles(); };
+            favToggle.onclick = () => { toggleLocalStorageToken('favorites', runtimeActiveId); evaluatePlayerControlButtonToggles(); };
+        }
+
+        function fireVideoIframePipeline() {
+            const frame = document.getElementById('main-video-iframe');
+            document.getElementById('control-track-display').innerText = `Episode ${runtimeActiveEpisode}`;
+            // Map exact parameters constraint configuration as requested by architectural design specifications
+            frame.src = `https://vidnest.fun/animepahe/${runtimeActiveId}/${runtimeActiveEpisode}/${runtimeActiveServer}`;
+        }
+
+
+        // ======================================================== -->
+        // LOCALSTORAGE COMPILER PERSISTENCE LAYER DATA LOGS        -->
+        // ======================================================== -->
+        function getSavedStorageArray(key) {
+            const dataLog = localStorage.getItem(`aethokai_${key}`);
+            return dataLog ? JSON.parse(dataLog) : [];
+        }
+
+        function toggleLocalStorageToken(key, valueId) {
+            let log = getSavedStorageArray(key);
+            if(log.includes(valueId)) {
+                log = log.filter(x => x !== valueId);
+            } else {
+                log.push(valueId);
+            }
+            localStorage.setItem(`aethokai_${key}`, JSON.stringify(log));
+        }
+
+        function recordWatchHistoryEntry(id, currentEpisodeTrack) {
+            let historyLog = getSavedStorageArray('history');
+            // Check for preexisting record trackers
+            historyLog = historyLog.filter(item => item.id !== id);
+            historyLog.unshift({ id: id, lastEp: currentEpisodeTrack });
+            localStorage.setItem('aethokai_history', JSON.stringify(historyLog.slice(0, 12)));
+        }
+
+        function syncContinueWatchingSlider() {
+            const history = getSavedStorageArray('history');
+            const targetWrapper = document.getElementById('wrapper-continue');
+            const targetSlider = document.getElementById('slider-continue');
+
+            if(history.length === 0) {
+                targetWrapper.classList.add('hidden');
+                return;
+            }
+
+            targetWrapper.classList.remove('hidden');
+            targetSlider.innerHTML = '';
+
+            history.forEach(historyObject => {
+                const targetAnimeItem = masterCatalog.find(m => m.id === historyObject.id);
+                if(targetAnimeItem) {
+                    targetSlider.innerHTML += `
+                        <div onclick="initiateCinemaStream(${targetAnimeItem.id}, ${historyObject.lastEp})" class="premium-glass-card min-w-[220px] rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 group relative">
+                            <div class="h-36 bg-cover bg-center" style="background-image: url('${targetAnimeItem.banner}')"></div>
+                            <div class="p-3 bg-neutral-950/90 space-y-1">
+                                <h5 class="font-bold text-xs text-white line-clamp-1">${targetAnimeItem.title}</h5>
+                                <div class="flex items-center justify-between text-[10px] text-neutral-400 font-semibold">
+                                    <span>Resume Episode ${historyObject.lastEp}</span>
+                                    <span class="text-purple-400 uppercase tracking-widest text-[9px]">PLAY</span>
+                                </div>
+                                <div class="w-full h-1 bg-neutral-800 rounded-full overflow-hidden mt-1">
+                                    <div class="bg-purple-500 h-full" style="width: ${(historyObject.lastEp / targetAnimeItem.epCount) * 100}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        function syncProfileRepositoryGrids() {
+            const wl = getSavedStorageArray('watchlist');
+            const fav = getSavedStorageArray('favorites');
+
+            const wlGrid = document.getElementById('profile-watchlist-grid');
+            const favGrid = document.getElementById('profile-favorites-grid');
+
+            wlGrid.innerHTML = '';
+            favGrid.innerHTML = '';
+
+            const buildGridMarkup = (idArray, targetNode) => {
+                if(idArray.length === 0) {
+                    targetNode.innerHTML = `<div class="col-span-full py-8 premium-glass-panel rounded-2xl text-center text-xs text-neutral-500 font-medium uppercase tracking-wide border-white/5">No tracking parameters stored inside index logs.</div>`;
+                    return;
+                }
+                idArray.forEach(id => {
+                    const matchedItem = masterCatalog.find(m => m.id === id);
+                    if(matchedItem) {
+                        targetNode.innerHTML += `
+                            <div onclick="initiateCinemaStream(${matchedItem.id}, 1)" class="p-2.5 bg-neutral-900/40 border border-white/5 rounded-xl flex gap-3 items-center cursor-pointer hover:bg-neutral-900 transition-all">
+                                <img src="${matchedItem.img}" class="w-10 h-14 object-cover rounded-lg">
+                                <div class="space-y-0.5">
+                                    <h5 class="text-xs font-bold text-white line-clamp-1">${matchedItem.title}</h5>
+                                    <span class="text-[10px] text-purple-400 font-semibold uppercase tracking-wider">${matchedItem.format}</span>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+            };
+
+            buildGridMarkup(wl, wlGrid);
+            buildGridMarkup(fav, favGrid);
+        }
+
+
+        // ======================================================== -->
+        // EXPLICIT LIVE SEARCH BINDING INTERACTION CONTROLLERS     -->
+        // ======================================================== -->
+        const dedicatedSearchInput = document.getElementById('dedicated-search-field');
+        const headerSearchInput = document.getElementById('header-search-input');
+
+        headerSearchInput.addEventListener('focus', () => {
+            switchRoutingView('search');
+            dedicatedSearchInput.focus();
+        });
+
+        dedicatedSearchInput.addEventListener('input', debouncePipeline(async (e) => {
+            const textTerm = e.target.value.trim();
+            const targetOutputGrid = document.getElementById('search-results-grid');
+
+            if(textTerm.length < 2) {
+                targetOutputGrid.innerHTML = `<div class="col-span-full py-12 text-center text-neutral-500 text-xs font-medium uppercase tracking-wider">Enter characters to populate records matrix</div>`;
+                return;
+            }
+
+            targetOutputGrid.innerHTML = `<div class="col-span-full py-12 text-center text-purple-400 text-xs font-bold uppercase tracking-widest animate-pulse">Querying cloud servers...</div>`;
+
+            // Live-Searching Directly from the internal database arrays
+            const localMatches = masterCatalog.filter(m => m.title.toLowerCase().includes(textTerm.toLowerCase()) || m.genres.some(g => g.toLowerCase().includes(textTerm.toLowerCase())));
+            
+            if(localMatches.length === 0) {
+                targetOutputGrid.innerHTML = `<div class="col-span-full py-12 text-center text-neutral-600 text-xs font-medium uppercase tracking-wide">No configuration matches found matching search signature.</div>`;
+                return;
+            }
+
+            targetOutputGrid.innerHTML = '';
+            localMatches.forEach(item => {
+                targetOutputGrid.innerHTML += createStreamCardMarkup(item, item.score);
+            });
+        }, 400));
+
+        function debouncePipeline(func, delayTimeout) {
+            let currentTimerPointer;
+            return function(...args) {
+                clearTimeout(currentTimerPointer);
+                currentTimerPointer = setTimeout(() => func.apply(this, args), delayTimeout);
+            };
+        }
+
+        // Emergency Fallback Dataset to keep application working if public services fail
+        function getEmergencyFallbackDatabase() {
+            return [
+                { id: 16498, title: "Jujutsu Kaisen Season 2", img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=400", banner: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1200", desc: "Curses, sorcery, and high-fidelity battles within the contemporary shonen paradigm.", genres: ["Action", "Fantasy"], epCount: 23, status: "FINISHED", score: "8.8", seasonString: "SUMMER 2023", format: "TV", related: [] },
+                { id: 153518, title: "Kaiju No. 8", img: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=400", banner: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1200", desc: "A defense force sweep operator gains the biological capabilities of a high-grade monster.", genres: ["Action", "Sci-Fi"], epCount: 12, status: "FINISHED", score: "8.4", seasonString: "SPRING 2024", format: "TV", related: [] }
+            ];
         }
     </script>
 </body>
