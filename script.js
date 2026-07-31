@@ -1,16 +1,16 @@
-// Aethoflix - Movie Data
+// Aethoflix - Real Movies Data (2026)
 const movies = [
   {
     id: 0,
-    title: "Aether Rising",
-    year: 2025,
+    title: "Dune: Part Two",
+    year: 2024,
     rating: "PG-13",
-    duration: "2h 19m",
-    desc: "In a universe on the brink of collapse, one astronaut must unlock the secrets of the Aether to save humanity from an ancient cosmic threat.",
-    genres: ["Sci-Fi", "Adventure", "Thriller"],
-    cast: "Elara Voss, Kai Lennox, Dr. Soren Vale",
-    director: "Lila Moreau",
-    poster: "images/posters/aether-rising.jpg",
+    duration: "2h 46m",
+    desc: "Paul Atreides unites Chani and the Fremen while seeking revenge for his father's death and faces a destiny greater than he could ever have imagined.",
+    genres: ["Sci-Fi", "Adventure", "Drama"],
+    cast: "Timothée Chalamet, Zendaya, Rebecca Ferguson, Austin Butler, Javier Bardem",
+    director: "Denis Villeneuve",
+    poster: "images/posters/dune-part-two-official-movie-poster-2024-1.jpg",
     videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny_320x180.mp4",
     category: ["sci-fi", "trending", "popular", "top10"],
     isTop10: true,
@@ -18,127 +18,142 @@ const movies = [
   },
   {
     id: 1,
-    title: "Shadow Protocol",
-    year: 2024,
+    title: "Oppenheimer",
+    year: 2023,
     rating: "R",
-    duration: "2h 4m",
-    desc: "A rogue operative must navigate a world of double agents and high-tech espionage to stop a global conspiracy that threatens world order.",
-    genres: ["Action", "Thriller"],
-    cast: "Marcus Hale, Lena Voss, Victor Kane",
-    director: "Damien Cross",
-    poster: "images/posters/shadow-protocol.jpg",
+    duration: "3h 0m",
+    desc: "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb during World War II.",
+    genres: ["Drama", "History", "Biography"],
+    cast: "Cillian Murphy, Emily Blunt, Matt Damon, Robert Downey Jr.",
+    director: "Christopher Nolan",
+    poster: "images/posters/oppenheimer-official-movie-poster-2023-h-1.jpg",
     videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    category: ["action", "thriller", "trending", "popular"],
+    category: ["drama", "popular", "trending"],
     isTop10: true,
     topRank: 2
   },
   {
     id: 2,
-    title: "The Veil",
-    year: 2026,
-    rating: "PG-13",
-    duration: "1h 56m",
-    desc: "A grieving widow uncovers a dark family secret that blurs the line between the living and the dead in this haunting supernatural drama.",
-    genres: ["Drama", "Mystery"],
-    cast: "Isla Moreau, Julian Hart, Sophia Lang",
-    director: "Clara Voss",
-    poster: "images/posters/the-veil.jpg",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny_320x180.mp4",
-    category: ["drama", "popular"],
-    isTop10: false
-  },
-  {
-    id: 3,
-    title: "Neon Exodus",
-    year: 2025,
+    title: "Deadpool & Wolverine",
+    year: 2024,
     rating: "R",
-    duration: "2h 31m",
-    desc: "In a dystopian megacity, a young hacker leads a rebellion against a tyrannical AI regime that controls every aspect of life.",
-    genres: ["Sci-Fi", "Action"],
-    cast: "Zara Kane, Jax Rivera, Nova Quill",
-    director: "Ren Sato",
-    poster: "images/posters/neon-exodus.jpg",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    category: ["sci-fi", "action", "trending", "popular"],
+    duration: "2h 7m",
+    desc: "Deadpool is offered a place in the Marvel Cinematic Universe by the Time Variance Authority, but instead recruits a variant of Wolverine to save his world from extinction.",
+    genres: ["Action", "Comedy", "Adventure"],
+    cast: "Ryan Reynolds, Hugh Jackman, Emma Corrin, Matthew Macfadyen",
+    director: "Shawn Levy",
+    poster: "images/posters/deadpool-and-wolverine-official-movie-po-1.jpg",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny_320x180.mp4",
+    category: ["action", "trending", "popular"],
     isTop10: true,
     topRank: 3
   },
   {
+    id: 3,
+    title: "Furiosa: A Mad Max Saga",
+    year: 2024,
+    rating: "R",
+    duration: "2h 28m",
+    desc: "The origin story of the warrior Furiosa before her encounter with Mad Max, as she fights to survive in the Wasteland and find her way home.",
+    genres: ["Action", "Adventure", "Sci-Fi"],
+    cast: "Anya Taylor-Joy, Chris Hemsworth, Tom Burke, Alyla Browne",
+    director: "George Miller",
+    poster: "images/posters/furiosa-a-mad-max-saga-official-movie-po-1.jpg",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    category: ["action", "sci-fi", "trending"],
+    isTop10: true,
+    topRank: 4
+  },
+  {
     id: 4,
-    title: "Fractured Sky",
-    year: 2023,
+    title: "Inception",
+    year: 2010,
     rating: "PG-13",
-    duration: "2h 7m",
-    desc: "A team of elite astronauts must repair a broken space station before it plunges into Earth's atmosphere and triggers catastrophe.",
-    genres: ["Sci-Fi", "Adventure"],
-    cast: "Rylan Cole, Mira Solis, Dr. Theo Lang",
-    director: "Elias Quinn",
-    poster: "images/posters/fractured-sky.jpg",
+    duration: "2h 28m",
+    desc: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+    genres: ["Sci-Fi", "Action", "Thriller"],
+    cast: "Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page, Tom Hardy",
+    director: "Christopher Nolan",
+    poster: "images/posters/inception-official-movie-poster-high-res-1.jpg",
     videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny_320x180.mp4",
-    category: ["sci-fi", "popular"],
+    category: ["sci-fi", "action", "popular"],
     isTop10: false
   },
   {
     id: 5,
-    title: "Blood Moon",
-    year: 2024,
-    rating: "R",
-    duration: "1h 48m",
-    desc: "A small town is terrorized by an ancient curse that awakens every full moon. One family must break the bloodline to survive.",
-    genres: ["Horror", "Thriller"],
-    cast: "Lila Voss, Finn Calder, Mara Quinn",
-    director: "Victor Hale",
-    poster: "images/posters/blood-moon.jpg",
+    title: "Interstellar",
+    year: 2014,
+    rating: "PG-13",
+    duration: "2h 49m",
+    desc: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival as Earth becomes uninhabitable.",
+    genres: ["Sci-Fi", "Adventure", "Drama"],
+    cast: "Matthew McConaughey, Anne Hathaway, Jessica Chastain, Michael Caine",
+    director: "Christopher Nolan",
+    poster: "images/posters/interstellar-official-movie-poster-high--1.jpg",
     videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    category: ["horror", "thriller", "trending"],
+    category: ["sci-fi", "popular", "trending"],
     isTop10: true,
     topRank: 5
   },
   {
     id: 6,
-    title: "Iron Horizon",
-    year: 2025,
-    rating: "R",
-    duration: "2h 15m",
-    desc: "A war-hardened commander leads a desperate final assault to reclaim a strategic planet from invading alien forces.",
-    genres: ["Action", "Sci-Fi"],
-    cast: "Gideon Slate, Aria Voss, Colonel Ren",
-    director: "Marcus Vale",
-    poster: "images/posters/iron-horizon.jpg",
+    title: "Spider-Man: Across the Spider-Verse",
+    year: 2023,
+    rating: "PG",
+    duration: "2h 20m",
+    desc: "Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its very existence.",
+    genres: ["Animation", "Action", "Adventure"],
+    cast: "Shameik Moore, Hailee Steinfeld, Oscar Isaac, Jake Johnson",
+    director: "Joaquim Dos Santos, Kemp Powers, Justin K. Thompson",
+    poster: "images/posters/spider-man-across-the-spider-verse-offic-1.jpg",
     videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny_320x180.mp4",
-    category: ["action", "sci-fi", "popular"],
+    category: ["action", "popular"],
     isTop10: false
   },
   {
     id: 7,
-    title: "Celestial Drift",
-    year: 2026,
+    title: "Top Gun: Maverick",
+    year: 2022,
     rating: "PG-13",
-    duration: "2h 25m",
-    desc: "Two star-crossed lovers fight to reunite across a galaxy where time and space are fracturing into endless possibilities.",
-    genres: ["Sci-Fi", "Drama", "Romance"],
-    cast: "Orion Vale, Elara Kane, Nova Lumen",
-    director: "Selene Voss",
-    poster: "images/posters/celestial-drift.jpg",
+    duration: "2h 11m",
+    desc: "After thirty years, Maverick is still pushing the envelope as a top naval aviator, but must confront ghosts of his past when he leads TOP GUN's elite graduates.",
+    genres: ["Action", "Drama"],
+    cast: "Tom Cruise, Jennifer Connelly, Miles Teller, Jon Hamm",
+    director: "Joseph Kosinski",
+    poster: "images/posters/top-gun-maverick-official-movie-poster-h-1.jpg",
     videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    category: ["sci-fi", "drama", "popular"],
+    category: ["action", "popular", "trending"],
     isTop10: false
   },
   {
     id: 8,
-    title: "Quantum Heist",
-    year: 2024,
-    rating: "R",
-    duration: "1h 57m",
-    desc: "A master thief assembles a crew to pull off the impossible: steal a quantum algorithm that can rewrite reality itself.",
-    genres: ["Thriller", "Action", "Sci-Fi"],
-    cast: "Jax Hale, Lena Voss, Silas Crowe",
-    director: "Kira Vale",
-    poster: "images/posters/quantum-heist.jpg",
+    title: "Barbie",
+    year: 2023,
+    rating: "PG-13",
+    duration: "1h 54m",
+    desc: "Barbie suffers a crisis that leads her to question her world and her existence, embarking on a journey to the real world.",
+    genres: ["Comedy", "Adventure", "Fantasy"],
+    cast: "Margot Robbie, Ryan Gosling, America Ferrera, Will Ferrell",
+    director: "Greta Gerwig",
+    poster: "images/posters/barbie-2023-official-movie-poster-high-r-1.jpg",
     videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny_320x180.mp4",
-    category: ["action", "thriller", "sci-fi", "trending"],
-    isTop10: true,
-    topRank: 4
+    category: ["drama", "popular"],
+    isTop10: false
+  },
+  {
+    id: 9,
+    title: "Avatar: The Way of Water",
+    year: 2022,
+    rating: "PG-13",
+    duration: "3h 12m",
+    desc: "Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns, Jake must work with Neytiri and the army of the Na'vi to protect their home.",
+    genres: ["Sci-Fi", "Adventure", "Action"],
+    cast: "Sam Worthington, Zoe Saldaña, Sigourney Weaver, Stephen Lang",
+    director: "James Cameron",
+    poster: "images/posters/avatar-the-way-of-water-official-movie-p-1.jpg",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    category: ["sci-fi", "action", "popular"],
+    isTop10: false
   }
 ];
 
@@ -149,7 +164,7 @@ let myList = JSON.parse(localStorage.getItem('aethoflix_mylist')) || [];
 let currentMovieId = null;
 
 // DOM references
-let navbar, searchInput;
+let navbar, searchInput, mobileMenuBtn;
 let trendingRow, top10Row, popularRow, scifiRow, actionRow;
 let browseGrid, mylistGrid;
 let movieModal, playerModal, videoPlayer;
@@ -159,6 +174,7 @@ function init() {
   // Grab DOM elements
   navbar = document.getElementById('navbar');
   searchInput = document.getElementById('search-input');
+  mobileMenuBtn = document.getElementById('mobile-menu-btn');
   
   trendingRow = document.getElementById('trending-row');
   top10Row = document.getElementById('top10-row');
@@ -182,6 +198,15 @@ function init() {
     }
   });
   
+  // Mobile menu toggle
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('mobile-open');
+      mobileMenuBtn.classList.toggle('active');
+    });
+  }
+  
   // Search functionality
   searchInput.addEventListener('input', handleSearch);
   
@@ -190,6 +215,11 @@ function init() {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const section = link.getAttribute('data-section');
+      
+      // Close mobile menu if open
+      const navLinks = document.querySelector('.nav-links');
+      if (navLinks) navLinks.classList.remove('mobile-open');
+      if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
       
       // Remove active class from all
       document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
@@ -203,9 +233,14 @@ function init() {
   document.querySelector('.logo').addEventListener('click', (e) => {
     e.preventDefault();
     showSection('home');
-    // reset nav active
     document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
-    document.querySelector('.nav-links a[data-section="home"]').classList.add('active');
+    const homeLink = document.querySelector('.nav-links a[data-section="home"]');
+    if (homeLink) homeLink.classList.add('active');
+    
+    // Close mobile menu
+    const navLinks = document.querySelector('.nav-links');
+    if (navLinks) navLinks.classList.remove('mobile-open');
+    if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
   });
   
   // Category filter buttons
@@ -242,17 +277,14 @@ function init() {
   // Show home section by default
   showSection('home');
   
-  // Bonus: Random hero title refresh on load (optional)
-  // Already static, but could randomize if wanted.
-  
-  console.log('%c[Aethoflix] Website initialized successfully.', 'color:#555');
+  console.log('%c[Aethoflix] Real movies website initialized successfully.', 'color:#555');
 }
 
 // Render all the horizontal movie rows
 function renderAllRows() {
   // Trending Now
   const trending = movies.filter(m => m.category.includes('trending'));
-  populateMovieRow(trendingRow, trending.slice(0, 7));
+  populateMovieRow(trendingRow, trending);
   
   // Top 10
   const top10 = [...movies].filter(m => m.isTop10).sort((a, b) => a.topRank - b.topRank);
@@ -285,7 +317,7 @@ function populateMovieRow(container, movieList) {
 function populateTop10Row(container, movieList) {
   container.innerHTML = '';
   
-  movieList.forEach((movie, index) => {
+  movieList.forEach((movie) => {
     const card = createMovieCard(movie, true);
     container.appendChild(card);
   });
@@ -335,7 +367,7 @@ function createMovieCard(movie, isTop10 = false) {
     showMovieModal(movie.id);
   });
   
-  // Hover play button hint (optional extra)
+  // Hover effect
   card.addEventListener('mouseenter', () => {
     if (!isTop10) card.style.boxShadow = '0 15px 30px rgba(0,0,0,0.7)';
   });
@@ -440,7 +472,7 @@ function renderSimilarMovies(currentMovie) {
     container.appendChild(thumb);
   });
   
-  // If not enough, add more generic ones
+  // If not enough, add more
   if (similar.length < 3) {
     const filler = movies.filter(m => m.id !== currentMovie.id && !similar.includes(m)).slice(0, 3 - similar.length);
     filler.forEach(movie => {
@@ -628,7 +660,6 @@ function showSection(section) {
     homeContent.style.display = 'block';
   } else if (section === 'browse') {
     browseContent.style.display = 'block';
-    // Make sure full grid is shown
     filterBrowseMovies('all');
   } else if (section === 'mylist') {
     mylistContent.style.display = 'block';
@@ -747,7 +778,6 @@ function showBrowseAll() {
 // Logout simulation
 function logout() {
   if (confirm('Are you sure you want to sign out?')) {
-    // Simple reset simulation
     document.body.style.transition = 'opacity .35s';
     document.body.style.opacity = '0';
     
