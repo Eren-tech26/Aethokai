@@ -2,560 +2,273 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AethoFlix - Stream Movies & TV Shows</title>
-    
-    <!-- Icons & Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aethoflix - Stream Movies &amp; TV Shows</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        :root {
-            --bg-color: #07090e;
-            --surface: #10141e;
-            --surface-hover: #1a202c;
-            --primary: #e50914;
-            --primary-glow: rgba(229, 9, 20, 0.35);
-            --text-main: #ffffff;
-            --text-muted: #94a3b8;
-            --bottom-nav-height: 60px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            padding-bottom: calc(var(--bottom-nav-height) + 10px);
-            overflow-x: hidden;
-        }
-
-        /* Fixed Top Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* Additional inline styles if needed for quick tweaks */
+        .movie-card .poster-fallback {
             width: 100%;
-            height: 60px;
+            height: 260px;
+            background: linear-gradient(135deg, #2a2a2a, #111);
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 0 16px;
-            z-index: 1000;
-            background: linear-gradient(180deg, rgba(7,9,14,0.95) 0%, rgba(7,9,14,0) 100%);
-            backdrop-filter: blur(10px);
-            transition: background 0.3s ease;
-        }
-
-        header.scrolled {
-            background: rgba(7, 9, 14, 0.98);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .brand-logo {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--primary);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .brand-logo span { color: #fff; }
-
-        .search-wrapper {
-            position: relative;
-            flex: 1;
-            max-width: 220px;
-            margin-left: 10px;
-        }
-
-        .search-wrapper input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            padding: 7px 12px 7px 32px;
-            border-radius: 20px;
-            color: #fff;
+            justify-content: center;
+            flex-direction: column;
+            color: #777;
             font-size: 13px;
-            outline: none;
+            text-align: center;
+            padding: 20px;
         }
-
-        .search-wrapper input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 10px var(--primary-glow);
+        
+        .movie-card .poster-fallback span {
+            font-weight: 700;
+            font-size: 15px;
+            color: #ccc;
         }
-
-        .search-wrapper i {
+        
+        .top10-number {
             position: absolute;
-            left: 11px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-            font-size: 12px;
-        }
-
-        /* Hero Carousel/Banner */
-        .hero {
-            position: relative;
-            width: 100%;
-            height: 65vh;
-            max-height: 520px;
-            background-size: cover;
-            background-position: center top;
-            display: flex;
-            align-items: flex-end;
-            padding: 20px 16px;
-            margin-top: 0;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(0deg, var(--bg-color) 8%, rgba(7,9,14,0.4) 60%, rgba(7,9,14,0.8) 100%);
-        }
-
-        .hero-content {
-            position: relative;
+            bottom: 8px;
+            left: 8px;
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1;
+            color: #000;
+            -webkit-text-stroke: 4px #fff;
+            text-shadow: 0 0 20px rgba(0,0,0,0.9);
             z-index: 2;
-            width: 100%;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: var(--primary);
-            color: #fff;
-            font-size: 10px;
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .hero-title {
-            font-size: 28px;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 8px;
-        }
-
-        .hero-meta {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
-
-        .hero-desc {
-            font-size: 13px;
-            color: #cbd5e1;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            margin-bottom: 16px;
-            line-height: 1.4;
-        }
-
-        .btn-play-hero {
-            width: 100%;
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px var(--primary-glow);
-        }
-
-        /* Content Rows */
-        .section-container {
-            padding: 16px 0 8px 16px;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-right: 16px;
-            margin-bottom: 12px;
-        }
-
-        .section-title {
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .media-row {
-            display: flex;
-            gap: 12px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            padding-bottom: 10px;
-            scrollbar-width: none;
-        }
-
-        .media-row::-webkit-scrollbar { display: none; }
-
-        .media-card {
-            flex: 0 0 130px;
-            scroll-snap-align: start;
-            border-radius: 8px;
-            overflow: hidden;
-            background: var(--surface);
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .media-card:active { transform: scale(0.96); }
-
-        .poster-container {
-            position: relative;
-            width: 100%;
-            height: 185px;
-            background: var(--surface-hover);
-        }
-
-        .poster-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .media-details {
-            padding: 8px;
-        }
-
-        .media-title {
-            font-size: 12px;
-            font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .media-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 10px;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        /* Mobile Bottom Nav */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: var(--bottom-nav-height);
-            background: rgba(16, 20, 30, 0.98);
-            backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .nav-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            color: var(--text-muted);
-            font-size: 10px;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-
-        .nav-btn i { font-size: 18px; }
-        .nav-btn.active { color: var(--primary); }
-
-        /* Fullscreen Player Sheet */
-        .player-modal {
-            position: fixed;
-            inset: 0;
-            background: #000;
-            z-index: 2000;
-            display: none;
-            flex-direction: column;
-        }
-
-        .player-modal.active { display: flex; }
-
-        .player-header {
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 16px;
-            background: var(--surface);
-        }
-
-        .player-title {
-            font-size: 14px;
-            font-weight: 600;
-            max-width: 240px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .btn-close {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .video-wrapper {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #000;
-        }
-
-        video {
-            width: 100%;
-            max-height: 100%;
-            outline: none;
         }
     </style>
 </head>
 <body>
-
-    <!-- Header -->
-    <header id="appHeader">
-        <a href="#" class="brand-logo">Aetho<span>Flix</span></a>
-        <div class="search-wrapper">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Search movies...">
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-left">
+            <a href="#" class="logo">Aetho<span>flix</span></a>
+            
+            <ul class="nav-links">
+                <li><a href="#" class="active" data-section="home">Home</a></li>
+                <li><a href="#" data-section="browse">Browse</a></li>
+                <li><a href="#" data-section="mylist">My List</a></li>
+            </ul>
         </div>
-    </header>
-
-    <!-- Main Section -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero" id="hero">
-            <div class="hero-content">
-                <span class="hero-badge">TRENDING NOW</span>
-                <h1 class="hero-title" id="heroTitle">Loading Media...</h1>
-                <div class="hero-meta">
-                    <span id="heroRating" style="color:#f5c518"><i class="fa-solid fa-star"></i> --</span>
-                    <span id="heroYear">2026</span>
+        
+        <div class="navbar-right">
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" id="search-input" class="search-input" placeholder="Search titles...">
+            </div>
+            
+            <!-- Profile -->
+            <div class="profile">
+                <div class="profile-avatar">A</div>
+                <span style="font-size:13px; color:#ddd;">Alex</span>
+                
+                <div class="profile-dropdown">
+                    <a href="#">Account</a>
+                    <a href="#">Profile</a>
+                    <a href="#">Settings</a>
+                    <button onclick="logout()">Sign out of Aethoflix</button>
                 </div>
-                <p class="hero-desc" id="heroDesc">Fetching latest streams from global server networks...</p>
-                <button class="btn-play-hero" id="heroPlayBtn">
-                    <i class="fa-solid fa-play"></i> STREAM NOW
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">AETHER RISING</h1>
+            <p class="hero-subtitle">In a universe on the brink of collapse, one astronaut must unlock the secrets of the Aether to save humanity.</p>
+            
+            <div class="hero-buttons">
+                <button onclick="playMovie(0)" class="btn btn-play">
+                    <span style="font-size:20px;">▶</span> 
+                    <span>Play</span>
+                </button>
+                <button onclick="showMovieModal(0)" class="btn btn-info">
+                    <span>ℹ︎</span> 
+                    <span>More Info</span>
                 </button>
             </div>
-        </section>
-
-        <!-- Dynamic Rows -->
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title"><i class="fa-solid fa-fire" style="color:var(--primary)"></i> Trending Worldwide</h2>
+            
+            <div style="margin-top: 26px; display: flex; align-items: center; gap: 12px; font-size: 13px;">
+                <div style="background:#e50914; color:white; padding:1px 8px; font-size:12px; font-weight:700;">TOP 10</div>
+                <span style="color:#b3b3b3;">#1 in Sci-Fi Today</span>
             </div>
-            <div class="media-row" id="trendingRow"></div>
         </div>
-
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title"><i class="fa-solid fa-film" style="color:var(--primary)"></i> Popular Movies</h2>
-            </div>
-            <div class="media-row" id="moviesRow"></div>
+    </section>
+    
+    <!-- Content Sections -->
+    <div class="content-section" id="home-content">
+        
+        <!-- Trending Now -->
+        <div class="section-header">
+            <h2 class="section-title">Trending Now</h2>
+            <a href="#" class="see-all" onclick="showBrowseAll()">See All</a>
         </div>
-
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title"><i class="fa-solid fa-tv" style="color:var(--primary)"></i> Popular TV Shows</h2>
-            </div>
-            <div class="media-row" id="tvRow"></div>
+        <div class="movie-row" id="trending-row"></div>
+        
+        <!-- Top 10 -->
+        <div class="section-header">
+            <h2 class="section-title">Top 10 in India</h2>
+            <a href="#" class="see-all" onclick="showBrowseAll()">See All</a>
         </div>
-    </main>
-
-    <!-- Bottom Navigation -->
-    <nav class="bottom-nav">
-        <button class="nav-btn active"><i class="fa-solid fa-house"></i><span>Home</span></button>
-        <button class="nav-btn"><i class="fa-solid fa-film"></i><span>Movies</span></button>
-        <button class="nav-btn"><i class="fa-solid fa-tv"></i><span>TV Shows</span></button>
-    </nav>
-
-    <!-- Integrated Native Player Modal -->
-    <div class="player-modal" id="playerModal">
-        <div class="player-header">
-            <div class="player-title" id="playerTitle">Playing Stream</div>
-            <button class="btn-close" id="closePlayerBtn"><i class="fa-solid fa-xmark"></i></button>
+        <div class="movie-row" id="top10-row"></div>
+        
+        <!-- Popular on Aethoflix -->
+        <div class="section-header">
+            <h2 class="section-title">Popular on Aethoflix</h2>
+            <a href="#" class="see-all" onclick="showBrowseAll()">See All</a>
         </div>
-        <div class="video-wrapper">
-            <video id="nativeVideoPlayer" controls playsinline autoplay poster="">
-                <source id="videoSource" src="" type="video/mp4">
-                Your browser does not support HTML5 video streaming.
-            </video>
+        <div class="movie-row" id="popular-row"></div>
+        
+        <!-- Sci-Fi Thrillers -->
+        <div class="section-header">
+            <h2 class="section-title">Sci-Fi Thrillers</h2>
+            <a href="#" class="see-all" onclick="showBrowseAll()">See All</a>
+        </div>
+        <div class="movie-row" id="scifi-row"></div>
+        
+        <!-- Action Hits -->
+        <div class="section-header">
+            <h2 class="section-title">Action Hits</h2>
+            <a href="#" class="see-all" onclick="showBrowseAll()">See All</a>
+        </div>
+        <div class="movie-row" id="action-row"></div>
+        
+    </div>
+    
+    <!-- Full Browse Section (hidden initially) -->
+    <div class="content-section" id="browse-content" style="display: none; margin-top: 20px;">
+        <div class="section-header">
+            <h2 class="section-title">Browse All Titles</h2>
+        </div>
+        
+        <!-- Filters -->
+        <div class="category-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="sci-fi">Sci-Fi</button>
+            <button class="filter-btn" data-filter="action">Action</button>
+            <button class="filter-btn" data-filter="thriller">Thriller</button>
+            <button class="filter-btn" data-filter="drama">Drama</button>
+            <button class="filter-btn" data-filter="horror">Horror</button>
+        </div>
+        
+        <div class="movie-grid" id="browse-grid"></div>
+    </div>
+    
+    <!-- My List Section (hidden initially) -->
+    <div class="content-section" id="mylist-content" style="display: none; margin-top: 20px;">
+        <div class="section-header">
+            <h2 class="section-title">My List</h2>
+        </div>
+        <div class="movie-grid" id="mylist-grid"></div>
+        <div id="mylist-empty" class="empty-state" style="display:none;">
+            Your list is empty. Add movies by clicking the + icon on any title.
         </div>
     </div>
-
-    <!-- Application Script Engine -->
-    <script>
-        const TMDB_KEY = "fca1c3fa675f74cf4aa8d24b72dd4807";
-        const IMG_POSTER = "https://image.tmdb.org/t/p/w500";
-        const IMG_HERO = "https://image.tmdb.org/t/p/original";
-
-        // Reliable fallback open-source public video streams
-        const SAMPLE_STREAMS = [
-            "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-            "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-            "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-            "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
-        ];
-
-        // Header Scroll Shadow Effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('appHeader');
-            if (window.scrollY > 30) header.classList.add('scrolled');
-            else header.classList.remove('scrolled');
-        });
-
-        // TMDb API Data Fetcher
-        async function fetchTMDb(endpoint) {
-            try {
-                const res = await fetch(`https://api.themoviedb.org/3${endpoint}?api_key=${TMDB_KEY}&language=en-US`);
-                if (!res.ok) throw new Error("API call failed");
-                return await res.json();
-            } catch (err) {
-                console.warn("TMDb API Error, fallback data active:", err);
-                return null;
-            }
-        }
-
-        // Initialize Application
-        async function initApp() {
-            const trending = await fetchTMDb('/trending/all/day');
-            const movies = await fetchTMDb('/movie/popular');
-            const tv = await fetchTMDb('/tv/popular');
-
-            if (trending && trending.results.length > 0) {
-                setupHero(trending.results[0]);
-                renderRow(trending.results.slice(1), 'trendingRow');
-            }
-            if (movies) renderRow(movies.results, 'moviesRow');
-            if (tv) renderRow(tv.results, 'tvRow');
-        }
-
-        // Populate Hero Section
-        function setupHero(item) {
-            const title = item.title || item.name || "Featured Title";
-            const backdrop = item.backdrop_path ? IMG_HERO + item.backdrop_path : '';
-            const rating = item.vote_average ? item.vote_average.toFixed(1) : "8.5";
-            const year = (item.release_date || item.first_air_date || "2026").split('-')[0];
-
-            document.getElementById('hero').style.backgroundImage = `url('${backdrop}')`;
-            document.getElementById('heroTitle').innerText = title;
-            document.getElementById('heroRating').innerHTML = `<i class="fa-solid fa-star"></i> ${rating}`;
-            document.getElementById('heroYear').innerText = year;
-            document.getElementById('heroDesc').innerText = item.overview || "Stream unlimited movies and series on AethoFlix.";
-
-            document.getElementById('heroPlayBtn').onclick = () => launchPlayer(title, backdrop);
-        }
-
-        // Render Media Cards
-        function renderRow(items, targetId) {
-            const container = document.getElementById(targetId);
-            container.innerHTML = '';
-
-            items.forEach((item, index) => {
-                const title = item.title || item.name || "Untitled";
-                const poster = item.poster_path ? IMG_POSTER + item.poster_path : 'https://via.placeholder.com/500x750/10141e/ffffff?text=AethoFlix';
-                const rating = item.vote_average ? item.vote_average.toFixed(1) : "7.9";
-                const year = (item.release_date || item.first_air_date || "2026").split('-')[0];
-
-                const card = document.createElement('div');
-                card.className = 'media-card';
-                card.innerHTML = `
-                    <div class="poster-container">
-                        <img src="${poster}" alt="${title}" loading="lazy" onerror="this.src='https://via.placeholder.com/500x750/10141e/ffffff?text=Poster+Unavailable'">
-                    </div>
-                    <div class="media-details">
-                        <div class="media-title">${title}</div>
-                        <div class="media-meta">
-                            <span>${year}</span>
-                            <span style="color:#f5c518"><i class="fa-solid fa-star"></i> ${rating}</span>
+    
+    <!-- Movie Detail Modal -->
+    <div class="modal" id="movie-modal">
+        <div class="modal-content">
+            <!-- Modal Hero / Banner -->
+            <div class="modal-hero" id="modal-hero">
+                <div class="modal-close" onclick="closeMovieModal()">&times;</div>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-info">
+                    <h2 class="modal-title" id="modal-title"></h2>
+                    
+                    <div class="modal-meta">
+                        <div class="meta-item">
+                            <span class="rating" id="modal-rating"></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-year" id="modal-year"></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-duration" id="modal-duration"></span>
                         </div>
                     </div>
-                `;
-
-                // Assign a working stream index
-                const streamUrl = SAMPLE_STREAMS[index % SAMPLE_STREAMS.length];
-                card.onclick = () => launchPlayer(title, poster, streamUrl);
-                container.appendChild(card);
-            });
-        }
-
-        // Launch Native Player Modal
-        function launchPlayer(title, posterUrl, videoUrl = SAMPLE_STREAMS[0]) {
-            const modal = document.getElementById('playerModal');
-            const video = document.getElementById('nativeVideoPlayer');
-            const source = document.getElementById('videoSource');
-
-            document.getElementById('playerTitle').innerText = title;
-            video.poster = posterUrl;
-            source.src = videoUrl;
+                    
+                    <p class="modal-desc" id="modal-desc"></p>
+                    
+                    <div class="modal-actions">
+                        <button onclick="playCurrentMovie()" class="btn btn-play" id="modal-play-btn">
+                            <span style="font-size:19px;">▶</span> <span>Play</span>
+                        </button>
+                        <button onclick="toggleMyListFromModal()" class="btn btn-secondary" id="modal-list-btn">
+                            <span id="modal-list-text">+ My List</span>
+                        </button>
+                    </div>
+                    
+                    <div class="modal-genres">
+                        <div class="genres-label">Genres</div>
+                        <div class="genres-list" id="modal-genres"></div>
+                    </div>
+                    
+                    <div class="cast">
+                        <div class="cast-label">Starring</div>
+                        <div class="cast-names" id="modal-cast"></div>
+                    </div>
+                </div>
+                
+                <div>
+                    <!-- Additional info panel -->
+                    <div style="background:#222; padding: 16px 18px; border-radius: 6px; margin-top: 6px;">
+                        <div style="font-size: 13px; font-weight: 600; color: #ccc; margin-bottom: 10px;">More like this</div>
+                        <div id="modal-similar" style="display: flex; gap: 8px; flex-wrap: wrap;"></div>
+                    </div>
+                    
+                    <div style="margin-top: 18px; font-size: 13px;">
+                        <span style="color:#888;">Director:</span> <span id="modal-director" style="color:#ddd;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Video Player Modal -->
+    <div class="player-modal" id="player-modal">
+        <div class="player-header">
+            <div onclick="closePlayer()" style="cursor:pointer; font-size:24px; padding-right: 10px; color:#ccc;">←</div>
+            <span class="movie-title" id="player-title"></span>
+            <div class="player-close" onclick="closePlayer()">&times;</div>
+        </div>
+        
+        <div class="video-container">
+            <video id="video-player" controls autoplay width="100%" style="max-width: 1180px; max-height: 620px; background:#111;">
+                Your browser does not support the video tag.
+            </video>
             
-            video.load();
-            modal.classList.add('active');
-            video.play().catch(e => console.log("Autoplay prevented:", e));
-        }
-
-        // Close Player
-        document.getElementById('closePlayerBtn').onclick = () => {
-            const modal = document.getElementById('playerModal');
-            const video = document.getElementById('nativeVideoPlayer');
-            video.pause();
-            modal.classList.remove('active');
-        };
-
-        // Live Search Handler
-        const searchInput = document.getElementById('searchInput');
-        let searchTimer;
-
-        searchInput.addEventListener('input', (e) => {
-            clearTimeout(searchTimer);
-            const query = e.target.value.trim();
-            if (query.length > 2) {
-                searchTimer = setTimeout(async () => {
-                    const searchRes = await fetchTMDb(`/search/multi?query=${encodeURIComponent(query)}`);
-                    if (searchRes && searchRes.results.length > 0) {
-                        renderRow(searchRes.results, 'trendingRow');
-                    }
-                }, 400);
-            }
-        });
-
-        // Initialize script
-        initApp();
-    </script>
+            <!-- Overlay controls if needed (but native controls are used) -->
+        </div>
+        
+        <div class="player-controls" style="display: none;">
+            <!-- Custom controls fallback if needed but we use native -->
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">Questions? Contact us.</a>
+            <a href="#">FAQ</a>
+            <a href="#">Investor Relations</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Help Center</a>
+            <a href="#">Corporate Info</a>
+            <a href="#">Legal Notices</a>
+        </div>
+        
+        <div class="footer-bottom">
+            &copy; 2026 Aethoflix. All rights reserved. <span style="margin-left: 20px;">Made for cinematic experiences.</span>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
 </body>
 </html>
-
