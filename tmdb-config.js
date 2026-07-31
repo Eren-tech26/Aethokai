@@ -1,7 +1,7 @@
 // TMDB Configuration
 // Get your free API key at: https://www.themoviedb.org/settings/api
 
-const TMDB_API_KEY = ''; // <-- PASTE YOUR TMDB API KEY HERE
+const TMDB_API_KEY = 'fca1c3fa675f74cf4aa8d24b72dd4807'; // <-- PASTE YOUR TMDB API KEY HERE
 
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w500';
